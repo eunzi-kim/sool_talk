@@ -15,20 +15,16 @@ public class RoomApiController {
     @Autowired
     private RoomService roomService;
 
-    private ArrayList<Room> roomList = new ArrayList<>();
-
     @PostMapping("/makeroom")
     public ResponseEntity<Room> makeRoom(@RequestBody Room paramRoom) {
-        Room room = roomService.makeRoom(paramRoom);
-        if (room != null) {
-            roomList.add(room);
-            return new ResponseEntity<Room>(room, HttpStatus.OK);
-        } else return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        // 일단 에러에 대한 처리는 없음
+        roomService.makeRoom(paramRoom);
+        return new ResponseEntity<Room>(paramRoom, HttpStatus.OK);
     }
 
     @GetMapping("/roomlist")
     public ResponseEntity<ArrayList<Room>> roomList() {
-        roomService.roomList(); // 일단 나중에 필요할 수도 있어서 코드만 추가
+        ArrayList<Room> roomList = roomService.roomList(); // 일단 나중에 필요할 수도 있어서 코드만 추가
         if (roomList.size() == 0) return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 만들어진 방이 없을 때
         else return new ResponseEntity<ArrayList<Room>>(roomList, HttpStatus.OK);
     }
