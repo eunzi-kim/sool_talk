@@ -6,12 +6,18 @@ function Login() {
     <div>
       <h1>로그인</h1>
       <div>
-        <b>아이디</b> : <input placeholder="아이디를 입력하세요."></input>
+        <b>아이디</b> :{" "}
+        <input name="id" value="id" placeholder="아이디를 입력하세요."></input>
       </div>
       <div>
-        <b>비밀번호</b> : <input placeholder="아이디를 입력하세요."></input>
+        <b>비밀번호</b> :{" "}
+        <input
+          name="password"
+          value="password"
+          placeholder="비밀번호를 입력하세요."
+        ></input>
       </div>
-      <Link to="/Home">
+      <Link to="/home">
         <button>로그인</button>
       </Link>
     </div>
