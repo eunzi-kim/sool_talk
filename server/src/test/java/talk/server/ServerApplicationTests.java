@@ -1,10 +1,10 @@
-package com.example.board;
+package talk.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BoardApplicationTests {
+class ServerApplicationTests {
 
 	@Test
 	void contextLoads() {
