@@ -48,3 +48,10 @@
   background-color: #5A805C;
   cursor: pointer;
 }
+
+.selected .category-btn {
+  background-color: #6f4f28;
+  font-size: 20px;
+  font-weight: bold;
+  height: 14rem;
+}
