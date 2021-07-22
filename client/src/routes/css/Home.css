@@ -6,7 +6,7 @@
 }
 
 .random-card{
-  color: #f2f2f2;
+  color: #5e454b;
   margin-bottom: 1.5rem;
 }
 
@@ -17,14 +17,14 @@
   border-top-right-radius: 7px;
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
-  background-color: #5A805C;
+  background-color: #5f939a;
 }
 
 .random-btn:hover {
-  background-color: grey;
+  background-color: #f2edd7;
   cursor: pointer;
 }
 
 .random-btn:hover h1 {
-  color: #f2f2f2;
+  color: #3a6351;
 }

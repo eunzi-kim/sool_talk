@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Login.css";
+import "./css/Login.css";
 
 const fetchLogin = async ({ username, password }) => {
   const response = await axios("http://localhost:4000/users");
@@ -67,7 +67,7 @@ function Login() {
         ></input>
       </div>
       <div>
-        <Link to="/home">
+        <Link to="/">
           <button onClick={submitLogin} className="login-btn">
             <h3>로그인</h3>
           </button>

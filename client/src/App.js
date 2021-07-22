@@ -8,14 +8,17 @@ import Signup from "./routes/Signup";
 
 function App() {
   return (
-    <HashRouter>
-      <Navigation />
-      <Route path="/" component={Home} exact={true} />
-      <Route path="/login" component={Login} />
-      <Route path="/mypage" component={Mypage} />
-      <Route path="/logout" component={Login} />
-      <Route path="/signup" component={Signup} />
-    </HashRouter>
+    <div>
+      <HashRouter>
+        <Navigation />
+        <Route path="/" component={Home} exact={true} />
+        <Route path="/login" component={Login} />
+        <Route path="/mypage" component={Mypage} />
+        <Route path="/logout" component={Login} />
+        <Route path="/signup" component={Signup} />
+      </HashRouter>
+    </div>
+    
   );
 }
 
