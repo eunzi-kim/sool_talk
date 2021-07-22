@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Mypage from "./routes/Mypage";
+import Signup from "./routes/Signup";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/mypage" component={Mypage} />
       <Route path="/logout" component={Login} />
+      <Route path="/signup" component={Signup} />
     </HashRouter>
   );
 }
