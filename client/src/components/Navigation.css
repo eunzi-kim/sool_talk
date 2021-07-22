@@ -23,11 +23,14 @@
   padding: 1.2rem;
   height: 12rem;
   border: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .category-btn:hover {
   cursor: pointer;
-  background-color: #6f4f28;
+  background-color: #A0937D;
+  font-weight: bold;
 }
 
 .logout {
@@ -38,20 +41,21 @@
 .logout-btn {
   padding: 0.7rem 3.5rem 0.7rem 1.5rem;
   border: none;
-  background-color: #c4c4c4;
+  background-color: #F2EDD7;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   font-size: 15px;
 }
 
 .logout-btn:hover {
-  background-color: #5A805C;
+  background-color: #3A6351;
+  color: #fff;
   cursor: pointer;
 }
 
 .selected .category-btn {
-  background-color: #6f4f28;
+  background-color: #A0937D;
   font-size: 20px;
   font-weight: bold;
-  height: 14rem;
+  height: 14.5rem;
 }
