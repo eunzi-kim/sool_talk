@@ -43,48 +43,50 @@ function Login() {
 
   return (
     <div className="login">
-      <div>
-        <h1>로그인</h1>
-      </div>      
-      <div>
-        <b>아이디</b> :{" "}
-        <input
-          className="form-input"
-          name="username"
-          value={username}
-          onChange={changeLogin}
-          placeholder="아이디를 입력하세요."
-        ></input>
-      </div>
-      <div>
-        <b>비밀번호</b> :{" "}
-        <input
-          className="form-input"
-          name="password"
-          value={password}
-          onChange={changeLogin}
-          placeholder="비밀번호를 입력하세요."
-        ></input>
-      </div>
-      <div>
-        <Link to="/">
-          <button onClick={submitLogin} className="login-btn">
-            <h3>로그인</h3>
-          </button>
-        </Link>
-      </div>
-      <div className="login-bottom">
-        <div className="social">
-          <img src={imgKakao} className="logo-img" alt="Kakao" />
-          <img src={imgInsta} className="logo-img" alt="Instagram" />
-          <img src={imgGoogle}className="logo-img" alt="Google" />
+      <div className="login-box">
+        <div>
+          <h1>로그인</h1>
+        </div>      
+        <div>
+          <b>아이디</b> :{" "}
+          <input
+            className="form-input"
+            name="username"
+            value={username}
+            onChange={changeLogin}
+            placeholder="아이디를 입력하세요."
+          ></input>
         </div>
-        <div className="signup-link">
-          <Link to="/signup">
-            <p>신규 회원 가입</p>
+        <div>
+          <b>비밀번호</b> :{" "}
+          <input
+            className="form-input"
+            name="password"
+            value={password}
+            onChange={changeLogin}
+            placeholder="비밀번호를 입력하세요."
+          ></input>
+        </div>
+        <div>
+          <Link to="/">
+            <button onClick={submitLogin} className="login-btn">
+              <h3>로그인</h3>
+            </button>
           </Link>
         </div>
-      </div>
+        <div className="login-bottom">
+          <div className="social">
+            <img src={imgKakao} className="logo-img" alt="Kakao" />
+            <img src={imgInsta} className="logo-img" alt="Instagram" />
+            <img src={imgGoogle}className="logo-img" alt="Google" />
+          </div>
+          <div className="signup-link">
+            <Link to="/signup">
+              <p>신규 회원 가입</p>
+            </Link>
+          </div>
+        </div>
+      </div>      
     </div>
   );
 }
