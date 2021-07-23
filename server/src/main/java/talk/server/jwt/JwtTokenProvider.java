@@ -1,6 +1,5 @@
 package talk.server.jwt;
 
-import talk.server.service.CustomUserDetailService;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import talk.server.service.CustomUserDetailService;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
@@ -59,9 +57,9 @@ public class JwtTokenProvider {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
-    public String resolveToken(HttpServletRequest req) {
-        return req.getHeader("X-AUTH-TOKEN");
-    }
+//    public String resolveToken(HttpServletRequest req) {
+//        return req.getHeader("X-AUTH-TOKEN");
+//    }
 
     public boolean validateToken(String token) {
         try {
