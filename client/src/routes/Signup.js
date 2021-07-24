@@ -10,7 +10,7 @@ import "./css/Signup.css";
 //   console.log(users);
 // }
 
-function Signup() {
+function Signup({ history }) {
   const [user, setUser] = useState({
     nickname: "",
     username: "",
@@ -27,30 +27,38 @@ function Signup() {
   };
 
   const submitSignup = () => {
-    console.log(user)
+    console.log(user);
     // fetchSignup(user)
-  }
+  };
+
+  const goLoginPage = () => {
+    history.push("/login");
+  };
 
   const { nickname, username, password, passwordConfirmation } = user;
 
-  const iconArrow = "/img/icon_arrow.png"
-  
+  const iconArrow = "/img/icon_arrow.png";
+
   return (
     <form className="signup-form">
       <div className="signup-box">
         <div>
           <div className="arrow">
-            <Link to="/login">
-              <img src={iconArrow} alt="화살표" className="icon-arrow" />
-            </Link>
+            <img
+              src={iconArrow}
+              alt="화살표"
+              className="icon-arrow"
+              style={{ cursor: "pointer" }}
+              onClick={goLoginPage}
+            />
           </div>
           <div className="signup-label">
             <h1>회원가입</h1>
           </div>
         </div>
-        
+
         <div className="nickname">
-          <b>닉네임</b> {" "}
+          <b>닉네임</b>{" "}
           <input
             className="form-input"
             name="nickname"
@@ -60,7 +68,7 @@ function Signup() {
           ></input>
         </div>
         <div className="username">
-          <b>아이디</b> {" "}
+          <b>아이디</b>{" "}
           <input
             className="form-input"
             name="username"
@@ -71,7 +79,7 @@ function Signup() {
           ></input>
         </div>
         <div className="password">
-          <b>비밀번호</b> {" "}
+          <b>비밀번호</b>{" "}
           <input
             className="form-input"
             name="password"
@@ -82,7 +90,7 @@ function Signup() {
           ></input>
         </div>
         <div className="password-confirm">
-          <b>비밀번호 확인</b> {" "}
+          <b>비밀번호 확인</b>{" "}
           <input
             className="form-input"
             name="passwordConfirmation"
@@ -91,7 +99,7 @@ function Signup() {
             placeholder="비밀번호를 다시 입력하세요."
             type="password"
           ></input>
-        </div>    
+        </div>
         <div>
           <button onClick={submitSignup} className="signup-btn">
             <h3>회원가입</h3>
