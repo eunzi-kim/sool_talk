@@ -1,4 +1,4 @@
-import { HashRouter, Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import Home from "./routes/Home";
@@ -9,16 +9,23 @@ import Signup from "./routes/Signup";
 function App() {
   return (
     <div>
-      <HashRouter>
-        <Navigation />
+      <Navigation />
+      <Switch>
         <Route path="/" component={Home} exact={true} />
         <Route path="/login" component={Login} />
         <Route path="/mypage" component={Mypage} />
         <Route path="/logout" component={Login} />
         <Route path="/signup" component={Signup} />
-      </HashRouter>
+        <Route
+          render={({ location }) => (
+            <div>
+              <h2>존재하지 않는 페이지 입니다.</h2>
+              <p>{location.pathname}</p>
+            </div>
+          )}
+        />
+      </Switch>
     </div>
-    
   );
 }
 
