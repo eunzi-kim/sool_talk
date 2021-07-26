@@ -2,22 +2,20 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/Login.css";
+import Cookies from "js-cookie";
 
-const fetchLogin = async ({ username, password }) => {
-  const response = await axios("http://localhost:4000/users");
-
-  const users = response.data;
-  console.log(users);
-  const user = users.find((user) => user.username === username);
-
-  if (!user || user.password !== password) {
-    console.log("게정 없거나 비밀번호 틀림!!!!!");
-  } else {
-    console.log("로그인 성공");
-  }
+// 유저가 입력한 아이디와 비밀번호를 서버로 보내주고 그 결과값을 받는 함수 (33번째 줄 참고)
+const signIn = async ({ username, password }) => {
+  // username(아이디)과 password를 서버로 넘긴다.
+  const { data } = await axios.post("http://localhost:8080/user/siginin", {
+    username,
+    password,
+  });
+  // 받아오는 (return) 데이터에는 success(로그인 성공 여부)와 token 값이 들어있음. (32번째 줄로..)
+  return data;
 };
 
-function Login() {
+function Login({ history }) {
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -31,22 +29,33 @@ function Login() {
     });
   };
 
-  const submitLogin = () => {
-    fetchLogin(user);
+  // 유저가 (아이디와 비밀번호를 입력하고) 로그인 버튼을 눌렀을 때, 아래 함수 실행!
+  const submitLogin = async ({ username, password }) => {
+    const { success, token } = await signIn({ username, password });
+    console.log(success);
+
+    // 만약 로그인 성공 시 (success = true),
+    if (success) {
+      // 토큰값을 받아 세션을 생성하고 쿠키에 저장한다. => session: <토큰값>
+      Cookies.set("session", token.split(" ")[1]);
+
+      // 마이페이지로 이동
+      history.push("/mypage");
+    }
   };
 
   const { username, password } = user;
 
-  const imgKakao = "/img/logo_kakao.svg"
-  const imgInsta = "/img/logo_instagram.svg"
-  const imgGoogle = "/img/logo_google.png"
+  const imgKakao = "/img/logo_kakao.svg";
+  const imgInsta = "/img/logo_instagram.svg";
+  const imgGoogle = "/img/logo_google.png";
 
   return (
     <div className="login">
       <div className="login-box">
         <div>
           <h1>로그인</h1>
-        </div>      
+        </div>
         <div>
           <b>아이디</b> :{" "}
           <input
@@ -68,17 +77,15 @@ function Login() {
           ></input>
         </div>
         <div>
-          <Link to="/">
-            <button onClick={submitLogin} className="login-btn">
-              <h3>로그인</h3>
-            </button>
-          </Link>
+          <button onClick={submitLogin} className="login-btn">
+            <h3>로그인</h3>
+          </button>
         </div>
         <div className="login-bottom">
           <div className="social">
             <img src={imgKakao} className="logo-img" alt="Kakao" />
             <img src={imgInsta} className="logo-img" alt="Instagram" />
-            <img src={imgGoogle}className="logo-img" alt="Google" />
+            <img src={imgGoogle} className="logo-img" alt="Google" />
           </div>
           <div className="signup-link">
             <Link to="/signup">
@@ -86,7 +93,7 @@ function Login() {
             </Link>
           </div>
         </div>
-      </div>      
+      </div>
     </div>
   );
 }
