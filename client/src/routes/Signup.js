@@ -3,12 +3,12 @@ import axios from "axios";
 // import { Link } from "react-router-dom";
 import "./css/Signup.css";
 
-const fetchSignup = async ( user ) => {
-  const data = user
-  const url = "http://localhost:8080/board/user"
+const fetchSignup = async ( userInfo ) => {
+  const data = userInfo
+  const url = "http://localhost:8080/board/user/"
   const response = await axios.post(url, data);
 
-  response.then()
+  // console.log(response)
 }
 
 function Signup({ history }) {
@@ -28,11 +28,15 @@ function Signup({ history }) {
   };
 
   const submitSignup = () => {
-    console.log(user)
     if (user.password !== user.passwordConfirmation) {
       document.querySelector(".password-alert").className = "password-alert-view"
     } else {
-      fetchSignup(user)
+      const userInfo = {
+        'nickname': user.nickname,
+        'username': user.username,
+        'password': user.password,
+      }
+      fetchSignup(userInfo)
     }
   };
 
