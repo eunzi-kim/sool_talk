@@ -1,5 +1,6 @@
 package talk.server.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import talk.server.vo.Room;
 
 import java.util.ArrayList;
 
+@Api(tags = {"랜덤 매칭 컨트롤러(나중에 수정해햐함)"})
 @RestController
 @RequestMapping("/room")
 public class RoomApiController {

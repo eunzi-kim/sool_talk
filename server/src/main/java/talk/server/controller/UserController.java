@@ -1,5 +1,6 @@
 package talk.server.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import talk.server.jwt.JwtTokenProvider;
 import talk.server.service.UserService;
 import talk.server.vo.User;
 
+@Api(tags = {"회원관련 컨트롤러"})
 @RequestMapping("/user")
 @RestController
 public class UserController {

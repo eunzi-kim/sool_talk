@@ -1,5 +1,6 @@
 package talk.server.controller;
 
+import io.swagger.annotations.Api;
 import talk.server.jwt.JwtTokenProvider;
 import talk.server.service.TbService;
 import talk.server.service.UserService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 
+@Api(tags = {"게시판 컨트롤러"})
 @RequestMapping("/board")
 @RestController
 public class BoardController {
