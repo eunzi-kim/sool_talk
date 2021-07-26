@@ -18,28 +18,14 @@ import java.util.ArrayList;
 
 @RequestMapping("/board")
 @RestController
-public class ApiController {
+public class BoardController {
     @Autowired
     private TbService service;
-
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
 
     @GetMapping(value = "/boardlist")
     public ResponseEntity<ArrayList<Tb>> getAllTb() {
         ArrayList<Tb> list = service.getAllTb();
         if (list != null) return new ResponseEntity<>(list, HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @GetMapping("/user")
-//    @PreAuthorize("hasAnyRole('USER','ADMIN')")
-    public ResponseEntity<User> getUser(@RequestParam String id) {
-//        User user = userService.getUser(id);
-//        jwtTokenProvider.createToken(user.getUsername(), user.getAuthorities());
-        return ResponseEntity.ok(userService.getUser(id));
     }
 }
