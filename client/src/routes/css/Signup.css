@@ -1,4 +1,4 @@
-.signup-form {
+.signup-box {
   position: absolute;
   top: 0;
   width: 100%;
@@ -10,7 +10,7 @@
   justify-content: center;
 }
 
-.signup-box {
+.signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,4 +86,23 @@
 .signup-btn:hover {
   cursor: pointer;
   background-color: #c4c4c4;
+}
+
+.password-alert {
+  display: none;
+}
+
+.password-alert-view {
+  background-color: red;
+  height: 3rem;
+  width: 30rem;
+  opacity: 0.65;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-alert h3 {
+  margin: 0;
 }

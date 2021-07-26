@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-// import axios from "axios";
-import { Link } from "react-router-dom";
+import axios from "axios";
+// import { Link } from "react-router-dom";
 import "./css/Signup.css";
 
-// const fetchSignup = async ({ nickname, username, password, passwordConfirmation }) => {
-//   const response = await axios("http://localhost:4000/users");
+const fetchSignup = async ( userInfo ) => {
+  const data = userInfo
+  const url = "http://localhost:8080/board/user/"
+  const response = await axios.post(url, data);
 
-//   const users = response.data;
-//   console.log(users);
-// }
+  // console.log(response)
+}
 
 function Signup({ history }) {
   const [user, setUser] = useState({
@@ -27,8 +28,16 @@ function Signup({ history }) {
   };
 
   const submitSignup = () => {
-    console.log(user);
-    // fetchSignup(user)
+    if (user.password !== user.passwordConfirmation) {
+      document.querySelector(".password-alert").className = "password-alert-view"
+    } else {
+      const userInfo = {
+        'nickname': user.nickname,
+        'username': user.username,
+        'password': user.password,
+      }
+      fetchSignup(userInfo)
+    }
   };
 
   const goLoginPage = () => {
@@ -40,8 +49,11 @@ function Signup({ history }) {
   const iconArrow = "/img/icon_arrow.png";
 
   return (
-    <form className="signup-form">
-      <div className="signup-box">
+    <div className="signup-box">
+      <div className="password-alert">
+        <h3>비밀번호가 다릅니다.</h3>
+      </div>
+      <div className="signup-form">
         <div>
           <div className="arrow">
             <img
@@ -106,7 +118,7 @@ function Signup({ history }) {
           </button>
         </div>
       </div>
-    </form>
+    </div>
   );
 }
 
