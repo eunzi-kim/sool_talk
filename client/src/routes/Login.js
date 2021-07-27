@@ -6,10 +6,12 @@ import Cookies from "js-cookie";
 
 // 유저가 입력한 아이디와 비밀번호를 서버로 보내주고 그 결과값을 받는 함수 (33번째 줄 참고)
 const signIn = async ({ username, password }) => {
+  console.log(username, password);
+
   // username(아이디)과 password를 서버로 넘긴다.
-  const { data } = await axios.post("http://localhost:8080/user/siginin", {
-    username,
-    password,
+  const { data } = await axios.post("http://localhost:8080/user/signin", {
+    username: username,
+    password: password,
   });
   // 받아오는 (return) 데이터에는 success(로그인 성공 여부)와 token 값이 들어있음. (32번째 줄로..)
   return data;
@@ -29,10 +31,12 @@ function Login({ history }) {
     });
   };
 
+  const { username, password } = user;
+
   // 유저가 (아이디와 비밀번호를 입력하고) 로그인 버튼을 눌렀을 때, 아래 함수 실행!
   const submitLogin = async ({ username, password }) => {
-    const { success, token } = await signIn({ username, password });
-    console.log(success);
+    const { success, token, nickname } = await signIn({ username, password });
+    console.log(success, token, nickname);
 
     // 만약 로그인 성공 시 (success = true),
     if (success) {
@@ -43,8 +47,6 @@ function Login({ history }) {
       history.push("/mypage");
     }
   };
-
-  const { username, password } = user;
 
   const imgKakao = "/img/logo_kakao.svg";
   const imgInsta = "/img/logo_instagram.svg";
@@ -77,7 +79,7 @@ function Login({ history }) {
           ></input>
         </div>
         <div>
-          <button onClick={submitLogin} className="login-btn">
+          <button onClick={() => submitLogin(user)} className="login-btn">
             <h3>로그인</h3>
           </button>
         </div>
