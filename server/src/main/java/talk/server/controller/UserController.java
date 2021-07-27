@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import talk.server.jwt.JwtTokenProvider;
 import talk.server.service.UserService;
 import talk.server.vo.User;
+import talk.server.vo.resLoginUser;
+
+import java.util.Map;
 
 @Api(tags = {"회원관련 컨트롤러"})
 @RequestMapping("/user")
@@ -26,13 +29,13 @@ public class UserController {
     }
 
     @PostMapping("/signin")
-    public void signin() {
+    public ResponseEntity<resLoginUser> signin(@RequestBody Map<String, String> map) {
         // 로그인 로직
-    }
-
-    // 일단 두고 나중에 필요없어서 지워야함
-    @GetMapping("/user")
-    public ResponseEntity<User> getUser(@RequestParam String id) {
-        return ResponseEntity.ok(userService.getUser(id));
+        User user = userService.getUser(map);
+        resLoginUser result = new resLoginUser();
+        result.setNickname(user.getNickname());
+        result.setSuccess(true);
+        result.setToken(user.getAuth());
+        return ResponseEntity.ok(result);
     }
 }

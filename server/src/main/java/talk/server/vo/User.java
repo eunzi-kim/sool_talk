@@ -15,9 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
+    private String email;
     private String id;
     private String password;
-    private String name;
+    private String nickname;
     private String auth;
     private int enabled;
 

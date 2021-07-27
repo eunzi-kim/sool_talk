@@ -3,7 +3,7 @@
 <mapper namespace="talk.server.dao.UserDao">
 
     <select id="getUser" parameterType="java.lang.String" resultType="User">
-        select * from users where id = #{id}
+        select * from users where id = #{username} and pw = #{password}
     </select>
 
 </mapper>
