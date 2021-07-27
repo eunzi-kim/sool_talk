@@ -125,3 +125,41 @@
 .info-alert h3 {
   margin: 0;
 }
+
+.username-alert {
+  display: none;
+}
+
+.username-alert-view {
+  background-color: red;
+  height: 3rem;
+  width: 30rem;
+  opacity: 0.65;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.username-alert h3 {
+  margin: 0;
+}
+
+.nickname-alert {
+  display: none;
+}
+
+.nickname-alert-view {
+  background-color: red;
+  height: 3rem;
+  width: 30rem;
+  opacity: 0.65;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nickname-alert h3 {
+  margin: 0;
+}
