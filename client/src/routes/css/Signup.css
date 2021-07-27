@@ -106,3 +106,22 @@
 .password-alert h3 {
   margin: 0;
 }
+
+.info-alert {
+  display: none;
+}
+
+.info-alert-view {
+  background-color: red;
+  height: 3rem;
+  width: 30rem;
+  opacity: 0.65;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-alert h3 {
+  margin: 0;
+}
