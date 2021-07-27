@@ -24,8 +24,11 @@ public class UserController {
     // 일반, 소셜 회원가입 로그인 구분
 
     @PostMapping("/signup")
-    public void signup() {
+    public boolean signup(@RequestBody Map<String, String> map) {
         // 회원 가입 로직
+        boolean result = userService.setUser(map);
+        if (result) return true;
+        else return false;
     }
 
     @PostMapping("/signin")

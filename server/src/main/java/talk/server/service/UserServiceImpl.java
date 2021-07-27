@@ -29,4 +29,11 @@ public class UserServiceImpl implements UserService{
         user.setAuth(token);
         return user;
     }
+
+    @Override
+    public boolean setUser(Map<String, String> map) {
+        int result = dao.setUser(map);
+        if (result == 1) return true;
+        else return false;
+    }
 }
