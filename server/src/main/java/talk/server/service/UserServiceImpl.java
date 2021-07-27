@@ -20,6 +20,16 @@ public class UserServiceImpl implements UserService{
     private JwtTokenProvider jwtTokenProvider;
 
     @Override
+    public int getUserByNickName(String nickname) {
+        return dao.getUserByNickName(nickname);
+    }
+
+    @Override
+    public int getUserByUserName(String username) {
+        return dao.getUserByUserName(username);
+    }
+
+    @Override
     public User getUser(Map<String, String> map) {
         User user = dao.getUser(map);
         String token = jwtTokenProvider.createToken(user.getUsername(), user.getAuthorities());

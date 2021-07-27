@@ -24,11 +24,16 @@ public class UserController {
     // 일반, 소셜 회원가입 로그인 구분
 
     @PostMapping("/signup")
-    public boolean signup(@RequestBody Map<String, String> map) {
+    public String signup(@RequestBody Map<String, String> map) {
         // 회원 가입 로직
+        int dcNicnName = userService.getUserByNickName(map.get("nickname"));
+        if (dcNicnName >= 1) return "nickname";
+        int dcUserName = userService.getUserByUserName(map.get("username"));
+        if (dcUserName >= 1) return "username";
+
         boolean result = userService.setUser(map);
-        if (result) return true;
-        else return false;
+        if (result) return "success";
+        else return "failure";
     }
 
     @PostMapping("/signin")
