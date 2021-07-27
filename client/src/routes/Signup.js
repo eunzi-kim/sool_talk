@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./css/Signup.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function Signup({ history }) {
   const fetchSignup = async ( userInfo ) => {  
@@ -15,21 +15,66 @@ function Signup({ history }) {
   
     await axios.post(url, data, config)
     .then(response => {
-      if (response.data === true) {
+      // 로그인 성공
+      if (response.data === "success") {
         goLoginPage()
       }
+      // 아이디 중복
+      else if (response.data === "username") {
+        if (document.querySelector(".password-alert-view")) {
+          document.querySelector(".password-alert-view").className = "password-alert"
+        }
+        if (document.querySelector(".nickname-alert-view")) {
+          document.querySelector(".nickname-alert-view").className = "nickname-alert"
+        }
+        if (document.querySelector(".info-alert-view")) {
+          document.querySelector(".info-alert-view").className = "info-alert"
+        }
+        if (document.querySelector(".username-alert")) {
+          document.querySelector(".username-alert").className = "username-alert-view"
+        }
+      }
+      // 닉네임 중복
+      else if (response.data === "nickname") {
+        if (document.querySelector(".password-alert-view")) {
+          document.querySelector(".password-alert-view").className = "password-alert"
+        }
+        if (document.querySelector(".username-alert-view")) {
+          document.querySelector(".username-alert-view").className = "username-alert"
+        }
+        if (document.querySelector(".info-alert-view")) {
+          document.querySelector(".info-alert-view").className = "info-alert"
+        }
+        if (document.querySelector(".nickname-alert")) {
+          document.querySelector(".nickname-alert").className = "nickname-alert-view"
+        }
+      }
+      // 실패
       else {
         if (document.querySelector(".password-alert-view")) {
           document.querySelector(".password-alert-view").className = "password-alert"
+        }
+        if (document.querySelector(".username-alert-view")) {
+          document.querySelector(".username-alert-view").className = "username-alert"
+        }
+        if (document.querySelector(".nickname-alert-view")) {
+          document.querySelector(".nickname-alert-view").className = "nickname-alert"
         }
         if (document.querySelector(".info-alert")) {
           document.querySelector(".info-alert").className = "info-alert-view"
         }
       } 
     })
+    // 에러 발생 => 회원가입 실패
     .catch(error => {
       if (document.querySelector(".password-alert-view")) {
         document.querySelector(".password-alert-view").className = "password-alert"
+      }
+      if (document.querySelector(".username-alert-view")) {
+        document.querySelector(".username-alert-view").className = "username-alert"
+      }
+      if (document.querySelector(".nickname-alert-view")) {
+        document.querySelector(".nickname-alert-view").className = "nickname-alert"
       }
       if (document.querySelector(".info-alert")) {
         document.querySelector(".info-alert").className = "info-alert-view"
@@ -57,6 +102,13 @@ function Signup({ history }) {
       if (document.querySelector(".info-alert-view")) {
         document.querySelector(".info-alert-view").className = "info-alert"
       }
+      if (document.querySelector(".username-alert-view")) {
+        document.querySelector(".username-alert-view").className = "username-alert"
+      }
+      if (document.querySelector(".nickname-alert-view")) {
+        document.querySelector(".nickname-alert-view").className = "nickname-alert"
+      }
+
       if (document.querySelector(".password-alert")) {
         document.querySelector(".password-alert").className = "password-alert-view"
       }
@@ -82,6 +134,12 @@ function Signup({ history }) {
     <div className="signup-box">
       <div className="password-alert">
         <h3>비밀번호를 확인해주세요.</h3>
+      </div>
+      <div className="username-alert">
+        <h3>동일한 아이디가 존재합니다.</h3>
+      </div>
+      <div className="nickname-alert">
+        <h3>동일한 닉네임이 존재합니다.</h3>
       </div>
       <div className="info-alert">
         <h3>회원가입에 실패하였습니다.</h3>
