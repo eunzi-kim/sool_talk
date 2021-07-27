@@ -1,17 +1,42 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
 import "./css/Signup.css";
-
-const fetchSignup = async ( userInfo ) => {
-  const data = userInfo
-  const url = "http://localhost:8080/board/user/"
-  const response = await axios.post(url, data);
-
-  // console.log(response)
-}
+import { Link } from "react-router-dom";
 
 function Signup({ history }) {
+  const fetchSignup = async ( userInfo ) => {  
+    let config = {
+      headers:{
+        "Content-Type": "application/json"
+      }
+    }
+    const url = "http://localhost:8080/user/signup/"
+    const data = userInfo
+  
+    await axios.post(url, data, config)
+    .then(response => {
+      if (response.data === true) {
+        goLoginPage()
+      }
+      else {
+        if (document.querySelector(".password-alert-view")) {
+          document.querySelector(".password-alert-view").className = "password-alert"
+        }
+        if (document.querySelector(".info-alert")) {
+          document.querySelector(".info-alert").className = "info-alert-view"
+        }
+      } 
+    })
+    .catch(error => {
+      if (document.querySelector(".password-alert-view")) {
+        document.querySelector(".password-alert-view").className = "password-alert"
+      }
+      if (document.querySelector(".info-alert")) {
+        document.querySelector(".info-alert").className = "info-alert-view"
+      }
+    })
+  }
+
   const [user, setUser] = useState({
     nickname: "",
     username: "",
@@ -29,12 +54,17 @@ function Signup({ history }) {
 
   const submitSignup = () => {
     if (user.password !== user.passwordConfirmation) {
-      document.querySelector(".password-alert").className = "password-alert-view"
+      if (document.querySelector(".info-alert-view")) {
+        document.querySelector(".info-alert-view").className = "info-alert"
+      }
+      if (document.querySelector(".password-alert")) {
+        document.querySelector(".password-alert").className = "password-alert-view"
+      }
     } else {
       const userInfo = {
-        'nickname': user.nickname,
-        'username': user.username,
-        'password': user.password,
+        "username": user.username,
+        "password": String(user.password),
+        "nickname": user.nickname
       }
       fetchSignup(userInfo)
     }
@@ -51,7 +81,10 @@ function Signup({ history }) {
   return (
     <div className="signup-box">
       <div className="password-alert">
-        <h3>비밀번호가 다릅니다.</h3>
+        <h3>비밀번호를 확인해주세요.</h3>
+      </div>
+      <div className="info-alert">
+        <h3>회원가입에 실패하였습니다.</h3>
       </div>
       <div className="signup-form">
         <div>
@@ -87,7 +120,6 @@ function Signup({ history }) {
             value={username}
             onChange={changeSignup}
             placeholder="아이디를 입력하세요."
-            type="email"
           ></input>
         </div>
         <div className="password">
