@@ -5,6 +5,8 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Mypage from "./routes/Mypage";
 import Signup from "./routes/Signup";
+import Article from "./routes/Article";
+import Chat from "./components/Chat";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/mypage" component={Mypage} />
         <Route path="/logout" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/articles" component={Article} />
+        <Route path="/chat" component={Chat} />
         <Route
           render={({ location }) => (
             <div>

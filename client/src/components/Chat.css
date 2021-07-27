@@ -1,0 +1,82 @@
+.chat-box {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #b5cda3;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-exit {
+  margin-top: 2.5rem;
+  margin-left: 6rem;
+}
+
+.chat-exit-btn {
+  padding: 0.7rem 3.5rem 0.7rem 1.5rem;
+  border: none;
+  background-color: #F2EDD7;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  font-size: 15px;
+}
+
+.chat-exit-btn:hover {
+  background-color: #3A6351;
+  color: #fff;
+  cursor: pointer;
+}
+
+.chat-body {
+  margin: 1rem 3rem;
+  display: flex;
+  justify-content: space-around;
+  height: 30rem;
+}
+
+.chat-1 {
+  width: 50rem;
+}
+
+.chat-2 {
+  width: 26rem;
+}
+
+.opponent-screen {
+ background-color: #5f939a; 
+ width: 48rem;
+ height: 27rem;
+}
+
+.my-screen {
+  background-color: #5f939a; 
+  width: 24rem;
+  height: 15rem;
+}
+
+.chat-screen {
+  background-color: #C4C4C4;
+  width: 24rem;
+  height: 17.5rem;
+}
+
+.chat-btns {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 48rem;
+}
+
+.chat-btn {
+  width: 18em;
+  height: 5rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
