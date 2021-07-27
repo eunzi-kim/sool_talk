@@ -7,7 +7,7 @@
     </select>
 
     <insert id="setUser" parameterType="map">
-        INSERT INTO users VALUES(NULL, #{username}, #{password}, #{nickname}, #{email});
+        INSERT INTO users VALUES(NULL, #{username}, #{password}, #{nickname}, 'temp');
     </insert>
 
 </mapper>
