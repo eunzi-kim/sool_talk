@@ -7,7 +7,7 @@
     </select>
 
     <select id="getUserByUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
-        select count(*) from users where nickname=#{username}
+        select count(*) from users where id=#{username}
     </select>
 
     <select id="getUser" parameterType="map" resultType="User">
