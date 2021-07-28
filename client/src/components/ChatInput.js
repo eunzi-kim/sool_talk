@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// onInput 함수가 msg를 저장
 type ChatInputProps = {
   onInput: (msg) => void,
 };

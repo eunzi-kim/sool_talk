@@ -7,6 +7,7 @@ import Mypage from "./routes/Mypage";
 import Signup from "./routes/Signup";
 import Article from "./routes/Article";
 import Chat from "./components/Chat";
+import ChatApp from "./components/ChatApp";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route path="/logout" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/articles" component={Article} />
-        <Route path="/chat" component={Chat} />
+        <Route path="/chatapp" component={ChatApp} />
         <Route
           render={({ location }) => (
             <div>
