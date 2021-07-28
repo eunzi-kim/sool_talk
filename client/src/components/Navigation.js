@@ -4,7 +4,7 @@ import "./Navigation.css";
 
 function Navigation() {
   return (
-    <div className="container">
+    <div className="nav-container">
       <div className="logo">
         <NavLink to="/">
           <button>우리로고</button>
