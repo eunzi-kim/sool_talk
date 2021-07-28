@@ -12,9 +12,9 @@ stompClient.debug = (str) => {
   console.log(str);
 };
 
-const ChatAppProps = {
-  roomId,
-};
+// const ChatAppProps = {
+//   roomId,
+// };
 
 function ChatApp({ match }) {
   const { roomId } = match.params;
@@ -28,7 +28,7 @@ function ChatApp({ match }) {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Iiwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwiaWF0IjoxNjI3MDQ1OTA5LCJleHAiOjE2MjcwNDk1MDl9.JYZ-f0kyz0CMGnTFor5LaxepcRPkhBHo5SUFItRYogg",
     };
 
-    // 구독하기
+    // 2. 채팅방 구독하기 (채팅방 입장)
     stompClient.connect(headers, () => {
       stompClient.subscribe(`/topic/${roomId}`, (data) => {
         const revMsg = JSON.parse(data.body);
@@ -37,14 +37,15 @@ function ChatApp({ match }) {
     });
   }, []);
 
+  // 3. 메세지 송신하기 (send)
   const onInput = (msg) => {
     stompClient.send(`/hello/${roomId}`, {}, JSON.stringify(msg));
   };
 
   return (
     <>
-      <ChatInput onInput={onInput} />
       <ChatView msgs={msgs} />
+      <ChatInput onInput={onInput} />
     </>
   );
 }
