@@ -1,8 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navigation.css";
 
 function Navigation() {
+  const Logout = () => {
+    localStorage.clear()
+  }
+
   return (
     <div className="nav-container">
       <div className="logo">
@@ -24,7 +28,7 @@ function Navigation() {
           </div>
           <div className="articles category">
             <NavLink to="/articles" activeClassName="selected">
-              <button className="category-btn">건의게시판</button>
+              <button className="category-btn">게시판</button>
             </NavLink>
           </div>
           <div className="setting category">
@@ -34,8 +38,8 @@ function Navigation() {
           </div>
         </div>       
         <div className="logout">
-          <NavLink to="/logout">
-            <button className="logout-btn">로그아웃</button>
+          <NavLink to="/login">
+            <button onClick={Logout} className="logout-btn">로그아웃</button>
           </NavLink>
         </div> 
       </div>     
