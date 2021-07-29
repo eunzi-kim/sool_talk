@@ -6,6 +6,7 @@ import talk.server.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -45,5 +46,10 @@ public class UserServiceImpl implements UserService{
         int result = dao.setUser(map);
         if (result == 1) return true;
         else return false;
+    }
+
+    @Override
+    public void logout(HttpSession session) {
+        dao.logout(session);
     }
 }
