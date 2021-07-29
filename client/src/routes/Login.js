@@ -9,7 +9,7 @@ const signIn = async ({ username, password }) => {
   // console.log(username, password);
 
   // username(아이디)과 password를 서버로 넘긴다.
-  const { data } = await axios.post("http://localhost:8080/user/signin", {
+  const { data } = await axios.post("http://localhost:8080/user/signin/", {
     username: username,
     password: password,
   });
@@ -36,7 +36,7 @@ function Login({ history }) {
   // 유저가 (아이디와 비밀번호를 입력하고) 로그인 버튼을 눌렀을 때, 아래 함수 실행!
   const submitLogin = async ({ username, password }) => {
     const { success, token, nickname } = await signIn({ username, password });
-
+    console.log(success)
     // 만약 로그인 성공 시 (success = true),
     if (success) {
       // 토큰값을 받아 세션을 생성하고 쿠키에 저장한다. => session: <토큰값>
