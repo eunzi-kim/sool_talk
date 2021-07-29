@@ -7,6 +7,10 @@ import Mypage from "./routes/Mypage";
 import Signup from "./routes/Signup";
 import Article from "./routes/Article";
 import Chat from "./components/Chat";
+import SearchFriends from "./routes/SearchFriends";
+import Setting from "./routes/Setting";
+import PrivateRoute from "./lib/PrivateRoute";
+import PublicRoute from "./lib/PublicRoute";
 import ChatApp from "./components/ChatApp";
 
 function App() {
@@ -14,14 +18,16 @@ function App() {
     <div>
       <Navigation />
       <Switch>
-        <Route path="/" component={Home} exact={true} />
-        <Route path="/login" component={Login} />
-        <Route path="/mypage" component={Mypage} />
-        <Route path="/logout" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/articles" component={Article} />
-        <Route path="/chatapp" component={ChatApp} />
-        <Route
+        <PrivateRoute path="/" component={Home} exact={true} />
+        <PublicRoute path="/login" component={Login} />
+        <PrivateRoute path="/mypage" component={Mypage} />
+        <PrivateRoute path="/logout" component={Login} />
+        <PublicRoute path="/signup" component={Signup} />
+        <PrivateRoute path="/articles" component={Article} />
+        <PrivateRoute path="/chat" component={Chat} />
+        <PrivateRoute path="/search-friends" component={SearchFriends} />
+        <PrivateRoute path="/setting" component={Setting} />
+        <PrivateRoute
           render={({ location }) => (
             <div>
               <h2>존재하지 않는 페이지 입니다.</h2>
