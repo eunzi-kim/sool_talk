@@ -2,35 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Chat.css";
-
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
-/* 이 코드는 잠시 보류합니다 */
+import ChatApp from "./ChatApp";
 
 function Chat() {
   // // 채팅 인풋의 상태관리 훅
@@ -77,16 +49,7 @@ function Chat() {
             <h3>내 화면</h3>
           </div>
           <div className="chat-screen">
-            <h3>채팅창</h3>
-            <div className="chatting"></div>
-            <div className="chat-send">
-              <input
-                name="chatContent"
-                placeholder="채팅을 입력하세요."
-                className="chat-input"
-              />
-              <button>보내기</button>
-            </div>
+            <ChatApp />
           </div>
         </div>
       </div>

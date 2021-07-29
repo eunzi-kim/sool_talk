@@ -63,6 +63,9 @@
   background-color: #c4c4c4;
   width: 24rem;
   height: 17.5rem;
+  margin: 0;
+  margin-top: 1rem;
+  padding-top: 0.3rem;
 }
 
 .chatting {
@@ -71,7 +74,7 @@
   border: 1px solid;
   margin: 1rem;
   width: 22rem;
-  height: 10rem;
+  height: 11rem;
 }
 
 .chat-send {
