@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class resLoginUser {
+    //
     private boolean success;
     private String token;
     private String nickname;
