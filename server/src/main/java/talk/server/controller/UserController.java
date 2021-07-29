@@ -4,13 +4,11 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import talk.server.jwt.JwtTokenProvider;
 import talk.server.service.UserService;
 import talk.server.vo.User;
 import talk.server.vo.resLoginUser;
 
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Api(tags = {"회원관련 컨트롤러"})
@@ -47,15 +45,5 @@ public class UserController {
         result.setSuccess(true);
         result.setToken(user.getAuth());
         return ResponseEntity.ok(result);
-    }
-
-    @PostMapping("/logout")
-    public ModelAndView logout(HttpSession session) {
-        userService.logout(session);
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("login");
-        mav.addObject("msg","logout");
-
-        return mav;
     }
 }
