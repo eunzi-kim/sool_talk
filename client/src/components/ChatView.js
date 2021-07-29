@@ -8,7 +8,7 @@ import React from "react";
 // 실시간 채팅창
 function ChatView({ msgs }) {
   let key = 0;
-
+  console.log(msgs);
   return (
     <div class="chat-screen">
       {msgs.map((msg) => (
