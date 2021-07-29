@@ -88,3 +88,28 @@ p {
   margin: 0;
   color: #000;
 }
+
+.login-alert,
+.login-id-alert,
+.login-password-alert {
+  display: none;
+}
+
+.login-alert-view,
+.login-id-alert-view,
+.login-password-alert-view {
+  background-color: red;
+  height: 3rem;
+  width: 30rem;
+  opacity: 0.65;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-alert h3,
+.login-id-alert h3,
+.login-password-alert h3 {
+  margin: 0;
+}
