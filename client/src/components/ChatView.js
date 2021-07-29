@@ -1,4 +1,5 @@
 import React from "react";
+import "./Chat.css";
 
 // 이건 필요없지 않나?
 // const ChatViewProps = {
@@ -10,7 +11,7 @@ function ChatView({ msgs }) {
   let key = 0;
 
   return (
-    <div class="chat-screen">
+    <div className="chatting">
       {msgs.map((msg) => (
         <div key={key++}>{msg}</div>
       ))}

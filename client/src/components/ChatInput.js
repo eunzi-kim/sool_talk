@@ -13,8 +13,13 @@ function ChatInput({ onInput }) {
   };
 
   return (
-    <>
-      <input type="text" value={value} onChange={onChange} />
+    <div className="chat-send">
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        style={{ width: "17.5rem" }}
+      />
       <button
         onClick={(e) => {
           e.preventDefault();
@@ -24,7 +29,7 @@ function ChatInput({ onInput }) {
       >
         보내기
       </button>
-    </>
+    </div>
   );
 }
 

@@ -4,6 +4,7 @@ import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import ChatInput from "./ChatInput";
 import ChatView from "./ChatView";
+import "./Chat.css";
 
 // 새로운 웹소켓 하나 생성
 let sockJS = new SockJS("http://localhost:8080/webSocket");
@@ -17,7 +18,8 @@ stompClient.debug = (str) => {
 // };
 
 function ChatApp({ match }) {
-  const { roomId } = match.params;
+  // const { roomId } = match.params;
+  const roomId = 1;
   const [msgs, setMsgs] = useState([]);
 
   useEffect(() => {
@@ -41,7 +43,16 @@ function ChatApp({ match }) {
   const onInput = (msg) => {
     stompClient.send(`/hello/${roomId}`, {}, JSON.stringify(msg));
   };
-
+  /* <h3>채팅창</h3>
+    <div className="chatting"></div>
+    <div className="chat-send">
+      <input
+        name="chatContent"
+        placeholder="채팅을 입력하세요."
+        className="chat-input"
+      />
+      <button>보내기</button>
+    </div> */
   return (
     <>
       <ChatView msgs={msgs} />
