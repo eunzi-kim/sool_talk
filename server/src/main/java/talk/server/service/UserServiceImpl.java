@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUser(Map<String, String> map) {
         User user = dao.getUser(map);
+        if (user == null) return null;
         String token = jwtTokenProvider.createToken(user.getUsername(), user.getAuthorities());
         List<String> list = new ArrayList<>();
         list.add("ROLE_USER");
