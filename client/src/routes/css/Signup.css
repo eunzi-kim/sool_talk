@@ -88,11 +88,19 @@
   background-color: #c4c4c4;
 }
 
-.password-alert {
+.password-alert,
+.username-alert,
+.nickname-alert,
+.info-alert,
+.length-alert {
   display: none;
 }
 
-.password-alert-view {
+.password-alert-view,
+.username-alert-view,
+.nickname-alert-view,
+.info-alert-view,
+.length-alert-view {
   background-color: red;
   height: 3rem;
   width: 30rem;
@@ -103,63 +111,10 @@
   justify-content: center;
 }
 
-.password-alert h3 {
-  margin: 0;
-}
-
-.info-alert {
-  display: none;
-}
-
-.info-alert-view {
-  background-color: red;
-  height: 3rem;
-  width: 30rem;
-  opacity: 0.65;
-  margin: 0.5rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.info-alert h3 {
-  margin: 0;
-}
-
-.username-alert {
-  display: none;
-}
-
-.username-alert-view {
-  background-color: red;
-  height: 3rem;
-  width: 30rem;
-  opacity: 0.65;
-  margin: 0.5rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.username-alert h3 {
-  margin: 0;
-}
-
-.nickname-alert {
-  display: none;
-}
-
-.nickname-alert-view {
-  background-color: red;
-  height: 3rem;
-  width: 30rem;
-  opacity: 0.65;
-  margin: 0.5rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nickname-alert h3 {
+.password-alert h3,
+.username-alert h3,
+.nickname-alert h3,
+.info-alert h3,
+.length-alert h3 {
   margin: 0;
 }

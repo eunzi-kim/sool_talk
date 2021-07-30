@@ -4,7 +4,26 @@ import "./css/Signup.css";
 // import { Link } from "react-router-dom";
 
 function Signup({ history }) {
-  const fetchSignup = async ( userInfo ) => {  
+  // 경고창 중복 없애기
+  const alertCheck = () => {
+    if (document.querySelector(".password-alert-view")) {
+      document.querySelector(".password-alert-view").className = "password-alert"
+    }
+    if (document.querySelector(".nickname-alert-view")) {
+      document.querySelector(".nickname-alert-view").className = "nickname-alert"
+    }
+    if (document.querySelector(".info-alert-view")) {
+      document.querySelector(".info-alert-view").className = "info-alert"
+    }
+    if (document.querySelector(".username-alert-view")) {
+      document.querySelector(".username-alert-view").className = "username-alert"
+    }
+    if (document.querySelector(".length-alert-view")) {
+      document.querySelector(".length-alert-view").className = "length-alert"
+    }
+  }
+
+  const fetchSignup = async ( userInfo ) => {
     let config = {
       headers:{
         "Content-Type": "application/json"
@@ -21,45 +40,21 @@ function Signup({ history }) {
       }
       // 아이디 중복
       else if (response.data === "username") {
-        if (document.querySelector(".password-alert-view")) {
-          document.querySelector(".password-alert-view").className = "password-alert"
-        }
-        if (document.querySelector(".nickname-alert-view")) {
-          document.querySelector(".nickname-alert-view").className = "nickname-alert"
-        }
-        if (document.querySelector(".info-alert-view")) {
-          document.querySelector(".info-alert-view").className = "info-alert"
-        }
+        alertCheck()
         if (document.querySelector(".username-alert")) {
           document.querySelector(".username-alert").className = "username-alert-view"
         }
       }
       // 닉네임 중복
       else if (response.data === "nickname") {
-        if (document.querySelector(".password-alert-view")) {
-          document.querySelector(".password-alert-view").className = "password-alert"
-        }
-        if (document.querySelector(".username-alert-view")) {
-          document.querySelector(".username-alert-view").className = "username-alert"
-        }
-        if (document.querySelector(".info-alert-view")) {
-          document.querySelector(".info-alert-view").className = "info-alert"
-        }
+        alertCheck()
         if (document.querySelector(".nickname-alert")) {
           document.querySelector(".nickname-alert").className = "nickname-alert-view"
         }
       }
       // 실패
       else {
-        if (document.querySelector(".password-alert-view")) {
-          document.querySelector(".password-alert-view").className = "password-alert"
-        }
-        if (document.querySelector(".username-alert-view")) {
-          document.querySelector(".username-alert-view").className = "username-alert"
-        }
-        if (document.querySelector(".nickname-alert-view")) {
-          document.querySelector(".nickname-alert-view").className = "nickname-alert"
-        }
+        alertCheck()
         if (document.querySelector(".info-alert")) {
           document.querySelector(".info-alert").className = "info-alert-view"
         }
@@ -67,15 +62,7 @@ function Signup({ history }) {
     })
     // 에러 발생 => 회원가입 실패
     .catch(error => {
-      if (document.querySelector(".password-alert-view")) {
-        document.querySelector(".password-alert-view").className = "password-alert"
-      }
-      if (document.querySelector(".username-alert-view")) {
-        document.querySelector(".username-alert-view").className = "username-alert"
-      }
-      if (document.querySelector(".nickname-alert-view")) {
-        document.querySelector(".nickname-alert-view").className = "nickname-alert"
-      }
+      alertCheck()
       if (document.querySelector(".info-alert")) {
         document.querySelector(".info-alert").className = "info-alert-view"
       }
@@ -98,17 +85,14 @@ function Signup({ history }) {
   };
 
   const submitSignup = () => {
-    if (user.password !== user.passwordConfirmation) {
-      if (document.querySelector(".info-alert-view")) {
-        document.querySelector(".info-alert-view").className = "info-alert"
+    if (user.nickname.length === 0 || user.nickname.length === 0 || user.password.length === 0 || user.passwordConfirmation.length === 0) {
+      alertCheck()
+      if (document.querySelector(".length-alert")) {
+        document.querySelector(".length-alert").className = "length-alert-view"
       }
-      if (document.querySelector(".username-alert-view")) {
-        document.querySelector(".username-alert-view").className = "username-alert"
-      }
-      if (document.querySelector(".nickname-alert-view")) {
-        document.querySelector(".nickname-alert-view").className = "nickname-alert"
-      }
-
+    }
+    else if (user.password !== user.passwordConfirmation) {
+      alertCheck()
       if (document.querySelector(".password-alert")) {
         document.querySelector(".password-alert").className = "password-alert-view"
       }
@@ -132,8 +116,11 @@ function Signup({ history }) {
 
   return (
     <div className="signup-box">
+      <div className="length-alert">
+        <h3>정보를 모두 입력해 주세요.</h3>
+      </div>
       <div className="password-alert">
-        <h3>비밀번호를 확인해주세요.</h3>
+        <h3>비밀번호를 확인해 주세요.</h3>
       </div>
       <div className="username-alert">
         <h3>동일한 아이디가 존재합니다.</h3>
