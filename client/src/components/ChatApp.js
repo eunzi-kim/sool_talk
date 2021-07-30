@@ -22,6 +22,9 @@ function ChatApp({ match }) {
   const roomId = 1;
   const [msgs, setMsgs] = useState([]);
 
+  const user = localStorage.getItem("user");
+  console.log(user);
+
   useEffect(() => {
     console.log(match);
     // jwt token은 임시로 발급받은거 직접 넣어줌
@@ -41,7 +44,11 @@ function ChatApp({ match }) {
 
   // 3. 메세지 송신하기 (send)
   const onInput = (msg) => {
-    stompClient.send(`/hello/${roomId}`, {}, JSON.stringify(msg));
+    stompClient.send(
+      `/hello/${roomId}`,
+      {},
+      JSON.stringify(`${user} : ${msg}`)
+    );
   };
   /* <h3>채팅창</h3>
     <div className="chatting"></div>
