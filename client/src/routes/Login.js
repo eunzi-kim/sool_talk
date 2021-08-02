@@ -55,6 +55,9 @@ function Login({ history }) {
       localStorage.setItem("token", token);
       localStorage.setItem("user", nickname);
 
+      user.username = ""
+      user.password = ""
+
       // 마이페이지로 이동
       history.push("/mypage");
     }
@@ -80,6 +83,12 @@ function Login({ history }) {
       }
     }
   };
+
+  document.addEventListener("keyup", e => {
+    if (e.keyCode === 13) {
+      submitLogin(user);
+    }
+  })
 
   const imgKakao = "/img/logo_kakao.svg";
   const imgInsta = "/img/logo_instagram.svg";
