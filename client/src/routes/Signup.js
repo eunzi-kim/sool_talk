@@ -110,6 +110,12 @@ function Signup({ history }) {
     history.push("/login");
   };
 
+  document.addEventListener("keyup", (e) => {
+    if (e.keyCode === 13) {
+      submitSignup()
+    }
+  })
+
   const { nickname, username, password, passwordConfirmation } = user;
 
   const iconArrow = "/img/icon_arrow.png";
