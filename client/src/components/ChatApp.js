@@ -37,17 +37,27 @@ function ChatApp({ match }) {
     stompClient.connect(headers, () => {
       stompClient.subscribe(`/topic/${roomId}`, (data) => {
         const revMsg = JSON.parse(data.body);
-        setMsgs((prev) => [...prev, revMsg["msg"]]);
+        console.log(revMsg)
+        setMsgs((prev) => [...prev, {
+          roomId: revMsg['roomId'],
+          nickname: revMsg['nickname'],
+          content: revMsg['content']
+        }]);
       });
     });
   }, []);
 
   // 3. 메세지 송신하기 (send)
   const onInput = (msg) => {
+    const chatData = {
+      roomId: 1, // 변경 필요
+      nickname: user,
+      content: msg
+    }
     stompClient.send(
-      `/hello/${roomId}`,
+      `/hello`,
       {},
-      JSON.stringify(`${user} : ${msg}`)
+      JSON.stringify(chatData)
     );
   };
   /* <h3>채팅창</h3>

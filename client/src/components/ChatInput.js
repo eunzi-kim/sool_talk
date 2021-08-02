@@ -13,7 +13,18 @@ function ChatInput({ onInput }) {
   };
 
   return (
-    <div className="chat-send">
+    <div 
+      className="chat-send"
+      onKeyUp={
+        (e) => {
+          if (e.keyCode === 13) {
+            e.preventDefault();
+            onInput(value);
+            setValue("");
+          }
+        }
+      }
+    >
       <input
         type="text"
         value={value}

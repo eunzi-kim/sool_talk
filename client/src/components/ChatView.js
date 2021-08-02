@@ -8,11 +8,24 @@ import "./Chat.css";
 
 // 실시간 채팅창
 function ChatView({ msgs }) {
+  const currentUser = localStorage.getItem("user")
+
+  var chatView = []
+  msgs.map((chat) => {
+    var nickname = chat["nickname"]
+    var content = chat["content"]
+    if (nickname === currentUser) {
+      chatView.push(`${nickname}(나): ${content}`)
+    } else {
+      chatView.push(`${nickname}: ${content}`)
+    }
+  })
+
   let key = 0;
 
   return (
     <div className="chatting">
-      {msgs.map((msg) => (
+      {chatView.map((msg) => (
         <div key={key++}>{msg}</div>
       ))}
     </div>
