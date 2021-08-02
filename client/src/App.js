@@ -19,10 +19,10 @@ function App() {
       <Navigation />
       <Switch>
         <PrivateRoute path="/" component={Home} exact={true} />
-        <PublicRoute path="/login" component={Login} />
+        <PublicRoute restricted="true" path="/login" component={Login} />
+        <PublicRoute restricted="true" path="/signup" component={Signup} />
         <PrivateRoute path="/mypage" component={Mypage} />
-        <PrivateRoute path="/logout" component={Login} />
-        <PublicRoute path="/signup" component={Signup} />
+        <PrivateRoute path="/logout" component={Login} />        
         <PrivateRoute path="/articles" component={Article} />
         <PrivateRoute path="/chat" component={Chat} />
         <PrivateRoute path="/search-friends" component={SearchFriends} />
