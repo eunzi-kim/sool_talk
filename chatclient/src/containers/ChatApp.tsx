@@ -16,9 +16,20 @@ type ChatAppProps = {
     roomId: string;
 }
 
+type msgType = {
+    roomId: string,
+    nickname: string,
+    content: string
+};
+
 function ChatApp({ match }: RouteComponentProps<ChatAppProps>) {
     const { roomId } = match.params;
-    const [msgs, setMsgs] = useState<string[]>([]);
+    const [msg, setMsg] = useState<msgType>({
+        roomId: '',
+        nickname: '',
+        content: ''
+    });
+    const [msgs, setMsgs] = useState<msgType[]>([]);
 
     useEffect(() => {
         console.log(match);
@@ -30,13 +41,34 @@ function ChatApp({ match }: RouteComponentProps<ChatAppProps>) {
         stompClient.connect(headers, () => {
             stompClient.subscribe(`/topic/${roomId}`, (data) => {
                 const revMsg = JSON.parse(data.body);
-                setMsgs(prev => [...prev, revMsg['msg']]);
+
+                setMsgs(prev => [...prev, {
+                    roomId: revMsg['roomId'],
+                    nickname: revMsg['nickname'],
+                    content: revMsg['content']
+                }]);
+                console.log("msgs: " + msgs);
             });
         })
     }, []);
 
-    const onInput = (msg: string) => {
-        stompClient.send(`/hello/${roomId}`, {}, JSON.stringify(msg));
+    const onSetMsg = (revMsg: msgType) => {
+        setMsg({
+            roomId: revMsg['roomId'],
+            nickname: revMsg['nickname'],
+            content: revMsg['content']
+        });
+        console.log("msggg: " + msg);
+    }
+
+    const onInput = (tempMsg: string) => {
+        setMsg({
+            roomId,
+            nickname: 'test',
+            content: tempMsg
+        });
+        console.log("msg: " + JSON.stringify(msg));
+        stompClient.send(`/hello`, {}, JSON.stringify(msg));
     }
 
     return (

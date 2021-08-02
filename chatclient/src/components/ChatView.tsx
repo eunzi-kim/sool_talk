@@ -1,8 +1,15 @@
 import React from 'react';
 
-type ChatViewProps = {
-    msgs: string[]
+type msgType = {
+    roomId: string,
+    nickname: string,
+    content: string
 };
+
+type ChatViewProps = {
+    msgs: msgType[]
+};
+
 
 function ChatView({ msgs }: ChatViewProps) {
     let key = 0;
@@ -10,7 +17,7 @@ function ChatView({ msgs }: ChatViewProps) {
     return (
         <>
             {msgs.map((msg) => (
-                <div key={key++}>{msg}</div>
+                <div key={key++}>{msg.nickname} : {msg.content} </div>
             ))}
         </>
     );

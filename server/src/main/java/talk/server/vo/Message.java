@@ -8,5 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message {
-    private String msg;
+    private String roomId;
+    private String nickname;
+    private String content;
 }
