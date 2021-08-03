@@ -75,6 +75,7 @@
   margin: 1rem;
   width: 22rem;
   height: 11rem;
+  overflow-y: auto;
 }
 
 .chat-send {
@@ -103,4 +104,14 @@
   border-top-right-radius: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+
+.chatting::-webkit-scrollbar {
+  border-radius: 6px;
+  background: #f1f1f1;
+}
+
+.chatting::-webkit-scrollbar-thumb {
+  background-color: #5f939a;
+  border-radius: 6px;
 }
