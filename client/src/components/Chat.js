@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Chat.css";
 import ChatApp from "./ChatApp";
+import MyScreen from "./MyScreen";
+import OppScreen from "./OppScreen";
 
 function Chat() {
   // // 채팅 인풋의 상태관리 훅
@@ -30,7 +32,7 @@ function Chat() {
       <div className="chat-body">
         <div className="chat-1">
           <div className="opponent-screen">
-            <h3>상대방 화면</h3>
+            <OppScreen />
           </div>
           <div className="chat-btns">
             <div>
@@ -46,7 +48,7 @@ function Chat() {
         </div>
         <div className="chat-2">
           <div className="my-screen">
-            <h3>내 화면</h3>
+            <MyScreen />
           </div>
           <div className="chat-screen">
             <ChatApp />
