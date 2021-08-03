@@ -1,6 +1,9 @@
 import React from "react";
 import "./Chat.css";
 
+import jquery from 'jquery';
+import $ from 'jquery';
+
 // 이건 필요없지 않나?
 // const ChatViewProps = {
 //   msgs,
@@ -22,6 +25,16 @@ function ChatView({ msgs }) {
   })
 
   let key = 0;
+
+  $(document).ready(function() {
+    if ($('.chatting').length) {
+      var scroll_h = $(".chatting")[0].scrollHeight
+      $(".chatting").scrollTop(scroll_h);
+      console.log($(".chatting"))
+    }
+  })
+  
+  
 
   return (
     <div className="chatting">
