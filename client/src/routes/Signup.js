@@ -42,21 +42,21 @@ function Signup({ history }) {
       else if (response.data === "username") {
         alertCheck()
         if (document.querySelector(".username-alert")) {
-          document.querySelector(".username-alert").className = "username-alert-view"
+          document.querySelector(".username-alert").className = "username-alert-view alert"
         }
       }
       // 닉네임 중복
       else if (response.data === "nickname") {
         alertCheck()
         if (document.querySelector(".nickname-alert")) {
-          document.querySelector(".nickname-alert").className = "nickname-alert-view"
+          document.querySelector(".nickname-alert").className = "nickname-alert-view alert"
         }
       }
       // 실패
       else {
         alertCheck()
         if (document.querySelector(".info-alert")) {
-          document.querySelector(".info-alert").className = "info-alert-view"
+          document.querySelector(".info-alert").className = "info-alert-view alert"
         }
       } 
     })
@@ -64,7 +64,7 @@ function Signup({ history }) {
     .catch(error => {
       alertCheck()
       if (document.querySelector(".info-alert")) {
-        document.querySelector(".info-alert").className = "info-alert-view"
+        document.querySelector(".info-alert").className = "info-alert-view alert"
       }
     })
   }
@@ -88,13 +88,13 @@ function Signup({ history }) {
     if (user.nickname.length === 0 || user.nickname.length === 0 || user.password.length === 0 || user.passwordConfirmation.length === 0) {
       alertCheck()
       if (document.querySelector(".length-alert")) {
-        document.querySelector(".length-alert").className = "length-alert-view"
+        document.querySelector(".length-alert").className = "length-alert-view alert"
       }
     }
     else if (user.password !== user.passwordConfirmation) {
       alertCheck()
       if (document.querySelector(".password-alert")) {
-        document.querySelector(".password-alert").className = "password-alert-view"
+        document.querySelector(".password-alert").className = "password-alert-view alert"
       }
     } else {
       const userInfo = {
@@ -123,19 +123,19 @@ function Signup({ history }) {
   return (
     <div className="signup-box">
       <div className="length-alert">
-        <h3>정보를 모두 입력해 주세요.</h3>
+        <h3>⛔ 정보를 모두 입력해 주세요.</h3>
       </div>
       <div className="password-alert">
-        <h3>비밀번호를 확인해 주세요.</h3>
+        <h3>⛔ 비밀번호를 확인해 주세요.</h3>
       </div>
       <div className="username-alert">
-        <h3>동일한 아이디가 존재합니다.</h3>
+        <h3>⛔ 동일한 아이디가 존재합니다.</h3>
       </div>
       <div className="nickname-alert">
-        <h3>동일한 닉네임이 존재합니다.</h3>
+        <h3>⛔ 동일한 닉네임이 존재합니다.</h3>
       </div>
       <div className="info-alert">
-        <h3>회원가입에 실패하였습니다.</h3>
+        <h3>⛔ 회원가입에 실패하였습니다.</h3>
       </div>
       <div className="signup-form">
         <div>
