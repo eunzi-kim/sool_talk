@@ -13,23 +13,22 @@ function ChatInput({ onInput }) {
   };
 
   return (
-    <div 
+    <div
       className="chat-send"
-      onKeyUp={
-        (e) => {
-          if (e.keyCode === 13) {
-            e.preventDefault();
-            onInput(value);
-            setValue("");
-          }
+      onKeyUp={(e) => {
+        if (e.keyCode === 13) {
+          e.preventDefault();
+          onInput(value);
+          setValue("");
         }
-      }
+      }}
     >
       <input
         type="text"
         value={value}
         onChange={onChange}
         style={{ width: "17.5rem" }}
+        className="chat-input-detail"
       />
       <button
         onClick={(e) => {
@@ -37,6 +36,7 @@ function ChatInput({ onInput }) {
           onInput(value);
           setValue("");
         }}
+        className="chat-input-detail-button"
       >
         보내기
       </button>
