@@ -37,12 +37,15 @@ function ChatApp({ match }) {
     stompClient.connect(headers, () => {
       stompClient.subscribe(`/topic/${roomId}`, (data) => {
         const revMsg = JSON.parse(data.body);
-        console.log(revMsg)
-        setMsgs((prev) => [...prev, {
-          roomId: revMsg['roomId'],
-          nickname: revMsg['nickname'],
-          content: revMsg['content']
-        }]);
+        console.log(revMsg);
+        setMsgs((prev) => [
+          ...prev,
+          {
+            roomId: revMsg["roomId"],
+            nickname: revMsg["nickname"],
+            content: revMsg["content"],
+          },
+        ]);
       });
     });
   }, []);
@@ -52,24 +55,10 @@ function ChatApp({ match }) {
     const chatData = {
       roomId: 1, // 변경 필요
       nickname: user,
-      content: msg
-    }
-    stompClient.send(
-      `/hello`,
-      {},
-      JSON.stringify(chatData)
-    );
+      content: msg,
+    };
+    stompClient.send(`/hello`, {}, JSON.stringify(chatData));
   };
-  /* <h3>채팅창</h3>
-    <div className="chatting"></div>
-    <div className="chat-send">
-      <input
-        name="chatContent"
-        placeholder="채팅을 입력하세요."
-        className="chat-input"
-      />
-      <button>보내기</button>
-    </div> */
   return (
     <>
       <ChatView msgs={msgs} />
