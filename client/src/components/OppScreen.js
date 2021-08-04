@@ -2,7 +2,7 @@ import React from "react";
 import "../video.js";
 import callAction from "../video.js";
 import hangupAction from "../video.js";
-import "./Screen.css";
+import "./css/Screen.css";
 
 function OppScreen() {
 

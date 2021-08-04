@@ -4,7 +4,7 @@ import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import ChatInput from "./ChatInput";
 import ChatView from "./ChatView";
-import "./Chat.css";
+import "./css/Chat.css";
 
 // 새로운 웹소켓 하나 생성
 let sockJS = new SockJS("http://localhost:8080/webSocket");

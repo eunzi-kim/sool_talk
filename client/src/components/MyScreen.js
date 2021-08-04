@@ -1,7 +1,7 @@
 import React from "react";
 import "../video.js"
 import startAction from "../video.js"
-import "./Screen.css";
+import "./css/Screen.css";
 
 function MyScreen() {
 

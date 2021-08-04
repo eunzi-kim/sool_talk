@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Chat.css";
+import "./css/Chat.css";
 import ChatApp from "./ChatApp";
 import MyScreen from "./MyScreen";
 import OppScreen from "./OppScreen";
