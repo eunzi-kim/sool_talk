@@ -72,25 +72,33 @@
 }
 
 .chatting {
-  background-color: white;
-  border-color: black;
   border: 1px solid;
-  margin: 1rem;
-  width: 22rem;
-  height: 11rem;
+  margin: 0;
+  width: 100%;
+  height: 80%;
   overflow-y: auto;
+  background-image: url("./moon.PNG");
+  background-size: 100% 300px;
 }
 
 .chat-send {
-  margin: 1rem 1rem 0 1rem;
-  width: 22rem;
-  height: 3rem;
+  height: 20%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+}
+
+.chat-input-detail {
+  width: 80%;
+}
+
+.chat-input-detail-button {
+  width: 30%;
+  margin: 0;
 }
 
 .chat-input {
   width: 18rem;
+  margin: 0;
 }
 
 .opponent-name {
