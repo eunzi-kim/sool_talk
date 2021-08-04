@@ -20,9 +20,6 @@ function Chat() {
   return (
     <div className="chat-box">
       <div className="chat-header">
-        <div>
-          <h1>채팅</h1>
-        </div>
         <div className="chat-exit">
           <Link to="/">
             <button className="chat-exit-btn">나가기</button>
@@ -34,15 +31,16 @@ function Chat() {
           <div className="opponent-screen">
             <OppScreen />
           </div>
+          <div className="opponent-name">태이슨님</div>
           <div className="chat-btns">
             <div>
-              <button className="chat-btn">1</button>
+              <button className="chat-btn">기능(1)</button>
             </div>
             <div>
-              <button className="chat-btn">2</button>
+              <button className="chat-btn">기능(2)</button>
             </div>
             <div>
-              <button className="chat-btn">3</button>
+              <button className="chat-btn">기능(3)</button>
             </div>
           </div>
         </div>
@@ -50,6 +48,7 @@ function Chat() {
           <div className="my-screen">
             <MyScreen />
           </div>
+          <div className="my-name">광메님</div>
           <div className="chat-screen">
             <ChatApp />
           </div>
