@@ -1,6 +1,7 @@
 import React from "react";
-import "../video.js"
-import callAction from "../video.js"
+import "../video.js";
+import callAction from "../video.js";
+import hangupAction from "../video.js";
 import "./Screen.css";
 
 function OppScreen() {
@@ -16,6 +17,12 @@ function OppScreen() {
           onClick={callAction}
         >
           <h3>다른 사람과 연결</h3>
+        </button>
+        <button 
+          id="hangupButton"
+          onClick={hangupAction}
+        >
+          <h3>연결 끊기</h3>
         </button>
       </div>   
     </div>
