@@ -1,8 +1,8 @@
 import React from "react";
 import "./Chat.css";
 
-import jquery from 'jquery';
-import $ from 'jquery';
+import jquery from "jquery";
+import $ from "jquery";
 
 // 이건 필요없지 않나?
 // const ChatViewProps = {
@@ -11,30 +11,28 @@ import $ from 'jquery';
 
 // 실시간 채팅창
 function ChatView({ msgs }) {
-  const currentUser = localStorage.getItem("user")
+  const currentUser = localStorage.getItem("user");
 
-  var chatView = []
+  var chatView = [];
   msgs.map((chat) => {
-    var nickname = chat["nickname"]
-    var content = chat["content"]
+    var nickname = chat["nickname"];
+    var content = chat["content"];
     if (nickname === currentUser) {
-      chatView.push(`${nickname}(나): ${content}`)
+      chatView.push(`${nickname}(나): ${content}`);
     } else {
-      chatView.push(`${nickname}: ${content}`)
+      chatView.push(`${nickname}: ${content}`);
     }
-  })
+  });
 
   let key = 0;
 
-  $(document).ready(function() {
-    if ($('.chatting').length) {
-      var scroll_h = $(".chatting")[0].scrollHeight
+  $(document).ready(function () {
+    if ($(".chatting").length) {
+      var scroll_h = $(".chatting")[0].scrollHeight;
       $(".chatting").scrollTop(scroll_h);
-      console.log($(".chatting"))
+      console.log($(".chatting"));
     }
-  })
-  
-  
+  });
 
   return (
     <div className="chatting">
