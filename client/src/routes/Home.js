@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="home">
       <div className="random-card">
-        <h1>"오늘 마실 소주를 내일로 미루지 말라"</h1>
+        <h1>"세상에서 제일 귀여운 사람은? 엄원상"</h1>
       </div>
       <div className="random">
         <Link to="/chat">

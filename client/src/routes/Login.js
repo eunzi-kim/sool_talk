@@ -65,21 +65,21 @@ function Login({ history }) {
     else if (result === "noid") {
       loginAlertCheck()
       if (document.querySelector(".login-id-alert")) {
-        document.querySelector(".login-id-alert").className = "login-id-alert-view"
+        document.querySelector(".login-id-alert").className = "login-id-alert-view alert"
       }
     }
     // 비밀번호 틀림
     else if (result === "nopassword") {
       loginAlertCheck()
       if (document.querySelector(".login-password-alert")) {
-        document.querySelector(".login-password-alert").className = "login-password-alert-view"
+        document.querySelector(".login-password-alert").className = "login-password-alert-view alert"
       }
     }
     // 다른 로그인 실패 상황
     else {
       loginAlertCheck()
       if (document.querySelector(".login-alert")) {
-        document.querySelector(".login-alert").className = "login-alert-view"
+        document.querySelector(".login-alert").className = "login-alert-view alert"
       }
     }
   };
