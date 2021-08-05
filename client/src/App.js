@@ -16,7 +16,7 @@ import ChatApp from "./components/ChatApp";
 function App() {
   return (
     <div>
-      <Navigation />
+      <PrivateRoute component={Navigation}/>
       <Switch>
         <PrivateRoute path="/" component={Home} exact={true} />
         <PublicRoute restricted="true" path="/login" component={Login} />
