@@ -5,15 +5,15 @@ import "./css/Navigation.css";
 
 function Navigation() {
   const Logout = () => {
-    localStorage.clear()
-  }
+    localStorage.clear();
+  };
 
   return (
     <div>
       <div className="nav-container">
-        <div className="logo">
+        <div>
           <NavLink to="/">
-            <button>우리로고</button>
+            <h1 className="logo">술톡</h1>
           </NavLink>
         </div>
         <div className="content">
@@ -38,19 +38,20 @@ function Navigation() {
                 <button className="category-btn">환경설정</button>
               </NavLink>
             </div>
-          </div>       
+          </div>
           <div className="logout">
             <NavLink to="/login">
-              <button onClick={Logout} className="logout-btn">로그아웃</button>
+              <button onClick={Logout} className="logout-btn">
+                로그아웃
+              </button>
             </NavLink>
-          </div> 
-        </div> 
+          </div>
+        </div>
       </div>
       <div className="hamburger">
-        <Burger />    
+        <Burger />
       </div>
     </div>
-    
   );
 }
 
