@@ -27,9 +27,9 @@ function ChatView({ msgs }) {
   let key = 0;
 
   $(document).ready(function () {
-    if ($(".chatting").length) {
-      var scroll_h = $(".chatting")[0].scrollHeight;
-      $(".chatting").scrollTop(scroll_h);
+    if ($(".chat-bg").length) {
+      var scroll_h = $(".chat-bg")[0].scrollHeight;
+      $(".chat-bg").scrollTop(scroll_h);
     }
   });
 

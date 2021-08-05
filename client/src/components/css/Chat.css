@@ -120,12 +120,12 @@
 }
 
 .chat-bg::-webkit-scrollbar {
-  border-radius: 6px;
-  background: #f1f1f1;
+  /* border-radius: 6px; */
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .chat-bg::-webkit-scrollbar-thumb {
-  background-color: #5f939a;
+  background-color: #ffe4e1;
   border-radius: 6px;
 }
 
