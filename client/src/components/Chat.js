@@ -19,13 +19,13 @@ function Chat() {
 
   return (
     <div className="chat-box">
-      <div className="chat-header">
+      {/* <div className="chat-header">
         <div className="chat-exit">
           <Link to="/">
             <button className="chat-exit-btn">나가기</button>
           </Link>
         </div>
-      </div>
+      </div> */}
       <div className="chat-body">
         <div className="chat-1">
           <div className="opponent-screen">
@@ -44,6 +44,9 @@ function Chat() {
           </div>
         </div>
         <div className="chat-2">
+          <Link to="/">
+            <button className="chat-exit-btn">나가기</button>
+          </Link>
           <div className="my-screen">
             <MyScreen />
           </div>
