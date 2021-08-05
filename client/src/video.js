@@ -118,7 +118,7 @@ window.onload = function() {
   // Logs changes to the connection state.
   function handleConnectionChange(event) {
     const peerConnection = event.target;
-    console.log('ICE state change event: ', event);
+    // console.log('ICE state change event: ', event);
     trace(`${getPeerName(peerConnection)} ICE state: ` +
           `${peerConnection.iceConnectionState}.`);
   }
@@ -295,7 +295,7 @@ window.onload = function() {
     text = text.trim();
     const now = (window.performance.now() / 1000).toFixed(3);
 
-    console.log(now, text);
+    // console.log(now, text);
   }
 
 }

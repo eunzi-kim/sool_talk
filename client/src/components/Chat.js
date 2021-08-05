@@ -31,7 +31,6 @@ function Chat() {
           <div className="opponent-screen">
             <OppScreen />
           </div>
-          <div className="opponent-name">태이슨님</div>
           <div className="chat-btns">
             <div>
               <button className="chat-btn">기능(1)</button>
@@ -48,7 +47,6 @@ function Chat() {
           <div className="my-screen">
             <MyScreen />
           </div>
-          <div className="my-name">광메님</div>
           <div className="chat-screen">
             <ChatApp />
           </div>

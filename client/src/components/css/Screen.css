@@ -14,6 +14,7 @@
 
 .my-video video,
 .opp-video video {
+  margin-top: 1%;
   height: 100%;
 }
 
@@ -36,4 +37,41 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.opponent-name {
+  background: #000000;
+  mix-blend-mode: normal;
+  width: 48rem;
+  opacity: 0.33;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  text-align: center;
+}
+
+.my-name {
+  background: #000000;
+  mix-blend-mode: normal;
+  width: 2.5rem;
+  opacity: 0.33;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 7px;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  text-align: center;
+}
+
+.my-screen-bottom {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.msb-blank {
+  width: 2.5rem;
 }
