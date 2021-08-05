@@ -24,7 +24,8 @@ function OppScreen() {
         >
           <h3>연결 끊기</h3>
         </button>
-      </div>   
+      </div>
+      <div className="opponent-name">태이슨님</div>
     </div>
   )
 }

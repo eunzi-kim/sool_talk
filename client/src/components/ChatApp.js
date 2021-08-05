@@ -10,7 +10,7 @@ import "./css/Chat.css";
 let sockJS = new SockJS("http://localhost:8080/webSocket");
 let stompClient = Stomp.over(sockJS);
 stompClient.debug = (str) => {
-  console.log(str);
+  // console.log(str);
 };
 
 // const ChatAppProps = {
@@ -23,7 +23,7 @@ function ChatApp({ match }) {
   const [msgs, setMsgs] = useState([]);
 
   const user = localStorage.getItem("user");
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     console.log(match);

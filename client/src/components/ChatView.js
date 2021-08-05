@@ -30,15 +30,16 @@ function ChatView({ msgs }) {
     if ($(".chatting").length) {
       var scroll_h = $(".chatting")[0].scrollHeight;
       $(".chatting").scrollTop(scroll_h);
-      console.log($(".chatting"));
     }
   });
 
   return (
-    <div className="chatting">
-      {chatView.map((msg) => (
-        <div key={key++}>{msg}</div>
-      ))}
+    <div className="chat-bg">
+      <div className="chatting">
+        {chatView.map((msg) => (
+          <div key={key++}>{msg}</div>
+        ))}
+      </div>
     </div>
   );
 }
