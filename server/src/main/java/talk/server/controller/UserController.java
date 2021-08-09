@@ -44,11 +44,11 @@ public class UserController {
     public ResponseEntity<?> signup(@RequestParam String id,
                        @RequestParam String password,
                        @RequestParam String nickname,
-                       @RequestParam String email,
+                       @RequestParam(required = false) String email,
                        @RequestParam String sex,
                        @RequestParam String address,
                        @RequestParam String age,
-                       @RequestParam String likes,
+                       @RequestParam(required = false) String likes,
                        @RequestParam(required = false) MultipartFile profileImg) throws IOException {
         Optional<User> userOptional = userService.getUserById(id);
         // 중복된 id 라면
@@ -71,7 +71,7 @@ public class UserController {
         map.put("address", address);
         map.put("sex", sex);
         map.put("profileImg", profileImg.getBytes());
-        map.put("likes", likes);
+        map.put("likes", 0);
         map.put("age", age);
 
         userService.setUser(map);
