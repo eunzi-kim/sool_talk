@@ -2,11 +2,13 @@
   position: absolute;
   top: 0;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(to bottom, #FFECF6, #A7D5FF);
+  background-repeat: no-repeat;
+  padding: 5rem 0;
 }
 
 .signup-form {
@@ -17,7 +19,7 @@
   background-color: #fff;
   box-shadow: 2px 2px 2px 2px gray;
   width: 30rem;
-  height: 35.5rem;
+  height: 46rem;
   border-radius: 10px;
 }
 
@@ -147,4 +149,84 @@
   .signup-btn {
     width: 55vw;
   }
+}
+
+.form-input-2 {
+  background-color: #CFE8FF;
+  height: 2.5rem;
+  width: 14rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 0 0.75rem;
+  margin-left: 1rem;
+  border-style: none;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.input-2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.address-info {
+  text-align: center;
+  font-weight: bold;
+  width: 65%;
+  background-color: lightgray;
+}
+
+.modal-addr-no {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-body {
+  position: fixed;
+  top: 25%;
+  left: 40%;
+  width: 30rem;
+  background-color: #fff;
+}
+
+.modal-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-close button {
+  background-color: #fff;
+  border-style: none;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.modal-close button :hover {
+  cursor: pointer;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0 1rem 0;
+}
+
+h3 {
+  margin: 0;
 }

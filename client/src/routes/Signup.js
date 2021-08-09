@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./css/Signup.css";
+import DaumPostCode from 'react-daum-postcode';
 // import { Link } from "react-router-dom";
 
 function Signup({ history }) {
@@ -74,6 +75,9 @@ function Signup({ history }) {
     username: "",
     password: "",
     passwordConfirmation: "",
+    address: "",
+    sex: "",
+    age: ""  
   });
 
   const changeSignup = (e) => {
@@ -83,6 +87,14 @@ function Signup({ history }) {
       [name]: value,
     });
   };
+
+  const changeSex = (e) => {
+    user.sex = e.target.value
+  }
+
+  const changeAge = (e) => {
+    user.age = e.target.value
+  }
 
   const submitSignup = () => {
     if (user.nickname.length === 0 || user.nickname.length === 0 || user.password.length === 0 || user.passwordConfirmation.length === 0) {
@@ -100,9 +112,13 @@ function Signup({ history }) {
       const userInfo = {
         "username": user.username,
         "password": String(user.password),
-        "nickname": user.nickname
+        "nickname": user.nickname,
+        "address": user.address,
+        "sex": user.sex,
+        "age": user.age
       }
       fetchSignup(userInfo)
+      // console.log(userInfo)
     }
   };
 
@@ -116,9 +132,41 @@ function Signup({ history }) {
     }
   })
 
-  const { nickname, username, password, passwordConfirmation } = user;
+  const { nickname, username, password, passwordConfirmation, address } = user;
 
   const iconArrow = "/img/icon_arrow.png";
+
+  // 모달
+  const modalOpen = () => {
+    if (document.querySelector(".modal-addr-no")) {
+      document.querySelector(".modal-addr-no").className = "modal"
+    } 
+  }
+
+  const modalClose = () => {
+    if (document.querySelector(".modal")) {
+      document.querySelector(".modal").className = "modal-addr-no"
+    } 
+  }
+
+  // 주소
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+    if (data.addressType === 'R') {
+        if (data.bname !== '') {
+            extraAddress += data.bname;
+        }
+        if (data.buildingName !== '') {
+            extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+        }
+        fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+      }
+      var splitAddress = fullAddress.split(" ")
+      user.address = splitAddress[0] + " " + splitAddress[1]
+      document.querySelector(".address-info").value = user.address   
+      modalClose()
+  }
 
   return (
     <div className="signup-box">
@@ -195,6 +243,52 @@ function Signup({ history }) {
             type="password"
           ></input>
         </div>
+        <div className="input-2">
+          <div><b>성별</b></div>
+          <form className="form-input-2">
+            <div>
+              <input type="radio" id="male" name="gender" value="male" onChange={changeSex}></input>
+              <label for="male">남</label>
+            </div>
+            <div>
+              <input type="radio" id="female" name="gender" value="female" onChange={changeSex}></input>
+              <label for="female">여</label>
+            </div>
+          </form>
+        </div>
+        <div className="input-2">
+          <div><b>나이</b></div>          
+          <div className="form-input-2">
+            <input type="number" min="1" max="100" onChange={changeAge} />세
+          </div>
+        </div>
+        <div className="input-2">
+          <div><b>지역</b></div>
+          <div className="form-input-2">
+            <input 
+            type="text"
+            className="address-info"
+            name="address"
+            value={address}
+            readOnly 
+            onChange={changeSignup}
+            />
+            <button onClick={modalOpen}>검색</button>
+          </div>
+          <div className="modal-addr-no">
+            <div className="modal-body">
+              <div className="modal-close">
+                <button onClick={modalClose}>
+                  <h3>❌</h3>
+                </button>
+              </div>
+              <div className="modal-title">
+                <h3>📫 주소검색</h3>
+              </div>
+              <DaumPostCode onComplete={handleComplete} className="post-code" />
+            </div>
+          </div>
+        </div>        
         <div>
           <button onClick={submitSignup} className="signup-btn">
             <h3>회원가입</h3>
