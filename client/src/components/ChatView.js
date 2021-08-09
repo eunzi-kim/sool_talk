@@ -4,6 +4,8 @@ import "./css/Chat.css";
 import jquery from "jquery";
 import $ from "jquery";
 
+import { useSelector } from "react-redux";
+
 // 이건 필요없지 않나?
 // const ChatViewProps = {
 //   msgs,
@@ -11,10 +13,11 @@ import $ from "jquery";
 
 // 실시간 채팅창
 function ChatView({ msgs }) {
+  const messages = useSelector((state) => state.chatting);
   const currentUser = localStorage.getItem("user");
 
   var chatView = [];
-  msgs.map((chat) => {
+  messages.map((chat) => {
     var nickname = chat["nickname"];
     var content = chat["content"];
     if (nickname === currentUser) {
