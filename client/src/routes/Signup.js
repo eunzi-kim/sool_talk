@@ -5,6 +5,18 @@ import DaumPostCode from 'react-daum-postcode';
 // import { Link } from "react-router-dom";
 
 function Signup({ history }) {
+  // 새로고침 막기
+  window.addEventListener("keydown", (e) => {
+    if (e.defaultPrevented) {
+      return
+    } else if (e.keyCode === 116) {
+      e.preventDefault();
+    }
+    else if (e.ctrlKey === true && (e.keyCode === 78 || e.keyCode === 82)) {
+      e.preventDefault();
+    }
+  }, true)
+
   // 경고창 중복 없애기
   const alertCheck = () => {
     if (document.querySelector(".password-alert-view")) {
