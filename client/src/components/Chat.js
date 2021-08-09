@@ -5,17 +5,12 @@ import "./css/Chat.css";
 import ChatApp from "./ChatApp";
 import MyScreen from "./MyScreen";
 import OppScreen from "./OppScreen";
+import { useDispatch } from "react-redux";
+import { deleteMessages } from "../modules/chatting";
 
 function Chat() {
-  // // 채팅 인풋의 상태관리 훅
-  // const [chatContent, setChatContent] = useState("");
-
-  // // 채팅 입력 시마다 값을 바꿔주는 함수
-  // const changeChatInput = (e) => {
-  //   const { value } = e.target;
-  //   setChatContent(value);
-  //   console.log(chatContent);
-  // };
+  const dispatch = useDispatch();
+  const onDeleteMessages = () => dispatch(deleteMessages());
 
   return (
     <div className="chat-box">
@@ -44,9 +39,9 @@ function Chat() {
           </div>
         </div>
         <div className="chat-2">
-          <Link to="/">
+          <a href="/" onClick={onDeleteMessages}>
             <button className="chat-exit-btn">나가기</button>
-          </Link>
+          </a>
           <div className="my-screen">
             <MyScreen />
           </div>

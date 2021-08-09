@@ -2,10 +2,16 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import Burger from "./Burger";
 import "./css/Navigation.css";
+import { useDispatch } from "react-redux";
+import { deleteUser } from "../modules/user";
 
 function Navigation() {
+  const dispatch = useDispatch();
+  const onDeleteUser = () => dispatch(deleteUser());
+
   const Logout = () => {
     localStorage.clear();
+    onDeleteUser();
   };
 
   return (
