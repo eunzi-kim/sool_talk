@@ -287,11 +287,11 @@ function Signup({ history }) {
               </div>
               <DaumPostCode 
                 onComplete={handleComplete} 
-                className="post-code"
+                autoClose
               />
             </div>
           </div>
-        </div>        
+        </div>
         <div>
           <button onClick={submitSignup} className="signup-btn">
             <h3>회원가입</h3>

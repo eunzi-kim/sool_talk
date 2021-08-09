@@ -184,8 +184,6 @@
 
 .modal-addr-no {
   display: none;
-  height: 0;
-  width: 0;
 }
 
 .modal {
@@ -200,7 +198,7 @@
 .modal-body {
   position: fixed;
   top: 20%;
-  left: 30%;
+  left: 35%;
   width: 30rem;
   background-color: #fff;
 }
