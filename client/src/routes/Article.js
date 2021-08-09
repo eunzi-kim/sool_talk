@@ -1,44 +1,60 @@
 import React from "react";
 import "./css/Article.css";
+import Slider from "react-slick";
+import "../slick.css";
+import "../slick-theme.css";
 
 function Article() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  };
+
   return (
-    <div className="article-container">
-      <div className="article">
-        <div className="bold-line"></div>
-        <div className="article-header">
-          <div className="article-no"><p>번호</p></div>
-          <div className="article-title"><p>제목</p></div>
-          <div className="article-t"><p>글쓴이</p></div>
-          <div className="article-t"><p>조회수</p></div>
-          <div className="article-t"><p>날짜</p></div>
-        </div>        
-        <div className="t-line"></div>
-
-        <div className="article-contents">
-          <div className="article-body">
-            <div className="article-no"><p>1</p></div>
-            <div className="article-title"><p>김태현은 황성안꼬.</p></div>
-            <div className="article-t"><p>황성안</p></div>
-            <div className="article-t"><p>198</p></div>
-            <div className="article-t"><p>2021.07.28</p></div>
-          </div>
-          <div className="line"></div>
+    <div>
+      <Slider {...settings} className="slider">
+        <div>
+          <h3>1</h3>
         </div>
-        
-        <div className="article-bottom">
-          <div>
-            <button>&lt;&lt;</button>
-            <button>&gt;&gt;</button>
-          </div>
-          <div>
-            <button>글쓰기</button>
-          </div>          
+        <div>
+          <h3>2</h3>
         </div>
-      </div>
-
+        <div>
+          <h3>3</h3>
+        </div>
+        <div>
+          <h3>4</h3>
+        </div>
+        <div>
+          <h3>5</h3>
+        </div>
+        <div>
+          <h3>6</h3>
+        </div>
+        <div>
+          <h3>1</h3>
+        </div>
+        <div>
+          <h3>2</h3>
+        </div>
+        <div>
+          <h3>3</h3>
+        </div>
+        <div>
+          <h3>4</h3>
+        </div>
+        <div>
+          <h3>5</h3>
+        </div>
+        <div>
+          <h3>6</h3>
+        </div>
+      </Slider>
     </div>
-  )
+  );
 }
 
 export default Article;
