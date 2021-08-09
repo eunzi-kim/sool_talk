@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,45 +15,15 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements UserDetails {
+public class User {
     private String email;
     private String id;
     private String password;
     private String nickname;
     private String auth;
-    private int enabled;
-
-    private List<String> roles = new ArrayList<>();
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        ArrayList<GrantedAuthority> authList = new ArrayList<GrantedAuthority>();
-        authList.add(new SimpleGrantedAuthority("ROLE_USER"));
-        return authList;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.id;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
+    private String sex;
+    private String address;
+    private String profileImg;
+    private int age;
+    private int likes;
 }

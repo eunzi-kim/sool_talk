@@ -4,10 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.util.StringUtils;
+import talk.server.service.JwtUserDetailsService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -26,48 +30,35 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
+    @Autowired
+    private JwtUserDetailsService jwtUserDetailsService;
+
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
         super(authenticationManager);
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String token = resolveToken((HttpServletRequest) request);
 
+        String id = null;
+
         if (token != null && jwtTokenProvider.validateToken(token)) {
-            Authentication auth = jwtTokenProvider.getAuthentication(token);
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            id = jwtTokenProvider.getUserIdFromToken(token);
+        }
+
+        if (id != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(id);
+
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         }
 
         chain.doFilter(request, response);
     }
-
-//    @Override
-//    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-//            throws IOException, ServletException {
-//
-//        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
-//        Enumeration<String> headerNames = httpRequest.getHeaderNames();
-//
-//        System.out.println("------------------------------------");
-//        if (headerNames != null) {
-//            while (headerNames.hasMoreElements()) {
-//                System.out.println("Header: " + httpRequest.getHeader(headerNames.nextElement()));
-//            }
-//        }
-//        System.out.println("------------------------------------");
-//        String token = resolveToken((HttpServletRequest) servletRequest);
-//        System.out.println("doFilter -> " + token);
-//
-//        if (token != null && jwtTokenProvider.validateToken(token)) {
-//            Authentication auth = jwtTokenProvider.getAuthentication(token);
-//            SecurityContextHolder.getContext().setAuthentication(auth);
-//        }
-//
-//        filterChain.doFilter(servletRequest, servletResponse);
-//    }
 
     // Request Header 에서 토큰 정보를 꺼내오기
     private String resolveToken(HttpServletRequest request) {

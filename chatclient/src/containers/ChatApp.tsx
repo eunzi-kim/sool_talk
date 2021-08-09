@@ -40,8 +40,9 @@ function ChatApp({ match }: RouteComponentProps<ChatAppProps>) {
 
         stompClient.connect(headers, () => {
             stompClient.subscribe(`/topic/${roomId}`, (data) => {
+                console.log("d: " + data);
                 const revMsg = JSON.parse(data.body);
-
+                console.log(revMsg);
                 setMsgs(prev => [...prev, {
                     roomId: revMsg['roomId'],
                     nickname: revMsg['nickname'],

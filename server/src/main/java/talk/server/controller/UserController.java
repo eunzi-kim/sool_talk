@@ -4,79 +4,114 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 import talk.server.jwt.JwtTokenProvider;
+import talk.server.service.JwtUserDetailsService;
 import talk.server.service.UserService;
+import talk.server.vo.FailureLogin;
+import talk.server.vo.ResUserInfo;
 import talk.server.vo.User;
-import talk.server.vo.resLoginUser;
 
-import javax.servlet.http.HttpSession;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Api(tags = {"회원관련 컨트롤러"})
 @RequestMapping("/user")
 @RestController
 public class UserController {
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
     @Autowired
     private UserService userService;
-
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
-
-    // 일반, 소셜 회원가입 로그인 구분
+    @Autowired
+    private JwtUserDetailsService jwtUserDetailsService;
 
     @PostMapping("/signup")
-    public String signup(@RequestBody Map<String, String> map) {
-        // 회원 가입 로직
-        //닉네임 중복검사
-        int dcNicnName = userService.getUserByNickName(map.get("nickname"));
-        if (dcNicnName >= 1) return "nickname";
-        //username (ID) 중복검사
-        int dcUserName = userService.getUserByUserName(map.get("username"));
-        if (dcUserName >= 1) return "username";
+    public ResponseEntity<?> signup(@RequestParam String id,
+                       @RequestParam String password,
+                       @RequestParam String nickname,
+                       @RequestParam String email,
+                       @RequestParam String sex,
+                       @RequestParam String address,
+                       @RequestParam String age,
+                       @RequestParam String likes,
+                       @RequestParam(required = false) MultipartFile profileImg) throws IOException {
+        Optional<User> userOptional = userService.getUserById(id);
+        // 중복된 id 라면
+        if (userOptional.isPresent()) {
+            return new ResponseEntity<>("username", HttpStatus.OK);
+        }
 
-        boolean result = userService.setUser(map);
-        if (result) return "success";
-        else return "failure";
+        userOptional = userService.getUserByNickName(nickname);
+        // 중복된 nickname 이라면
+        if (userOptional.isPresent()) {
+            return new ResponseEntity<>("nickname", HttpStatus.OK);
+        }
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("password", password);
+        map.put("nickname", nickname);
+        map.put("email", email);
+        map.put("address", address);
+        map.put("sex", sex);
+        map.put("profileImg", profileImg.getBytes());
+        map.put("likes", likes);
+        map.put("age", age);
+
+        userService.setUser(map);
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<resLoginUser> signin(@RequestBody Map<String, String> map) {
-        // 로그인 로직
-        // id 확인
-        int dcUserName = userService.getUserByUserName(map.get("username"));
-        // id가 없는 경우
-        if (dcUserName == 0) {
-            resLoginUser result = new resLoginUser();
-            result.setResult("noid");
-            return new ResponseEntity(result, HttpStatus.OK);
+    public ResponseEntity<?> signin(@RequestBody Map<String, String> map) {
+
+        Optional<User> userOptional = userService.getUserById(map.get("id"));
+        // id가 없다면
+        if (!userOptional.isPresent()) {
+            FailureLogin failureLogin = new FailureLogin();
+            failureLogin.setResult("noid");
+            failureLogin.setSuccess(false);
+
+            return new ResponseEntity<>(failureLogin, HttpStatus.OK);
         }
-        User user = userService.getUser(map);
+        // pw가 틀리다면
+        userOptional = userService.getUser(map);
+        if (!userOptional.isPresent()) {
+            FailureLogin failureLogin = new FailureLogin();
+            failureLogin.setResult("nopassword");
+            failureLogin.setSuccess(false);
 
-        if (user == null) {
-            resLoginUser result = new resLoginUser();
-            result.setResult("nopassword");
-            return new ResponseEntity(result, HttpStatus.OK);
+            return new ResponseEntity<>(failureLogin, HttpStatus.OK);
         }
 
-        resLoginUser result = new resLoginUser();
+        final String token = jwtTokenProvider.createToken(userOptional.get().getId());
 
-        result.setResult("success");
-        result.setNickname(user.getNickname());
-        result.setSuccess(true);
-        result.setToken(user.getAuth());
-        return ResponseEntity.ok(result);
+        ResUserInfo resUserInfo = new ResUserInfo();
+        resUserInfo.setId(userOptional.get().getId());
+        resUserInfo.setNickname(userOptional.get().getNickname());
+        resUserInfo.setEmail(userOptional.get().getEmail());
+        resUserInfo.setProfileImg(userOptional.get().getProfileImg().getBytes());
+        resUserInfo.setAddress(userOptional.get().getAddress());
+        resUserInfo.setSex(userOptional.get().getSex());
+        resUserInfo.setAge(userOptional.get().getAge());
+        resUserInfo.setLikes(userOptional.get().getLikes());
+        resUserInfo.setToken(token);
 
+        return new ResponseEntity<>(resUserInfo, HttpStatus.OK);
     }
-
-//    @PostMapping("/logout")
-//    public ModelAndView logout(HttpSession session) {
-//
-//        userService.logout(session);
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("login");
-//        mav.addObject("msg","logout");
-//        return mav;
-//    }
 }

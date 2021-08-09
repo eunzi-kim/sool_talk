@@ -1,22 +1,19 @@
 package talk.server.jwt;
 
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import talk.server.service.CustomUserDetailService;
 
 import javax.annotation.PostConstruct;
+import java.time.Duration;
 import java.util.Base64;
-import java.util.Collection;
 import java.util.Date;
+import java.util.function.Function;
 
-
+@Slf4j
 @Component
 public class JwtTokenProvider {
 
@@ -30,36 +27,36 @@ public class JwtTokenProvider {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    @Autowired
-    private CustomUserDetailService customUserDetailService;
+    public String getUserIdFromToken(String token) {
+        try {
+            return getClaimFromToken(token);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("id from token exception");
+        }
+    }
+
+    public String getClaimFromToken(String token) {
+        final Claims claims = getAllClaimsFromToken(token);
+        return claims.get("id").toString();
+    }
+
+    private Claims getAllClaimsFromToken(String token) {
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+    }
 
     // Jwt 토큰 생성
-    public String createToken(String userPk, Collection<? extends GrantedAuthority> roles) {
-        Claims claims = Jwts.claims().setSubject(userPk);
-        claims.put("roles", roles);
+    public String createToken(String id) {
         Date now = new Date();
+
         return Jwts.builder()
-                .setClaims(claims) // 데이터
-                .setIssuedAt(now) // 토큰 발행일자
-                .setExpiration(new Date(now.getTime() + tokenValidMilisecond)) // set Expire Time
-                .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, secret값 세팅
+                .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
+                .setIssuer("fresh")
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + Duration.ofMinutes(30).toMillis()))
+                .claim("id", id)
+                .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
-
-    public Authentication getAuthentication(String token) {
-        System.out.println(token);
-        UserDetails userDetails = customUserDetailService.loadUserByUsername(this.getUserPk(token));
-        System.out.println(userDetails);
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-    }
-
-    public String getUserPk(String token) {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
-    }
-
-//    public String resolveToken(HttpServletRequest req) {
-//        return req.getHeader("X-AUTH-TOKEN");
-//    }
 
     public boolean validateToken(String token) {
         try {

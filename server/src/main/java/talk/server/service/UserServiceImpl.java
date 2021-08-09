@@ -6,10 +6,10 @@ import talk.server.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -21,32 +21,31 @@ public class UserServiceImpl implements UserService{
     private JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public int getUserByNickName(String nickname) {
+    public Optional<User> getUserByNickName(String nickname) {
         return dao.getUserByNickName(nickname);
     }
 
     @Override
-    public int getUserByUserName(String username) {
-        return dao.getUserByUserName(username);
+    public Optional<User> getUserById(String id) {
+        return dao.getUserById(id);
     }
 
     @Override
-    public User getUser(Map<String, String> map) {
-        User user = dao.getUser(map);
-        if (user == null) return null;
-        String token = jwtTokenProvider.createToken(user.getUsername(), user.getAuthorities());
-        List<String> list = new ArrayList<>();
-        list.add("ROLE_USER");
-        user.setRoles(list);
-        user.setAuth(token);
+    public Optional<User> getUser(Map<String, String> map) {
+        Optional<User> user = dao.getUser(map);
         return user;
     }
 
     @Override
-    public boolean setUser(Map<String, String> map) {
+    public boolean setUser(Map<String, Object> map) {
         int result = dao.setUser(map);
         if (result == 1) return true;
         else return false;
+    }
+
+    @Override
+    public Map<String, Object> getProfileImg(String id) {
+        return dao.getProfileImg(id);
     }
 
 //    @Override
