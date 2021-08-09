@@ -154,3 +154,7 @@ p {
     width: 10vw;
   }
 }
+
+#__daum__layer_1 {
+  display: none;
+}

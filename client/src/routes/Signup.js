@@ -117,8 +117,8 @@ function Signup({ history }) {
         "sex": user.sex,
         "age": user.age
       }
-      fetchSignup(userInfo)
-      // console.log(userInfo)
+      // fetchSignup(userInfo)
+      console.log(userInfo)
     }
   };
 
@@ -285,7 +285,10 @@ function Signup({ history }) {
               <div className="modal-title">
                 <h3>📫 주소검색</h3>
               </div>
-              <DaumPostCode onComplete={handleComplete} className="post-code" />
+              <DaumPostCode 
+                onComplete={handleComplete} 
+                className="post-code"
+              />
             </div>
           </div>
         </div>        
