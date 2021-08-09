@@ -5,6 +5,8 @@ import Stomp from "stompjs";
 import ChatInput from "./ChatInput";
 import ChatView from "./ChatView";
 import "./css/Chat.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addMessage } from "../modules/chatting";
 
 // 새로운 웹소켓 하나 생성
 let sockJS = new SockJS("http://localhost:8080/webSocket");
@@ -18,6 +20,12 @@ stompClient.debug = (str) => {
 // };
 
 function ChatApp({ match }) {
+  // [리덕스] 디스패치 함수 활성화
+  const dispatch = useDispatch();
+
+  // [리덕스] 유저 정보를 리덕스 스테이트에 저장하는 함수 생성
+  const onAddMessage = (msg) => dispatch(addMessage(msg));
+
   // const { roomId } = match.params;
   const roomId = 1;
   const [msgs, setMsgs] = useState([]);
@@ -46,6 +54,11 @@ function ChatApp({ match }) {
             content: revMsg["content"],
           },
         ]);
+        onAddMessage({
+          roomId: revMsg["roomId"],
+          nickname: revMsg["nickname"],
+          content: revMsg["content"],
+        });
       });
     });
   }, []);
