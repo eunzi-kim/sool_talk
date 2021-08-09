@@ -199,8 +199,8 @@
 
 .modal-body {
   position: fixed;
-  top: 25%;
-  left: 40%;
+  top: 20%;
+  left: 30%;
   width: 30rem;
   background-color: #fff;
 }
