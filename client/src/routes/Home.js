@@ -1,12 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./css//Home.css";
+import { useSelector } from "react-redux";
 
 const onClick = () => {
   window.location.replace("/chat");
 };
 
 function Home() {
+  console.log(useSelector((state) => state));
   return (
     <div className="home">
       <div className="random-card">

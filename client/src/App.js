@@ -11,12 +11,13 @@ import SearchFriends from "./routes/SearchFriends";
 import Setting from "./routes/Setting";
 import PrivateRoute from "./lib/PrivateRoute";
 import PublicRoute from "./lib/PublicRoute";
-import ChatApp from "./components/ChatApp";
+import { useSelector } from "react-redux";
 
 function App() {
+  console.log(useSelector((state) => state));
   return (
     <div>
-      <PrivateRoute component={Navigation}/>
+      <PrivateRoute component={Navigation} />
       <Switch>
         <PrivateRoute path="/" component={Home} exact={true} />
         <PublicRoute restricted="true" path="/login" component={Login} />

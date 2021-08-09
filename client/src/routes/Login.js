@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/Login.css";
+import { useSelector, useDispatch } from "react-redux";
+import { getUser } from "../modules/user";
 // import Cookies from "js-cookie";
 
 // 유저가 입력한 아이디와 비밀번호를 서버로 보내주고 그 결과값을 받는 함수 (33번째 줄 참고)
 const signIn = async ({ username, password }) => {
-
   // username(아이디)과 password를 서버로 넘긴다.
   const { data } = await axios.post("http://localhost:8080/user/signin/", {
     username: username,
@@ -17,18 +18,26 @@ const signIn = async ({ username, password }) => {
 };
 
 function Login({ history }) {
+  // [리덕스] 디스패치 함수 활성화
+  const dispatch = useDispatch();
+
+  // [리덕스] 유저 정보를 리덕스 스테이트에 저장하는 함수 생성
+  const onGetUser = (userInfo) => dispatch(getUser(userInfo));
+
   // 경고창 중복 없애기
   const loginAlertCheck = () => {
     if (document.querySelector(".login-password-alert-view")) {
-      document.querySelector(".login-password-alert-view").className = "login-password-alert"
+      document.querySelector(".login-password-alert-view").className =
+        "login-password-alert";
     }
     if (document.querySelector(".login-alert-view")) {
-      document.querySelector(".login-alert-view").className = "login-alert"
+      document.querySelector(".login-alert-view").className = "login-alert";
     }
     if (document.querySelector(".login-id-alert-view")) {
-      document.querySelector(".login-id-alert-view").className = "login-id-alert"
+      document.querySelector(".login-id-alert-view").className =
+        "login-id-alert";
     }
-  }
+  };
 
   const [user, setUser] = useState({
     username: "",
@@ -47,7 +56,12 @@ function Login({ history }) {
 
   // 유저가 (아이디와 비밀번호를 입력하고) 로그인 버튼을 눌렀을 때, 아래 함수 실행!
   const submitLogin = async ({ username, password }) => {
-    const { result, success, token, nickname } = await signIn({ username, password });
+    const userInfo = await signIn({
+      username,
+      password,
+    });
+
+    const { result, success, token, nickname } = userInfo;
     // 만약 로그인 성공 시 (success = true),
     if (success) {
       // 토큰값을 받아 세션을 생성하고 쿠키에 저장한다. => session: <토큰값>
@@ -55,40 +69,46 @@ function Login({ history }) {
       localStorage.setItem("token", token);
       localStorage.setItem("user", nickname);
 
-      user.username = ""
-      user.password = ""
+      // [리덕스] 유저 정보 리덕스에 저장
+      onGetUser(userInfo);
+
+      user.username = "";
+      user.password = "";
 
       // 마이페이지로 이동
       history.push("/mypage");
     }
     // 없는 아이디
     else if (result === "noid") {
-      loginAlertCheck()
+      loginAlertCheck();
       if (document.querySelector(".login-id-alert")) {
-        document.querySelector(".login-id-alert").className = "login-id-alert-view alert"
+        document.querySelector(".login-id-alert").className =
+          "login-id-alert-view alert";
       }
     }
     // 비밀번호 틀림
     else if (result === "nopassword") {
-      loginAlertCheck()
+      loginAlertCheck();
       if (document.querySelector(".login-password-alert")) {
-        document.querySelector(".login-password-alert").className = "login-password-alert-view alert"
+        document.querySelector(".login-password-alert").className =
+          "login-password-alert-view alert";
       }
     }
     // 다른 로그인 실패 상황
     else {
-      loginAlertCheck()
+      loginAlertCheck();
       if (document.querySelector(".login-alert")) {
-        document.querySelector(".login-alert").className = "login-alert-view alert"
+        document.querySelector(".login-alert").className =
+          "login-alert-view alert";
       }
     }
   };
 
-  document.addEventListener("keyup", e => {
+  document.addEventListener("keyup", (e) => {
     if (e.keyCode === 13) {
       submitLogin(user);
     }
-  })
+  });
 
   const imgKakao = "/img/logo_kakao.svg";
   const imgInsta = "/img/logo_instagram.svg";
@@ -105,7 +125,7 @@ function Login({ history }) {
       <div className="login-alert">
         <h3>로그인에 실패하였습니다.</h3>
       </div>
-      <div className="login-box">        
+      <div className="login-box">
         <div>
           <h1>로그인</h1>
         </div>
