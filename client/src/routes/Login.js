@@ -10,7 +10,7 @@ import { getUser } from "../modules/user";
 const signIn = async ({ username, password }) => {
   // username(아이디)과 password를 서버로 넘긴다.
   const { data } = await axios.post("http://localhost:8080/user/signin/", {
-    username: username,
+    id: username,
     password: password,
   });
   console.log(data);
@@ -62,25 +62,9 @@ function Login({ history }) {
       password,
     });
 
-    const { result, success, token, nickname } = userInfo;
-    // 만약 로그인 성공 시 (success = true),
-    if (success) {
-      // 토큰값을 받아 세션을 생성하고 쿠키에 저장한다. => session: <토큰값>
-      // Cookies.set("session", token);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", nickname);
-
-      // [리덕스] 유저 정보 리덕스에 저장
-      onGetUser(userInfo);
-
-      user.username = "";
-      user.password = "";
-
-      // 마이페이지로 이동
-      history.push("/mypage");
-    }
+    const { result, address, age, email, id, likes, nickname, profileImg, sex, token } = userInfo;
     // 없는 아이디
-    else if (result === "noid") {
+    if (result === "noid") {
       loginAlertCheck();
       if (document.querySelector(".login-id-alert")) {
         document.querySelector(".login-id-alert").className =
@@ -94,6 +78,32 @@ function Login({ history }) {
         document.querySelector(".login-password-alert").className =
           "login-password-alert-view alert";
       }
+    }
+    // 만약 로그인 성공 시
+    else if (token) {
+      // 토큰값을 받아 세션을 생성하고 쿠키에 저장한다. => session: <토큰값>
+      // Cookies.set("session", token);
+      localStorage.setItem("token", token);
+      const userInfo = {
+        "id": id,
+        "nickname": nickname,
+        "email": email,
+        "address": address,
+        "sex": sex,
+        "age": age,
+        "likes": likes,
+        "profileImg": profileImg
+      }
+      localStorage.setItem("userInfo", userInfo)
+
+      // [리덕스] 유저 정보 리덕스에 저장
+      onGetUser(userInfo);
+
+      user.username = "";
+      user.password = "";
+
+      // 마이페이지로 이동
+      history.push("/mypage");
     }
     // 다른 로그인 실패 상황
     else {
