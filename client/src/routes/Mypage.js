@@ -8,11 +8,10 @@ function Mypage() {
   const iconHeart = "/img/icon_heart.png";
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const gender = "여"
+  var gender = "여"
   if (userInfo.sex === "male") {
     gender = "남"
   }
-  console.log("유저정보", userInfo)
 
   return (
     <div className="my-info">
