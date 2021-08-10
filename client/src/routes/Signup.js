@@ -34,6 +34,9 @@ function Signup({ history }) {
     if (document.querySelector(".length-alert-view")) {
       document.querySelector(".length-alert-view").className = "length-alert"
     }
+    if (document.querySelector(".age-alert-view")) {
+      document.querySelector(".age-alert-view").className = "age-alert"
+    }
   }
 
   const fetchSignup = async ( userInfo ) => {
@@ -120,7 +123,14 @@ function Signup({ history }) {
       if (document.querySelector(".password-alert")) {
         document.querySelector(".password-alert").className = "password-alert-view alert"
       }
-    } else {
+    } 
+    else if (user.age < 19 || user.age > 87) {
+      alertCheck()
+      if (document.querySelector(".age-alert")) {
+        document.querySelector(".age-alert").className = "age-alert-view alert"
+      }
+    }
+    else {
       const formData = new FormData()
       formData.append("id", user.username)
       formData.append("password", String(user.password))
@@ -128,14 +138,6 @@ function Signup({ history }) {
       formData.append("sex", user.sex)
       formData.append("address", user.address)
       formData.append("age", parseInt(user.age))
-      // const userInfo = {
-      //   "id": user.username,
-      //   "password": String(user.password),
-      //   "nickname": user.nickname,        
-      //   "sex": user.sex,
-      //   "address": user.address,
-      //   "age": parseInt(user.age)
-      // }
       fetchSignup(formData)
     }
   };
@@ -189,7 +191,7 @@ function Signup({ history }) {
   return (
     <div className="signup-box">
       <div className="length-alert">
-        <h3>⛔ 정보를 모두 입력해 주세요.</h3>
+        <h3>⛔ 필수 정보(*)를 모두 입력해 주세요.</h3>
       </div>
       <div className="password-alert">
         <h3>⛔ 비밀번호를 확인해 주세요.</h3>
@@ -202,6 +204,9 @@ function Signup({ history }) {
       </div>
       <div className="info-alert">
         <h3>⛔ 회원가입에 실패하였습니다.</h3>
+      </div>
+      <div className="age-alert">
+        <h3>⛔ 죄송합니다. 가입이 불가능한 나이입니다.</h3>
       </div>
       <div className="signup-form">
         <div>
@@ -218,103 +223,106 @@ function Signup({ history }) {
             <h1>회원가입</h1>
           </div>
         </div>
-
-        <div className="nickname">
-          <b>닉네임</b>{" "}
-          <input
-            className="form-input"
-            name="nickname"
-            value={nickname}
-            onChange={changeSignup}
-            placeholder="닉네임을 입력하세요."
-          ></input>
-        </div>
-        <div className="username">
-          <b>아이디</b>{" "}
-          <input
-            className="form-input"
-            name="username"
-            value={username}
-            onChange={changeSignup}
-            placeholder="아이디를 입력하세요."
-          ></input>
-        </div>
-        <div className="password">
-          <b>비밀번호</b>{" "}
-          <input
-            className="form-input"
-            name="password"
-            value={password}
-            onChange={changeSignup}
-            placeholder="비밀번호를 입력하세요."
-            type="password"
-          ></input>
-        </div>
-        <div className="password-confirm">
-          <b>비밀번호 확인</b>{" "}
-          <input
-            className="form-input"
-            name="passwordConfirmation"
-            value={passwordConfirmation}
-            onChange={changeSignup}
-            placeholder="비밀번호를 다시 입력하세요."
-            type="password"
-          ></input>
-        </div>
-        <div className="input-2">
-          <div><b>성별</b></div>
-          <form className="form-input-2">
-            <div>
-              <input type="radio" id="male" name="gender" value="male" onChange={changeSex}></input>
-              <label for="male">남</label>
-            </div>
-            <div>
-              <input type="radio" id="female" name="gender" value="female" onChange={changeSex}></input>
-              <label for="female">여</label>
-            </div>
-          </form>
-        </div>
-        <div className="input-2">
-          <div><b>나이</b></div>          
-          <div className="form-input-2">
-            <input type="number" min="1" max="100" onChange={changeAge} />세
+        <div className="signup-main">
+          <div className="nickname">
+            <b>닉네임 *</b>{" "}
+            <input
+              className="form-input"
+              name="nickname"
+              value={nickname}
+              onChange={changeSignup}
+              placeholder="닉네임을 입력하세요."
+            ></input>
           </div>
-        </div>
-        <div className="input-2">
-          <div><b>지역</b></div>
-          <div className="form-input-2">
-            <input 
-            type="text"
-            className="address-info"
-            name="address"
-            value={address}
-            readOnly 
-            onChange={changeSignup}
-            />
-            <button onClick={modalOpen}>검색</button>
+          <div className="username">
+            <b>아이디 *</b>{" "}
+            <input
+              className="form-input"
+              name="username"
+              value={username}
+              onChange={changeSignup}
+              placeholder="아이디를 입력하세요."
+            ></input>
           </div>
-          <div className="modal-addr-no">
-            <div className="modal-body">
-              <div className="modal-close">
-                <button onClick={modalClose}>
-                  <h3>❌</h3>
-                </button>
+          <div className="password">
+            <b>비밀번호 *</b>{" "}
+            <input
+              className="form-input"
+              name="password"
+              value={password}
+              onChange={changeSignup}
+              placeholder="비밀번호를 입력하세요."
+              type="password"
+            ></input>
+          </div>
+          <div className="password-confirm">
+            <b>비밀번호 확인 *</b>{" "}
+            <input
+              className="form-input"
+              name="passwordConfirmation"
+              value={passwordConfirmation}
+              onChange={changeSignup}
+              placeholder="비밀번호를 다시 입력하세요."
+              type="password"
+            ></input>
+          </div>
+          <div className="input-2">
+            <div><b>성별</b></div>
+            <form className="form-input-2">
+              <div>
+                <input type="radio" id="male" name="gender" value="male" onChange={changeSex}></input>
+                <label for="male">남</label>
               </div>
-              <div className="modal-title">
-                <h3>📫 주소검색</h3>
+              <div>
+                <input type="radio" id="female" name="gender" value="female" onChange={changeSex}></input>
+                <label for="female">여</label>
               </div>
-              <DaumPostCode 
-                onComplete={handleComplete} 
-                autoClose
+            </form>
+          </div>
+          <div className="input-2">
+            <div><b>나이</b></div>          
+            <div className="form-input-2">
+              <input type="number" min="1" max="100" onChange={changeAge} />세
+            </div>
+          </div>
+          <div className="input-2">
+            <div><b>지역</b></div>
+            <div className="form-input-2">
+              <input 
+              type="text"
+              className="address-info"
+              name="address"
+              value={address}
+              readOnly 
+              onChange={changeSignup}
               />
+              <button onClick={modalOpen}>검색</button>
+            </div>
+            <div className="modal-addr-no">
+              <div className="modal-body">
+                <div className="modal-close">
+                  <button onClick={modalClose}>
+                    <h3>❌</h3>
+                  </button>
+                </div>
+                <div className="modal-title">
+                  <h3>📫 주소검색</h3>
+                </div>
+                <DaumPostCode 
+                  onComplete={handleComplete} 
+                  autoClose
+                />
+              </div>
             </div>
           </div>
         </div>
+        
         <div>
           <button onClick={submitSignup} className="signup-btn">
             <h3>회원가입</h3>
           </button>
         </div>
+
       </div>
     </div>
   );

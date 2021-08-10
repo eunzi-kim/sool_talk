@@ -1,10 +1,10 @@
 import React from "react";
 import Location from "./Location";
+import "./css/SearchFriends.css"
 
 function SearchFriends() {
   return (
-    <div>
-      <h1>친구찾기</h1>
+    <div className="search-friend">
       <Location />
     </div>
   )

@@ -19,8 +19,14 @@
   background-color: #fff;
   box-shadow: 2px 2px 2px 2px gray;
   width: 30rem;
-  height: 46rem;
+  height: 32rem;
   border-radius: 10px;
+  padding: 1.5rem 0;
+}
+
+.signup-main {
+  overflow-y: auto;
+  padding: 0 1rem 0 2rem;
 }
 
 .arrow {
@@ -98,15 +104,20 @@
 .username-alert,
 .nickname-alert,
 .info-alert,
-.length-alert {
+.length-alert,
+.age-alert {
   display: none;
+  position: fixed;
 }
 
 .password-alert-view,
 .username-alert-view,
 .nickname-alert-view,
 .info-alert-view,
-.length-alert-view {
+.length-alert-view,
+.age-alert-view {
+  position: fixed;
+  top: 1rem;
   background-color: red;
   height: 3rem;
   width: 30rem;
@@ -121,7 +132,8 @@
 .username-alert h3,
 .nickname-alert h3,
 .info-alert h3,
-.length-alert h3 {
+.length-alert h3,
+.age-alert h3 {
   margin: 0;
 }
 
