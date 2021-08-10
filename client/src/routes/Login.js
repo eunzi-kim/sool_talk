@@ -62,7 +62,18 @@ function Login({ history }) {
       password,
     });
 
-    const { result, address, age, email, id, likes, nickname, profileImg, sex, token } = userInfo;
+    const {
+      result,
+      address,
+      age,
+      email,
+      id,
+      likes,
+      nickname,
+      profileImg,
+      sex,
+      token,
+    } = userInfo;
     // 없는 아이디
     if (result === "noid") {
       loginAlertCheck();
@@ -85,16 +96,16 @@ function Login({ history }) {
       // Cookies.set("session", token);
       localStorage.setItem("token", token);
       const userInfo = {
-        "id": id,
-        "nickname": nickname,
-        "email": email,
-        "address": address,
-        "sex": sex,
-        "age": age,
-        "likes": likes,
-        "profileImg": profileImg
-      }
-      localStorage.setItem("userInfo", JSON.stringify(userInfo))
+        id: id,
+        nickname: nickname,
+        email: email,
+        address: address,
+        sex: sex,
+        age: age,
+        likes: likes,
+        profileImg: profileImg,
+      };
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
       // [리덕스] 유저 정보 리덕스에 저장
       onGetUser(userInfo);

@@ -7,7 +7,6 @@ export const updateUser = (user) => ({ type: UPDATE_USER, user });
 export const deleteUser = () => ({ type: DELETE_USER });
 
 const initailState = {
-  userNo: "",
   id: "",
   nickname: "",
   email: "",
@@ -16,6 +15,7 @@ const initailState = {
   sex: "",
   age: "",
   likes: "",
+  token: "",
 };
 
 export default function user(state = initailState, action) {
@@ -23,7 +23,6 @@ export default function user(state = initailState, action) {
     case GET_USER:
       return {
         ...state,
-        userNo: action.user.userNo,
         id: action.user.id,
         nickname: action.user.nickname,
         email: action.user.email,
@@ -32,11 +31,11 @@ export default function user(state = initailState, action) {
         sex: action.user.sex,
         age: action.user.age,
         likes: action.user.likes,
+        token: action.user.token,
       };
     case UPDATE_USER:
       return {
         ...state,
-        userNo: action.user.userNo,
         id: action.user.id,
         nickname: action.user.nickname,
         email: action.user.email,
@@ -45,11 +44,11 @@ export default function user(state = initailState, action) {
         sex: action.user.sex,
         age: action.user.age,
         likes: action.user.likes,
+        token: action.user.token,
       };
     case DELETE_USER:
       return {
         ...state,
-        userNo: "",
         id: "",
         nickname: "",
         email: "",
@@ -58,6 +57,7 @@ export default function user(state = initailState, action) {
         sex: "",
         age: "",
         likes: "",
+        token: "",
       };
     default:
       return state;

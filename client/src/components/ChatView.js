@@ -14,13 +14,14 @@ import { useSelector } from "react-redux";
 // 실시간 채팅창
 function ChatView({ msgs }) {
   const messages = useSelector((state) => state.chatting);
-  const currentUser = localStorage.getItem("user");
+  const currentUser = useSelector((state) => state.user);
+  console.log(currentUser);
 
   var chatView = [];
   messages.map((chat) => {
     var nickname = chat["nickname"];
     var content = chat["content"];
-    if (nickname === currentUser) {
+    if (nickname === currentUser.nickname) {
       chatView.push(`${nickname}(나): ${content}`);
     } else {
       chatView.push(`${nickname}: ${content}`);

@@ -30,15 +30,16 @@ function ChatApp({ match }) {
   const roomId = 1;
   const [msgs, setMsgs] = useState([]);
 
-  const user = localStorage.getItem("user");
-  // console.log(user);
+  const user = useSelector((state) => state.user);
+  console.log(user);
+
+  const myToken = localStorage.getItem("token");
 
   useEffect(() => {
     console.log(match);
     // jwt token은 임시로 발급받은거 직접 넣어줌
     let headers = {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Iiwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwiaWF0IjoxNjI3MDQ1OTA5LCJleHAiOjE2MjcwNDk1MDl9.JYZ-f0kyz0CMGnTFor5LaxepcRPkhBHo5SUFItRYogg",
+      Authorization: `Bearer ${myToken}`,
     };
 
     // 2. 채팅방 구독하기 (채팅방 입장)
@@ -67,7 +68,7 @@ function ChatApp({ match }) {
   const onInput = (msg) => {
     const chatData = {
       roomId: 1, // 변경 필요
-      nickname: user,
+      nickname: user.nickname,
       content: msg,
     };
     stompClient.send(`/hello`, {}, JSON.stringify(chatData));
