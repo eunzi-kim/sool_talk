@@ -13,6 +13,7 @@ const signIn = async ({ username, password }) => {
     username: username,
     password: password,
   });
+  console.log(data);
   // 받아오는 (return) 데이터에는 success(로그인 성공 여부)와 token 값이 들어있음. (32번째 줄로..)
   return data;
 };
