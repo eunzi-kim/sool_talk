@@ -28,7 +28,6 @@ import java.util.Optional;
 @Api(tags = {"회원관련 컨트롤러"})
 @RequestMapping("/user")
 @RestController
-@CrossOrigin("*")
 public class UserController {
 
     @Autowired
