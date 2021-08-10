@@ -121,15 +121,22 @@ function Signup({ history }) {
         document.querySelector(".password-alert").className = "password-alert-view alert"
       }
     } else {
-      const userInfo = {
-        "id": user.username,
-        "password": String(user.password),
-        "nickname": user.nickname,        
-        "sex": user.sex,
-        "address": user.address,
-        "age": parseInt(user.age)
-      }
-      fetchSignup(userInfo)
+      const formData = new FormData()
+      formData.append("id", user.username)
+      formData.append("password", String(user.password))
+      formData.append("nickname", user.nickname)
+      formData.append("sex", user.sex)
+      formData.append("address", user.address)
+      formData.append("age", parseInt(user.age))
+      // const userInfo = {
+      //   "id": user.username,
+      //   "password": String(user.password),
+      //   "nickname": user.nickname,        
+      //   "sex": user.sex,
+      //   "address": user.address,
+      //   "age": parseInt(user.age)
+      // }
+      fetchSignup(formData)
     }
   };
 
