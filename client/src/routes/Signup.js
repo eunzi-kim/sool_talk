@@ -39,7 +39,7 @@ function Signup({ history }) {
   const fetchSignup = async ( userInfo ) => {
     let config = {
       headers:{
-        "Content-Type": "application/json"
+        "content-type": "multipart/form-data"
       }
     }
     const url = "http://localhost:8080/user/signup/"
@@ -122,15 +122,14 @@ function Signup({ history }) {
       }
     } else {
       const userInfo = {
-        "username": user.username,
+        "id": user.username,
         "password": String(user.password),
-        "nickname": user.nickname,
-        "address": user.address,
+        "nickname": user.nickname,        
         "sex": user.sex,
-        "age": user.age
+        "address": user.address,
+        "age": parseInt(user.age)
       }
-      // fetchSignup(userInfo)
-      console.log(userInfo)
+      fetchSignup(userInfo)
     }
   };
 
