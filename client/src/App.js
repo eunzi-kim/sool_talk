@@ -5,7 +5,7 @@ import Home from "./routes/Home";
 import Login from "./routes/Login";
 import Mypage from "./routes/Mypage";
 import Signup from "./routes/Signup";
-import Article from "./routes/Article";
+import Articles from "./routes/Articles";
 import Chat from "./components/Chat";
 import SearchFriends from "./routes/SearchFriends";
 import Setting from "./routes/Setting";
@@ -24,7 +24,7 @@ function App() {
         <PublicRoute restricted="true" path="/signup" component={Signup} />
         <PrivateRoute path="/mypage" component={Mypage} />
         {/* <PublicRoute path="/logout" component={Login} />         */}
-        <PrivateRoute path="/articles" component={Article} />
+        <PrivateRoute path="/articles" component={Articles} />
         <PrivateRoute path="/chat" component={Chat} />
         <PrivateRoute path="/search-friends" component={SearchFriends} />
         <PrivateRoute path="/setting" component={Setting} />
