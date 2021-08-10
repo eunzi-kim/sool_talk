@@ -6,7 +6,12 @@ import "../slick-theme.css";
 import axios from "axios";
 
 function Article({ article }) {
-  return <h1>게시물 하나</h1>;
+  return (
+    <>
+      <div className="title-box">{article.title}</div>
+      <div className="content-box">{article.content}</div>
+    </>
+  );
 }
 
 function Articles() {
@@ -15,31 +20,114 @@ function Articles() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 4,
   };
 
-  const [articles, setArticles] = useState([]);
+  const articles = [
+    {
+      title: "1번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "2번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "3번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "4번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "5번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "6번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "7번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "8번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "9번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+    {
+      title: "10번 테스트 제목",
+      content:
+        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      views: 300,
+      author: "tason",
+      time: "2021-08-10 10:39",
+    },
+  ];
+
+  // const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchArticles = async () => {
     try {
       // setError(null)
-      setArticles(null);
+      // setArticles(null);
       setLoading(true);
-      const response = await axios.get(
-        "http://localhost:8080/board/boardlist/"
-      );
-      const data = {
-        title: "테스트 제목",
-        content:
-          "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-        views: 300,
-        author: "tason",
-        time: "2021-08-10 10:39",
-      };
-      setArticles([...articles, data]);
+      // const response = await axios.get(
+      //   "http://localhost:8080/board/boardlist/"
+      // );
+      // const sample = {
+      //   title: "테스트 제목",
+      //   content:
+      //     "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
+      //   views: 300,
+      //   author: "tason",
+      //   time: "2021-08-10 10:39",
+      // };
+      // setArticles([...articles, sample]);
     } catch (e) {
       setError(e);
     }
@@ -57,42 +145,11 @@ function Articles() {
   return (
     <div>
       <Slider {...settings} className="slider">
-        <div>
-          <h3>1</h3>
-        </div>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
-        <div>
-          <h3>5</h3>
-        </div>
-        <div>
-          <h3>6</h3>
-        </div>
-        <div>
-          <h3>1</h3>
-        </div>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
-        <div>
-          <h3>5</h3>
-        </div>
-        <div>
-          <h3>6</h3>
-        </div>
+        {articles.map((article) => (
+          <div className="article-box">
+            <Article article={article} />
+          </div>
+        ))}
       </Slider>
     </div>
   );
