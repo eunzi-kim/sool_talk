@@ -94,7 +94,7 @@ function Login({ history }) {
         "likes": likes,
         "profileImg": profileImg
       }
-      localStorage.setItem("userInfo", userInfo)
+      localStorage.setItem("userInfo", JSON.stringify(userInfo))
 
       // [리덕스] 유저 정보 리덕스에 저장
       onGetUser(userInfo);
