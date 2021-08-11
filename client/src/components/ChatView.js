@@ -15,17 +15,12 @@ import { useSelector } from "react-redux";
 function ChatView({ msgs }) {
   const messages = useSelector((state) => state.chatting);
   const currentUser = useSelector((state) => state.user);
-  console.log(currentUser);
 
   var chatView = [];
   messages.map((chat) => {
     var nickname = chat["nickname"];
     var content = chat["content"];
-    if (nickname === currentUser.nickname) {
-      chatView.push(`${nickname}(나): ${content}`);
-    } else {
-      chatView.push(`${nickname}: ${content}`);
-    }
+    chatView.push([nickname, content]);
   });
 
   let key = 0;
@@ -41,7 +36,18 @@ function ChatView({ msgs }) {
     <div className="chat-bg">
       <div className="chatting">
         {chatView.map((msg) => (
-          <div key={key++}>{msg}</div>
+          <div key={key++}>
+            {msg[0] === currentUser.nickname ? 
+              <div className="my-balloon">
+                <div className="my-text">{msg[1]}</div>
+                <div className="me">나</div>
+              </div> :
+              <div className="opp-balloon">
+                <div className="opp">{msg[0][0]}</div>
+                <div className="opp-text">{msg[1]}</div>
+              </div>
+            }
+          </div>
         ))}
       </div>
     </div>
