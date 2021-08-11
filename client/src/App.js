@@ -9,6 +9,7 @@ import Articles from "./routes/Articles";
 import Chat from "./components/Chat";
 import SearchFriends from "./routes/SearchFriends";
 import Setting from "./routes/Setting";
+import MypageUpdate from "./routes/MypageUpdate";
 import PrivateRoute from "./lib/PrivateRoute";
 import PublicRoute from "./lib/PublicRoute";
 import { useSelector } from "react-redux";
@@ -28,6 +29,7 @@ function App() {
         <PrivateRoute path="/chat" component={Chat} />
         <PrivateRoute path="/search-friends" component={SearchFriends} />
         <PrivateRoute path="/setting" component={Setting} />
+        <PrivateRoute path="/mp-update" component={MypageUpdate} />
         <PrivateRoute
           render={({ location }) => (
             <div>
