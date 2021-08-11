@@ -282,7 +282,7 @@ function Signup({ history }) {
           <div className="input-2">
             <div><b>나이</b></div>          
             <div className="form-input-2">
-              <input type="number" min="1" max="100" onChange={changeAge} />세
+              <input type="number" min="19" max="87" onChange={changeAge} />세
             </div>
           </div>
           <div className="input-2">
@@ -310,7 +310,6 @@ function Signup({ history }) {
                 </div>
                 <DaumPostCode 
                   onComplete={handleComplete} 
-                  autoClose
                 />
               </div>
             </div>

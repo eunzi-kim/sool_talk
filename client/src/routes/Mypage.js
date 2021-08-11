@@ -13,12 +13,23 @@ function Mypage() {
     gender = "남"
   }
 
+  const onMpUpdateClick = () => {
+    window.location.replace("/mp-update");
+  };
+
   return (
     <div className="my-info">
-      <div className="mp-nickname">
-        <h1>{userInfo.nickname}</h1>
-        <h2>님 🍻</h2>
+      <div className="mp-top">
+        <div className="mp-tt"></div>
+        <div className="mp-nickname">
+          <h1>{userInfo.nickname}</h1>
+          <h2>님 🍻</h2>
+        </div>
+        <div className="mp-tt">
+          <button onClick={onMpUpdateClick}><h3>회원정보 수정</h3></button>
+        </div>
       </div>
+
       <div className="user_mid">
         <img src={imgProfile} alt="{유저네임}" className="image_p" />
         <div className="like">
