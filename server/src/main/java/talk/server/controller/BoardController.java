@@ -69,6 +69,7 @@ public class BoardController {
 //    U
     @PostMapping(value = "/boardupdate")
     public ResponseEntity<Boardupdate> boardupdate(@RequestBody Boardupdate boardupdate) {
+        service.boardupdate(boardupdate);
         return new ResponseEntity<>(boardupdate, HttpStatus.OK);
 
     }

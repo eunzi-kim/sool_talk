@@ -23,6 +23,9 @@
     </delete>
 
     <update id="boardupdate" parameterType="talk.server.vo.Board">
-        UPDATE board WHERE BOARD_NO=#{board_no} SET BOARD_TYPE=#{board_type}, BOARD_TITLE=#{BOARD_TITLE}, BOARD_CONTENT=#{board_content}
+        UPDATE board
+        SET BOARD_TYPE=#{board_type}, BOARD_TITLE=#{board_title}, BOARD_CONTENT=#{board_content}, BOARD_YMD=sysdate()
+        WHERE BOARD_NO=#{board_no}
     </update>
+
 </mapper>
