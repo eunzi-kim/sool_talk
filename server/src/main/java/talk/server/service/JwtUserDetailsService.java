@@ -1,6 +1,5 @@
 package talk.server.service;
 
-import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
 import org.springframework.security.authentication.BadCredentialsException;

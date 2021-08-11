@@ -28,6 +28,7 @@ import java.util.Optional;
 @Api(tags = {"회원관련 컨트롤러"})
 @RequestMapping("/user")
 @RestController
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -66,12 +67,10 @@ public class UserController {
         map.put("id", id);
         map.put("password", password);
         map.put("nickname", nickname);
-        if (email != null) map.put("email", email);
-        else map.put("email", "");
+        map.put("email", email);
         map.put("address", address);
         map.put("sex", sex);
-        if (profileImg != null) map.put("profileImg", profileImg.getBytes());
-        else map.put("profileImg", "");
+        map.put("profileImg", profileImg.getBytes());
         map.put("likes", 0);
         map.put("age", age);
 
