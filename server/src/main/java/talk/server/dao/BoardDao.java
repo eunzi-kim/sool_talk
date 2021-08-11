@@ -1,6 +1,7 @@
 package talk.server.dao;
 
 import talk.server.vo.Board;
+import talk.server.vo.Boardupdate;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public interface BoardDao {
     public Board boarddetail(int board_no);
 
     // 게시글 업데이트
-    public int boardupdate(Board board);
+    public int boardupdate(Boardupdate boardupdate);
 
     //게시글 삭제
     public void boarddelete(int board_no);

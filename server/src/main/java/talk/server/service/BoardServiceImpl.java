@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import talk.server.dao.BoardDao;
 import talk.server.vo.Board;
+import talk.server.vo.Boardupdate;
 
 import java.util.ArrayList;
 
@@ -28,8 +29,8 @@ public class BoardServiceImpl implements BoardService{
         return dao.boarddetail(board_no);
     }
     @Override
-    public int boardupdate(Board board) {
-        return dao.boardupdate(board);
+    public int boardupdate(Boardupdate boardupdate) {
+        return dao.boardupdate(boardupdate);
     }
 
     @Override
