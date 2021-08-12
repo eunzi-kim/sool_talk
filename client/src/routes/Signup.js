@@ -112,7 +112,7 @@ function Signup({ history }) {
   }
 
   const submitSignup = () => {
-    if (user.nickname.length === 0 || user.nickname.length === 0 || user.password.length === 0 || user.passwordConfirmation.length === 0) {
+    if (user.nickname.length === 0 || user.nickname.length === 0 || user.password.length === 0 || user.passwordConfirmation.length === 0 || user.sex.length === 0) {
       alertCheck()
       if (document.querySelector(".length-alert")) {
         document.querySelector(".length-alert").className = "length-alert-view alert"
@@ -184,7 +184,7 @@ function Signup({ history }) {
       }
       var splitAddress = fullAddress.split(" ")
       user.address = splitAddress[0] + " " + splitAddress[1]
-      document.querySelector(".address-info").value = user.address   
+      document.querySelector(".address-info").value = user.address
       modalClose()
   }
 
@@ -267,7 +267,7 @@ function Signup({ history }) {
             ></input>
           </div>
           <div className="input-2">
-            <div><b>성별</b></div>
+            <div><b>성별 *</b></div>
             <form className="form-input-2">
               <div>
                 <input type="radio" id="male" name="gender" value="male" onChange={changeSex}></input>
