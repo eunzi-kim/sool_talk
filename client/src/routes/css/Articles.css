@@ -1,3 +1,7 @@
+.article-box {
+  height: 100%;
+}
+
 .title-box {
   font-size: 1rem;
   width: 90%;
@@ -7,15 +11,22 @@
 
   background: #7ec1ff;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .content-box {
   font-size: 1rem;
   width: 90%;
-  height: 13rem;
+  /* height: 13rem; */
+  /* 개별 카드 높이 */
+  height: 100%;
+
   padding: 0.1rem;
   margin: 0.5rem;
 
   background: #cfe8ff;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
 }
