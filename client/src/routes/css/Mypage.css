@@ -62,8 +62,13 @@
 }
 
 .mp-tt{
-  width: 10rem;
+  width: 15rem;
   margin: 0 2rem;
+  display: flex;
+}
+
+.mp-tt button {
+  margin: 0 0.5rem;
 }
 
 button:hover {
