@@ -1,4 +1,59 @@
 .search-friend {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 1rem; */
+}
+
+.sf-btn {
+  background-color: #FFA3A3;
+  padding: 0 1rem;
+}
+
+.fs-label {
+  color: #fff;
+  font-size: larger;
+  text-shadow: 1px 1px 1px gray;
+}
+
+.sf-btn:hover {
+  background-color: #A7D5FF;
+}
+
+.friends-no {
+  display: none;
+}
+
+.sf-image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.friends {
+  margin-top: 2rem;
+  display: flex;
   justify-content: center;
+  width: 90%;
+  height: 50vh;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.friend {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 1px 1px 1px;
+  display: flex;
+  align-items: center;
+  margin: 2rem;
+}
+
+.friend-info {
+  margin: 0 1rem;
+}
+
+.friend:hover {
+  background-color: #7EC1FF;
+  cursor: pointer;
 }
