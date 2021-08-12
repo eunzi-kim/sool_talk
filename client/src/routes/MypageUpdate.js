@@ -116,6 +116,10 @@ function MypageUpdate() {
     user.imageUrl = event.target.files[0]
   }
 
+  const onMpUpdateCancle = () => {
+    window.location.replace("/mypage");
+  }
+
   return (
     <div>
       <div className="mp-update-bg">
@@ -130,7 +134,10 @@ function MypageUpdate() {
             <h1>{userInfo.nickname}</h1>
             <h2>님 🍻</h2>
           </div>
-          <div className="mp-tt"><button onClick={onMpUpdateEnd}><h3>수정완료</h3></button></div>
+          <div className="mp-tt">
+            <button onClick={onMpUpdateEnd}><h3>수정완료</h3></button>
+            <button onClick={onMpUpdateCancle}><h3>수정취소</h3></button>
+          </div>
         </div>
         <div className="user_mid-up">
           <img src={imgBase64} alt="{유저네임}" className="image_p" />
