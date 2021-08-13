@@ -5,6 +5,7 @@ import talk.server.jwt.JwtTokenProvider;
 import talk.server.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import talk.server.vo.Userupdate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public Map<String, Object> getProfileImg(String id) {
         return dao.getProfileImg(id);
+    }
+
+    @Override
+    public void userupdate(Userupdate userupdate) {
+        dao.userupdate(userupdate);
     }
 
 //    @Override

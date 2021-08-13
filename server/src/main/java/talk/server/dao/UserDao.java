@@ -1,6 +1,7 @@
 package talk.server.dao;
 
 import talk.server.vo.User;
+import talk.server.vo.Userupdate;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -18,5 +19,7 @@ public interface UserDao {
 //        System.out.println(" 로그아웃 처리 ");
 //        session.invalidate();
 //    }
+    //회원 정보 수정
+    public void userupdate(Userupdate userupdate);
 
 }

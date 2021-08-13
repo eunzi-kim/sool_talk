@@ -1,6 +1,7 @@
 package talk.server.service;
 
 import talk.server.vo.User;
+import talk.server.vo.Userupdate;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -16,4 +17,7 @@ public interface UserService {
 
     //로그아웃
 //    public void logout(HttpSession session);
+
+    //회원 정보 수정
+    public void userupdate(Userupdate userupdate);
 }

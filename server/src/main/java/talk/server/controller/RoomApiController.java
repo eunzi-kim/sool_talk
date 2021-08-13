@@ -21,8 +21,7 @@ public class RoomApiController {
     public ResponseEntity<Room> makeRoom(@RequestBody Room paramRoom) {
         // 일단 에러에 대한 처리는 없음
         System.out.println(paramRoom);
-        // roomService.makeRoom(paramRoom);
-
+//        roomService.makeRoom(paramRoom);
         return new ResponseEntity<Room>(paramRoom, HttpStatus.OK);
     }
 

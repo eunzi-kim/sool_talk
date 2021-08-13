@@ -22,4 +22,11 @@
         INSERT INTO users VALUES(NULL, #{id}, #{password}, #{nickname}, #{email}, #{address}, #{sex}, #{profileImg}, #{age}, #{likes});
     </insert>
 
+    <update id="userupdate" parameterType="talk.server.vo.Userupdate">
+        UPDATE users
+        SET userNo=#{userNo}, email=#{email}, id=#{id}, pw=#{password}, nickname=#{nickname}, address=#{address}
+        WHERE ID=#{id}
+    </update>
+
+
 </mapper>

@@ -55,6 +55,7 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(now.getTime() + Duration.ofMinutes(30).toMillis()))
                 .claim("id", id)
                 .signWith(SignatureAlgorithm.HS256, secretKey)
+                //bind 문제가 생겨서 jaxa.api 를 설치해줬음
                 .compact();
     }
 

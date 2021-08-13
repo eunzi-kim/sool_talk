@@ -16,6 +16,7 @@ import talk.server.service.UserService;
 import talk.server.vo.FailureLogin;
 import talk.server.vo.ResUserInfo;
 import talk.server.vo.User;
+import talk.server.vo.Userupdate;
 
 
 import java.io.File;
@@ -28,7 +29,6 @@ import java.util.Optional;
 @Api(tags = {"회원관련 컨트롤러"})
 @RequestMapping("/user")
 @RestController
-// @CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -116,5 +116,12 @@ public class UserController {
         resUserInfo.setToken(token);
 
         return new ResponseEntity<>(resUserInfo, HttpStatus.OK);
+    }
+
+    //회원 정보 수정
+    @PostMapping("/userupdate")
+    public ResponseEntity<Userupdate> userupdate(@RequestBody Userupdate userupdate ){
+        userService.userupdate(userupdate);
+        return new ResponseEntity<>(userupdate, HttpStatus.OK);
     }
 }
