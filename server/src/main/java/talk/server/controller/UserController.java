@@ -67,10 +67,12 @@ public class UserController {
         map.put("id", id);
         map.put("password", password);
         map.put("nickname", nickname);
-        map.put("email", email);
+        if (email != null) map.put("email", email);
+        else map.put("email", "");
         map.put("address", address);
         map.put("sex", sex);
-        map.put("profileImg", profileImg.getBytes());
+        if (profileImg != null) map.put("profileImg", profileImg.getBytes());
+        else map.put("profileImg", "");
         map.put("likes", 0);
         map.put("age", age);
 
