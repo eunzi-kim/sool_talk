@@ -4,6 +4,7 @@ import talk.server.vo.User;
 import talk.server.vo.Userupdate;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 
@@ -21,5 +22,8 @@ public interface UserDao {
 //    }
     //회원 정보 수정
     public void userupdate(Userupdate userupdate);
+
+    //친구 찾기 정보 불러오기
+    public ArrayList<User> getAllUser();
 
 }

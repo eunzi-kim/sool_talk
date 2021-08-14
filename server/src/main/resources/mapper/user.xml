@@ -28,5 +28,7 @@
         WHERE ID=#{id}
     </update>
 
-
+    <select id="getAllUser" resultType="User">
+        select * from user
+    </select>
 </mapper>

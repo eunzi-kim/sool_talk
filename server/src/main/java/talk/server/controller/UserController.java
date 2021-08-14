@@ -21,10 +21,7 @@ import talk.server.vo.Userupdate;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Api(tags = {"회원관련 컨트롤러"})
 @RequestMapping("/user")
@@ -123,5 +120,13 @@ public class UserController {
     public ResponseEntity<Userupdate> userupdate(@RequestBody Userupdate userupdate ){
         userService.userupdate(userupdate);
         return new ResponseEntity<>(userupdate, HttpStatus.OK);
+    }
+
+    //친구 찾기용 회원 정보 전송
+    @GetMapping("/findfriends")
+    public ResponseEntity<ArrayList<User>> getAllUser() {
+        ArrayList<User> list = userService.getAllUser();
+        if (list != null) return new ResponseEntity<>(list, HttpStatus.OK);
+        else return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

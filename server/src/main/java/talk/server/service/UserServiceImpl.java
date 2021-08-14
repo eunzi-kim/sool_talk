@@ -58,4 +58,7 @@ public class UserServiceImpl implements UserService{
 //    public void logout(HttpSession session) {
 //        dao.logout(session);
 //    }
+
+    @Override
+    public ArrayList<User> getAllUser() { return dao.getAllUser(); }
 }
