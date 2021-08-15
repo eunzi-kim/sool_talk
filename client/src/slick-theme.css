@@ -9,6 +9,8 @@
 /* Arrows */
 .slick-prev,
 .slick-next {
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   font-size: 0;
   line-height: 0;
 
@@ -16,8 +18,8 @@
 
   display: block;
 
-  width: 50px;
-  height: 50px;
+  width: 5rem;
+  height: 7rem;
   padding: 0;
   -webkit-transform: translate(0, -50%);
   -ms-transform: translate(0, -50%);
@@ -26,17 +28,18 @@
   cursor: pointer;
 
   color: transparent;
-  border: 1px black solid;
+  border: 2px solid #ffffff;
+  border-radius: 15px;
   outline: none;
   background: transparent;
+  background-color: #ffc2c2;
 }
 .slick-prev:hover,
-.slick-prev:focus,
-.slick-next:hover,
-.slick-next:focus {
+.slick-next:hover {
   color: transparent;
   outline: none;
   background: transparent;
+  background-color: #ff6666;
 }
 .slick-prev:hover:before,
 .slick-prev:focus:before,
