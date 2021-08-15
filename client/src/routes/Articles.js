@@ -10,7 +10,7 @@ function Article({ article }) {
     <>
       <div className="title-box">{article.title}</div>
       <div className="content-box">
-        <div className="content">{article.content}</div>
+        <div className="title-content">{article.content}</div>
         <div
           style={{
             display: "flex",
