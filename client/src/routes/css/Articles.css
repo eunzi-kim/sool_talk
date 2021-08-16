@@ -58,6 +58,10 @@
   z-index: 10000000;
 }
 
+.my-button {
+  color: white;
+}
+
 .order-list {
   display: flex;
   flex-direction: row;
@@ -79,6 +83,16 @@
   color: #ff0000;
 }
 
-.create-button {
+.create-article-button {
+  position: absolute;
+  top: 52rem;
+  background: #cfe8ff;
+  border: 1px solid #ffffff;
   color: white;
+  margin-left: 44%;
+  padding: 0 6rem 2.6rem 6rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 3rem;
+  z-index: 1000000;
 }
