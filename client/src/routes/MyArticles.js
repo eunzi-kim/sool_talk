@@ -32,7 +32,7 @@ function Article({ article }) {
   );
 }
 
-function Articles() {
+function MyArticles() {
   // Carousel 세팅
   const settings = {
     dots: true,
@@ -177,7 +177,7 @@ function Articles() {
   if (!articles) return null;
 
   return (
-    <div className="all-article-box">
+    <div>
       <div className="upper-box">
         <div className="order-list">
           <div className="order">최신순</div>
@@ -201,7 +201,7 @@ function Articles() {
             fontWeight: "normal",
           }}
         >
-          <Link to="/my-article" className="my-button">
+          <Link to="/create-article" className="create-button">
             내가 작성한 글 보러 가기
           </Link>
         </div>
@@ -214,11 +214,8 @@ function Articles() {
           </div>
         ))}
       </Slider>
-      <Link to="/create-article" className="create-article-button">
-        +
-      </Link>
     </div>
   );
 }
 
-export default Articles;
+export default MyArticles;
