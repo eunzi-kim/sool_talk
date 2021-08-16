@@ -50,10 +50,12 @@
 }
 
 .upper-box {
+  position: absolute;
   display: flex;
   flex-direction: column;
   width: 50%;
   padding-left: 3.3rem;
+  z-index: 10000000;
 }
 
 .order-list {
@@ -75,4 +77,8 @@
   text-align: center;
 
   color: #ff0000;
+}
+
+.create-button {
+  color: white;
 }

@@ -73,10 +73,12 @@
   left: auto;
 }
 .slick-prev:before {
-  content: "←";
+  content: "<";
+  font-weight: bold;
 }
 [dir="rtl"] .slick-prev:before {
-  content: "→";
+  content: ">";
+  font-weight: bold;
 }
 
 .slick-next {
@@ -87,10 +89,12 @@
   left: -25px;
 }
 .slick-next:before {
-  content: "→";
+  content: ">";
+  font-weight: bold;
 }
 [dir="rtl"] .slick-next:before {
-  content: "←";
+  content: "<";
+  font-weight: bold;
 }
 
 /* Dots */
