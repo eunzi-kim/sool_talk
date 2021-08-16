@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "../slick.css";
 import "../slick-theme.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Article({ article }) {
   return (
@@ -200,7 +201,9 @@ function Articles() {
             fontWeight: "normal",
           }}
         >
-          내가 작성한 글 보러 가기
+          <Link to="/create-article" className="create-button">
+            내가 작성한 글 보러 가기
+          </Link>
         </div>
       </div>
 
