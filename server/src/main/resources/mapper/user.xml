@@ -24,8 +24,8 @@
 
     <update id="userupdate" parameterType="talk.server.vo.Userupdate">
         UPDATE users
-        SET userNo=#{userNo}, email=#{email}, id=#{id}, pw=#{password}, nickname=#{nickname}, address=#{address}
-        WHERE ID=#{id}
+        SET email=#{email}, id=#{id}, pw=#{password}, nickname=#{nickname}, address=#{address}
+        WHERE id=#{id}
     </update>
 
     <select id="getAllUser" resultType="User">
