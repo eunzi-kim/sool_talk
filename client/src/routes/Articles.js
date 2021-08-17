@@ -35,7 +35,7 @@ function Article({ article }) {
 function Articles() {
   // Carousel 세팅
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -189,11 +189,11 @@ function Articles() {
           style={{
             backgroundColor: "#FFA3A3",
             borderRadius: "12px",
-            height: "2.5rem",
-            fontSize: "1.6rem",
+            height: "2rem",
+            fontSize: "1.2rem",
             textAlign: "center",
             paddingTop: "4px",
-            width: "87%",
+            width: "62%",
             marginLeft: "2.2rem",
             color: "#FFFFFF",
             fontFamily: "Roboto",
