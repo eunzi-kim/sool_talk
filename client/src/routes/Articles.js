@@ -214,7 +214,7 @@ function Articles() {
           </div>
         ))}
       </Slider>
-      <Link to="/create-article" className="create-article-button">
+      <Link to="/articles/create-article" className="create-article-button">
         +
       </Link>
     </div>
