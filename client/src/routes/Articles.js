@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 function Article({ article }) {
   return (
     <>
-      <div className="title-box">{article.title}</div>
+      <div className="title-box">{article.board_TITLE}</div>
       <div className="content-box">
-        <div className="title-content">{article.content}</div>
+        <div className="title-content">{article.board_CONTENT}</div>
         <div
           style={{
             display: "flex",
@@ -25,8 +25,8 @@ function Article({ article }) {
         </div>
       </div>
       <div className="footer-box">
-        <div style={{ padding: "0.5rem 1rem" }}>태이슨</div>
-        <div style={{ padding: "0.5rem 1rem" }}>2021.07.14</div>
+        <div style={{ padding: "0.5rem 1rem" }}>{article.board_USER}</div>
+        <div style={{ padding: "0.5rem 1rem" }}>{article.board_YMD}</div>
       </div>
     </>
   );
@@ -42,139 +42,12 @@ function Articles() {
     slidesToScroll: 4,
   };
 
-  const articles = [
-    {
-      title: "1번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "2번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "3번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-    {
-      title: "4번 테스트 제목",
-      content:
-        "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      views: 300,
-      author: "tason",
-      time: "2021-08-10 10:39",
-    },
-  ];
+  let articles = [];
 
-  // const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const fetchArticles = async () => {
-    try {
-      // setError(null)
-      // setArticles(null);
-      setLoading(true);
-      // const response = await axios.get(
-      //   "http://localhost:8080/board/boardlist/"
-      // );
-      // const sample = {
-      //   title: "테스트 제목",
-      //   content:
-      //     "테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다. 테스트 내용입니다. 이것은 테스트 내용입니다.",
-      //   views: 300,
-      //   author: "tason",
-      //   time: "2021-08-10 10:39",
-      // };
-      // setArticles([...articles, sample]);
-    } catch (e) {
-      setError(e);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchArticles();
-  }, [Article]);
-
-  if (loading) return <div>로딩중...</div>;
-  if (error) return <div>로딩중...</div>;
-  if (!articles) return null;
+  axios.get("http://localhost:8080/board/boardlist").then((res) => {
+    articles = res.data;
+    console.log(articles);
+  });
 
   return (
     <div className="all-article-box">
@@ -206,14 +79,14 @@ function Articles() {
           </Link>
         </div>
       </div>
-
-      <Slider {...settings} className="slider">
-        {articles.map((article) => (
+      {/* <Slider {...settings} className="slider">
+        {console.log(articlesList)}
+        {articlesList.map((article) => (
           <div className="article-box">
             <Article article={article} />
           </div>
         ))}
-      </Slider>
+      </Slider> */}
       <Link to="/articles/create-article" className="create-article-button">
         +
       </Link>

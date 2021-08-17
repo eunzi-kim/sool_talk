@@ -27,8 +27,15 @@ function SearchFriends() {
         if (!users[i]["profileImg"].length) {
           users[i]["profileImg"] = imgProfile;
         }
-        setAllUsers(allUsers => 
-          [...allUsers, [users[i]["nickname"], users[i]["age"], users[i]["sex"], users[i]["profileImg"]]]);
+        setAllUsers((allUsers) => [
+          ...allUsers,
+          [
+            users[i]["nickname"],
+            users[i]["age"],
+            users[i]["sex"],
+            users[i]["profileImg"],
+          ],
+        ]);
       }
     }
   };
@@ -43,7 +50,7 @@ function SearchFriends() {
     if (document.querySelector(".friends-no")) {
       findFriends();
       document.querySelector(".friends-no").className = "friends";
-      console.log(allUsers)
+      console.log(allUsers);
     }
   };
 
