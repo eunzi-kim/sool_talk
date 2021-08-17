@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Userupdate {
-    private int userNo;
-    private String email;
     private String id;
-    private String password;
     private String nickname;
-//    private String profileImg;
+    private String email;
     private String address;
+    private String sex;
     private int age;
+    private int likes;
+    private String token;
 }
