@@ -24,10 +24,10 @@ function MypageUpdate() {
         "content-type": "multipart/form-data"
       }
     }
-    const url = "http://localhost:8080/user/signup/"
+    const url = "http://localhost:8080/user/userupdate"
     const data = userInfo
 
-    await axios.post(url, data, config)
+    await axios.put(url, data, config)
     .then(res => {
       console.log("성공")
       // window.location.replace("/mypage");
@@ -51,11 +51,13 @@ function MypageUpdate() {
       formData.append("imageUrl", user.imageUrl)
       formData.append("address", user.address)
       formData.append("age", user.age)
+      formData.append("id", userInfo.id)
 
-      for (let key of formData.values()) {
-        console.log(key);
-      }
-      // fetchUserUpdate(formData)
+      // for (let value of formData.values()) {
+      //   console.log(value);
+      // }
+      console.log(formData)
+      fetchUserUpdate(formData)
     }
   }
 
