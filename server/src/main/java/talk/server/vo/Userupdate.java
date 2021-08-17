@@ -13,7 +13,7 @@ public class Userupdate {
     private String id;
     private String password;
     private String nickname;
-//    private String profileImg;
+    private String profileImg;
     private String address;
     private int age;
 }

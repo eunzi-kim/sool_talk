@@ -15,7 +15,7 @@ import java.util.function.Function;
 
 @Slf4j
 @Component
-public class JwtTokenProvider {
+public class  JwtTokenProvider {
 
     private final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
