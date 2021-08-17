@@ -27,15 +27,11 @@ function SearchFriends() {
         if (users[i]["profileImg"].length) {
           imgProfile = users[i]["profileImg"];
         }
-        setAllUsers([
-          ...allUsers,
-          [users[i]["nickname"], users[i]["age"], users[i]["sex"]],
-        ]);
+        setAllUsers(allUsers => 
+          [...allUsers, [users[i]["nickname"], users[i]["age"], users[i]["sex"]]]);
       }
     }
   };
-
-  findFriends();
 
   // 친구 선택
   const onSelectFriend = () => {
@@ -44,11 +40,10 @@ function SearchFriends() {
 
   // 친구 찾기 클릭
   const onSearchFriend = () => {
-    findFriends();
     if (document.querySelector(".friends-no")) {
+      findFriends();
       document.querySelector(".friends-no").className = "friends";
     }
-    console.log(allUsers);
   };
 
   return (
