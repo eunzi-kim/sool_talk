@@ -27,8 +27,8 @@ function App() {
         <PublicRoute restricted="true" path="/signup" component={Signup} />
         <PrivateRoute path="/mypage" component={Mypage} />
         {/* <PublicRoute path="/logout" component={Login} />         */}
-        <PrivateRoute path="/articles" component={Articles} />
-        <PrivateRoute path="/create-article" component={CreateArticle} />
+        <PrivateRoute exact path="/articles" component={Articles} />
+        <PrivateRoute path="/articles/create-article" component={CreateArticle} />
         <PrivateRoute path="/my-article" component={MyArticles} />
         <PrivateRoute path="/chat" component={Chat} />
         <PrivateRoute path="/search-friends" component={SearchFriends} />
