@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import "./css/SearchFriends.css"
+import React, { useEffect, useState } from "react";
+import "./css/SearchFriends.css";
 
 function SearchFriends() {
   const myInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -10,66 +10,72 @@ function SearchFriends() {
     "https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F990FCD335A1D68190E36F5";
 
   // 전체 유저 정보
-  var allUsers = []
-  
+  const [allUsers, setAllUsers] = useState([]);
 
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:8080/user/findfriends")    
-    return response.data
-  }
+    const response = await axios.get("http://localhost:8080/user/findfriends");
+    return response.data;
+  };
 
   const findFriends = async () => {
-    const users = await getUsers()
-    for (let i=0; i <users.length; i++) {
-      if (users[i]["address"] === myInfo.address && users[i]["nickname"] !== myInfo.nickname) {
+    const users = await getUsers();
+    for (let i = 0; i < users.length; i++) {
+      if (
+        users[i]["address"] === myInfo.address &&
+        users[i]["nickname"] !== myInfo.nickname
+      ) {
         if (users[i]["profileImg"].length) {
-          imgProfile = users[i]["profileImg"]
+          imgProfile = users[i]["profileImg"];
         }
-        allUsers.push([users[i]["nickname"], users[i]["age"], users[i]["sex"]])
+        setAllUsers([
+          ...allUsers,
+          [users[i]["nickname"], users[i]["age"], users[i]["sex"]],
+        ]);
       }
     }
-  }
+  };
 
-  findFriends()
-
-  console.log(allUsers)
+  findFriends();
 
   // 친구 선택
   const onSelectFriend = () => {
     window.location.replace("/chat");
-  }
+  };
 
   // 친구 찾기 클릭
-  const onSearchFriend = () => {   
+  const onSearchFriend = () => {
+    findFriends();
     if (document.querySelector(".friends-no")) {
-      document.querySelector(".friends-no").className = "friends"
+      document.querySelector(".friends-no").className = "friends";
     }
-  }
+    console.log(allUsers);
+  };
 
   return (
     <div className="search-friend">
       <button className="sf-btn" onClick={onSearchFriend}>
         <h2>
-          <span className="fs-label">{myInfo.address}</span>
-          에 있는 친구찾기 🔍
+          <span className="fs-label">{myInfo.address}</span>에 있는 친구찾기 🔍
         </h2>
       </button>
       <div className="friends-no">
         {allUsers.map((user) => (
           <div className="friend" onClick={onSelectFriend}>
             <div className="friend-img">
-              <img src={imgProfile} className="sf-image"/>
+              <img src={imgProfile} className="sf-image" />
             </div>
             <div className="friend-info">
-              {user[0]}<br/>
-              {user[1]}<br/>
+              {user[0]}
+              <br />
+              {user[1]}
+              <br />
               {user[2]}
-            </div>     
-          </div> 
-        ))}        
+            </div>
+          </div>
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default SearchFriends;
