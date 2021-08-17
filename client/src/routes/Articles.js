@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 function Article({ article }) {
   return (
     <>
-      <div className="title-box">{article.board_TITLE}</div>
+      <div className="title-box">{article[1]}</div>
       <div className="content-box">
-        <div className="title-content">{article.board_CONTENT}</div>
+        <div className="title-content">{article[3]}</div>
         <div
           style={{
             display: "flex",
@@ -21,12 +21,12 @@ function Article({ article }) {
             padding: "1rem",
           }}
         >
-          조회수: 100000
+          조회수: {article[4]}
         </div>
       </div>
       <div className="footer-box">
-        <div style={{ padding: "0.5rem 1rem" }}>{article.board_USER}</div>
-        <div style={{ padding: "0.5rem 1rem" }}>{article.board_YMD}</div>
+        <div style={{ padding: "0.5rem 1rem" }}>{article[2]}</div>
+        <div style={{ padding: "0.5rem 1rem" }}>{article[5]}</div>
       </div>
     </>
   );
@@ -42,12 +42,37 @@ function Articles() {
     slidesToScroll: 4,
   };
 
-  let articles = [];
+  const [articles, setArticles] = useState([]);
 
-  axios.get("http://localhost:8080/board/boardlist").then((res) => {
-    articles = res.data;
-    console.log(articles);
-  });
+  const getArticles = async () => {
+    const response = await axios.get("http://localhost:8080/board/boardlist");
+    return response.data;
+  };
+
+  const insertArticles = async () => {
+    const allArticles = await getArticles();
+    for (let i = 0; i < allArticles.length; i++) {
+      console.log(i);
+      setArticles((articles) => [
+        ...articles,
+        [
+          allArticles[i]["board_TYPE"],
+          allArticles[i]["board_TITLE"],
+          allArticles[i]["board_USER"],
+          allArticles[i]["board_CONTENT"],
+          allArticles[i]["board_CNT"],
+          allArticles[i]["board_YMD"],
+          allArticles[i]["board_NO"],
+        ],
+      ]);
+    }
+  };
+
+  useEffect(() => {
+    insertArticles();
+    console.log(articles.length);
+  }, []);
+  console.log(articles);
 
   return (
     <div className="all-article-box">
@@ -79,14 +104,13 @@ function Articles() {
           </Link>
         </div>
       </div>
-      {/* <Slider {...settings} className="slider">
-        {console.log(articlesList)}
-        {articlesList.map((article) => (
+      <Slider {...settings} className="slider">
+        {articles.map((article, index) => (
           <div className="article-box">
-            <Article article={article} />
+            <Article article={article} key={index} />
           </div>
         ))}
-      </Slider> */}
+      </Slider>
       <Link to="/articles/create-article" className="create-article-button">
         +
       </Link>
