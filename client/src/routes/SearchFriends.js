@@ -24,11 +24,11 @@ function SearchFriends() {
         users[i]["address"] === myInfo.address &&
         users[i]["nickname"] !== myInfo.nickname
       ) {
-        if (users[i]["profileImg"].length) {
-          imgProfile = users[i]["profileImg"];
+        if (!users[i]["profileImg"].length) {
+          users[i]["profileImg"] = imgProfile;
         }
         setAllUsers(allUsers => 
-          [...allUsers, [users[i]["nickname"], users[i]["age"], users[i]["sex"]]]);
+          [...allUsers, [users[i]["nickname"], users[i]["age"], users[i]["sex"], users[i]["profileImg"]]]);
       }
     }
   };
@@ -43,6 +43,7 @@ function SearchFriends() {
     if (document.querySelector(".friends-no")) {
       findFriends();
       document.querySelector(".friends-no").className = "friends";
+      console.log(allUsers)
     }
   };
 
@@ -57,7 +58,7 @@ function SearchFriends() {
         {allUsers.map((user) => (
           <div className="friend" onClick={onSelectFriend}>
             <div className="friend-img">
-              <img src={imgProfile} className="sf-image" />
+              <img src={user[3]} className="sf-image" />
             </div>
             <div className="friend-info">
               {user[0]}
