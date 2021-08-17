@@ -5,6 +5,7 @@ import "./css/Mypage.css";
 
 function MypageUpdate() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(userInfo)
 
   var imgProfile =
     "https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F990FCD335A1D68190E36F5";
@@ -27,9 +28,10 @@ function MypageUpdate() {
     const url = "http://localhost:8080/user/userupdate"
     const data = userInfo
 
-    await axios.put(url, data, config)
+    await axios.post(url, data, config)
     .then(res => {
       console.log("성공")
+      alert("회원정보 수정 성공")
       // window.location.replace("/mypage");
     })
     .catch(err => {
@@ -52,11 +54,13 @@ function MypageUpdate() {
       formData.append("address", user.address)
       formData.append("age", user.age)
       formData.append("id", userInfo.id)
+      formData.append("nickname", userInfo.nickname)
+      formData.append("email", userInfo.email)
 
       // for (let value of formData.values()) {
       //   console.log(value);
       // }
-      console.log(formData)
+      // console.log(formData)
       fetchUserUpdate(formData)
     }
   }
