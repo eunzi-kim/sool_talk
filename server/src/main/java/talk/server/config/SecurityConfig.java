@@ -20,7 +20,7 @@ import talk.server.service.JwtUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class  SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Override
