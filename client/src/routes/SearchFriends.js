@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import "./css/SearchFriends.css"
 
 function SearchFriends() {
@@ -9,28 +10,37 @@ function SearchFriends() {
     "https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F990FCD335A1D68190E36F5";
 
   // 전체 유저 정보
-  var allUsers = [
-    ["황성안", 21, "여"],
-    ["김도연", 21, "여"],
-    ["김태현", 21, "여"],
-    ["신종은", 21, "여"],
-    ["황성안", 21, "여"],
-    ["황성안", 21, "여"],
-    ["황성안", 21, "여"],
-    ["황성안", 21, "여"],
-    ["황성안", 21, "여"],
-    ["황성안", 21, "여"],
-    ["황성안", 21, "여"],
-    ["황성안", 21, "여"],
-    ["황성안", 21, "여"]
-  ]
+  var allUsers = []
+  
+
+  const getUsers = async () => {
+    const response = await axios.get("http://localhost:8080/user/findfriends")    
+    return response.data
+  }
+
+  const findFriends = async () => {
+    const users = await getUsers()
+    for (let i=0; i <users.length; i++) {
+      if (users[i]["address"] === myInfo.address && users[i]["nickname"] !== myInfo.nickname) {
+        if (users[i]["profileImg"].length) {
+          imgProfile = users[i]["profileImg"]
+        }
+        allUsers.push([users[i]["nickname"], users[i]["age"], users[i]["sex"]])
+      }
+    }
+  }
+
+  findFriends()
+
+  console.log(allUsers)
 
   // 친구 선택
   const onSelectFriend = () => {
     window.location.replace("/chat");
   }
 
-  const onSearchFriend = () => {
+  // 친구 찾기 클릭
+  const onSearchFriend = () => {   
     if (document.querySelector(".friends-no")) {
       document.querySelector(".friends-no").className = "friends"
     }
