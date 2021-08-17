@@ -10,7 +10,8 @@
   align-items: center;
 }
 
-.type {
+.type,
+.type-chk {
   margin-right: 2rem;
   font-family: Roboto;
   font-style: normal;
@@ -22,7 +23,18 @@
   height: 2.5rem;
   width: 10%;
   text-align: center;
-  padding-top: 0.2rem;
+  border-style: none;
+}
+
+.type:hover {
+  cursor: pointer;
+  background-color: tomato;
+  font-weight: bold;
+}
+
+.type-chk {
+  background-color: tomato;
+  font-weight: bold;
 }
 
 .input-box {
