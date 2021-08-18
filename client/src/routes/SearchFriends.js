@@ -12,8 +12,6 @@ function SearchFriends() {
   // 전체 유저 정보
   const [allUsers, setAllUsers] = useState([]);
 
-  var friends_n = 0
-
   const getUsers = async () => {
     const response = await axios.get("http://localhost:8080/user/findfriends");
     return response.data;
