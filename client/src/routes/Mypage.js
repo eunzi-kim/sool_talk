@@ -37,10 +37,10 @@ function Mypage() {
 
       <div className="user_mid">
         <img src={imgProfile} alt="{유저네임}" className="image_p" />
-        <div className="like">
+        {/* <div className="like">
           <img src={iconHeart} alt="좋아요" className="icon_heart" />
           <b>{userInfo.likes}</b>
-        </div>
+        </div> */}
       </div>
       <div className="my-bottom">
         <h3>지역: {userInfo.address} | 성별: {gender} | 나이: {userInfo.age}세</h3>

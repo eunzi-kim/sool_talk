@@ -50,7 +50,9 @@ function SearchFriends() {
     if (document.querySelector(".friends-no")) {
       findFriends();
       document.querySelector(".friends-no").className = "friends";
-      console.log(allUsers);
+      if (allUsers.length === 0) {
+        document.querySelector(".not-friend").className = "not-friend-view";
+      }
     }
   };
 
@@ -62,6 +64,11 @@ function SearchFriends() {
         </h2>
       </button>
       <div className="friends-no">
+        <div className="not-friend">
+          <h1>
+            <span className="nf-label">{myInfo.address}</span> 에 친구가 없어요😥
+          </h1>          
+        </div>
         {allUsers.map((user) => (
           <div className="friend" onClick={onSelectFriend}>
             <div className="friend-img">

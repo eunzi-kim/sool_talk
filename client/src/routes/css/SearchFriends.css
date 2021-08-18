@@ -58,3 +58,18 @@
   background-color: #7EC1FF;
   cursor: pointer;
 }
+
+.not-friend {
+  display: none;
+}
+
+.not-friend-view {
+  display: flex;
+  margin-top: 4rem;
+}
+
+.nf-label {
+  font-size: 3rem;
+  color: #FFA3A3;
+  text-shadow: 0px 0px 2px #000,3px 3px 0px lightgray, 6px 6px 0px gray; 
+}
