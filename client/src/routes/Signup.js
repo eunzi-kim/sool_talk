@@ -45,7 +45,7 @@ function Signup({ history }) {
         "content-type": "multipart/form-data"
       }
     }
-    const url = "http://localhost:8080/user/signup/"
+    const url = "http://localhost/stalk/user/signup/"
     const data = userInfo
   
     await axios.post(url, data, config)

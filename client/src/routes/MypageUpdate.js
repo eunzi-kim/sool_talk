@@ -19,7 +19,7 @@ function MypageUpdate() {
   }
 
   const fetchUserUpdate = async ( data ) => {
-    const url = "http://localhost:8080/user/userupdate"
+    const url = "http://localhost/stalk/user/userupdate"
 
     await axios.post(url, data)
     .then(res => {

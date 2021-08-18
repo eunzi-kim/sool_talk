@@ -45,7 +45,7 @@ function Articles() {
   const [articles, setArticles] = useState([]);
 
   const getArticles = async () => {
-    const response = await axios.get("http://localhost:8080/board/boardlist");
+    const response = await axios.get("http://localhost/stalk/board/boardlist");
     return response.data;
   };
 

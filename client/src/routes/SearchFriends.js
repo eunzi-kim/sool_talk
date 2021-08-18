@@ -13,7 +13,7 @@ function SearchFriends() {
   const [allUsers, setAllUsers] = useState([]);
 
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:8080/user/findfriends");
+    const response = await axios.get("http://localhost/stalk/user/findfriends");
     return response.data;
   };
 
