@@ -6,18 +6,6 @@ import { useDispatch } from "react-redux";
 import { getUser } from "../modules/user";
 // import Cookies from "js-cookie";
 
-// 유저가 입력한 아이디와 비밀번호를 서버로 보내주고 그 결과값을 받는 함수 (33번째 줄 참고)
-const signIn = async ({ username, password }) => {
-  // username(아이디)과 password를 서버로 넘긴다.
-  const { data } = await axios.post("http://localhost:8080/user/signin/", {
-    id: username,
-    password: password,
-  });
-  console.log(data);
-  // 받아오는 (return) 데이터에는 success(로그인 성공 여부)와 token 값이 들어있음. (32번째 줄로..)
-  return data;
-};
-
 function Login({ history }) {
   // [리덕스] 디스패치 함수 활성화
   const dispatch = useDispatch();
@@ -38,6 +26,18 @@ function Login({ history }) {
       document.querySelector(".login-id-alert-view").className =
         "login-id-alert";
     }
+  };
+
+  // 유저가 입력한 아이디와 비밀번호를 서버로 보내주고 그 결과값을 받는 함수 (33번째 줄 참고)
+  const signIn = async ({ username, password }) => {
+    // username(아이디)과 password를 서버로 넘긴다.
+    const { data } = await axios.post("http://localhost:8080/user/signin/", {
+      id: username,
+      password: password,
+    });
+    // console.log(data);
+    // 받아오는 (return) 데이터에는 success(로그인 성공 여부)와 token 값이 들어있음. (32번째 줄로..)
+    return data;
   };
 
   const [user, setUser] = useState({
@@ -74,56 +74,58 @@ function Login({ history }) {
       sex,
       token,
     } = userInfo;
-    // 없는 아이디
-    if (result === "noid") {
-      loginAlertCheck();
-      if (document.querySelector(".login-id-alert")) {
-        document.querySelector(".login-id-alert").className =
-          "login-id-alert-view alert";
+    setTimeout(() => {
+      // 없는 아이디
+      if (result === "noid") {
+        loginAlertCheck();
+        if (document.querySelector(".login-id-alert")) {
+          document.querySelector(".login-id-alert").className =
+            "login-id-alert-view alert";
+        }
       }
-    }
-    // 비밀번호 틀림
-    else if (result === "nopassword") {
-      loginAlertCheck();
-      if (document.querySelector(".login-password-alert")) {
-        document.querySelector(".login-password-alert").className =
-          "login-password-alert-view alert";
+      // 비밀번호 틀림
+      else if (result === "nopassword") {
+        loginAlertCheck();
+        if (document.querySelector(".login-password-alert")) {
+          document.querySelector(".login-password-alert").className =
+            "login-password-alert-view alert";
+        }
       }
-    }
-    // 만약 로그인 성공 시
-    else if (token) {
-      // 토큰값을 받아 세션을 생성하고 쿠키에 저장한다. => session: <토큰값>
-      // Cookies.set("session", token);
-      localStorage.setItem("token", token);
-      const userInfo = {
-        id: id,
-        nickname: nickname,
-        email: email,
-        address: address,
-        sex: sex,
-        age: age,
-        likes: likes,
-        profileImg: profileImg,
-      };
-      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      // 만약 로그인 성공 시
+      else if (token) {
+        // 토큰값을 받아 세션을 생성하고 쿠키에 저장한다. => session: <토큰값>
+        // Cookies.set("session", token);
+        localStorage.setItem("token", token);
+        const userInfo = {
+          id: id,
+          nickname: nickname,
+          email: email,
+          address: address,
+          sex: sex,
+          age: age,
+          likes: likes,
+          profileImg: profileImg,
+        };
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-      // [리덕스] 유저 정보 리덕스에 저장
-      onGetUser(userInfo);
+        // [리덕스] 유저 정보 리덕스에 저장
+        onGetUser(userInfo);
 
-      user.username = "";
-      user.password = "";
+        user.username = "";
+        user.password = "";
 
-      // 마이페이지로 이동
-      history.push("/mypage");
-    }
-    // 다른 로그인 실패 상황
-    else {
-      loginAlertCheck();
-      if (document.querySelector(".login-alert")) {
-        document.querySelector(".login-alert").className =
-          "login-alert-view alert";
+        // 마이페이지로 이동
+        history.push("/mypage");
       }
-    }
+      // 다른 로그인 실패 상황
+      else {
+        loginAlertCheck();
+        if (document.querySelector(".login-alert")) {
+          document.querySelector(".login-alert").className =
+            "login-alert-view alert";
+        }
+      }
+    }, 2000);    
   };
 
   document.addEventListener("keyup", (e) => {

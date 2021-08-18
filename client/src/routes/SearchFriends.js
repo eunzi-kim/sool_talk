@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./css/SearchFriends.css";
 
 function SearchFriends() {
@@ -11,6 +11,8 @@ function SearchFriends() {
 
   // 전체 유저 정보
   const [allUsers, setAllUsers] = useState([]);
+
+  var friends_n = 0
 
   const getUsers = async () => {
     const response = await axios.get("http://localhost:8080/user/findfriends");
@@ -50,9 +52,11 @@ function SearchFriends() {
     if (document.querySelector(".friends-no")) {
       findFriends();
       document.querySelector(".friends-no").className = "friends";
-      if (allUsers.length === 0) {
-        document.querySelector(".not-friend").className = "not-friend-view";
-      }
+      setTimeout(() => {
+        if (document.querySelector(".not-friend-v")) {
+          document.querySelector(".not-friend-v").className = "not-friend-view"
+        }        
+      }, 1000)
     }
   };
 
@@ -64,7 +68,9 @@ function SearchFriends() {
         </h2>
       </button>
       <div className="friends-no">
-        <div className="not-friend">
+        <div 
+          className={(allUsers.length ? "not-friend" : "not-friend-v")}
+        >
           <h1>
             <span className="nf-label">{myInfo.address}</span> 에 친구가 없어요😥
           </h1>          
