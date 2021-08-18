@@ -105,7 +105,8 @@ public class UserController {
         resUserInfo.setId(userOptional.get().getId());
         resUserInfo.setNickname(userOptional.get().getNickname());
         resUserInfo.setEmail(userOptional.get().getEmail());
-        resUserInfo.setProfileImg(userOptional.get().getProfileImg().getBytes());
+//        resUserInfo.setProfileImg(userOptional.get().getProfileImg().getBytes());
+        resUserInfo.setProfileImg(userOptional.get().getProfileImg());
         resUserInfo.setAddress(userOptional.get().getAddress());
         resUserInfo.setSex(userOptional.get().getSex());
         resUserInfo.setAge(userOptional.get().getAge());
