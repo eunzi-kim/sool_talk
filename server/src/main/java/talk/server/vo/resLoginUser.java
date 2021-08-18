@@ -16,4 +16,5 @@ public class resLoginUser {
     private int age;
     private int likes;
     private String token;
+    private byte[] profileImg;
 }
