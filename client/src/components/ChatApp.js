@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addMessage } from "../modules/chatting";
 
 // 새로운 웹소켓 하나 생성
-let sockJS = new SockJS("http://localhost/stalk/webSocket");
+let sockJS = new SockJS("http://i5c106.p.ssafy.io/stalk/webSocket");
 let stompClient = Stomp.over(sockJS);
 stompClient.debug = (str) => {
   // console.log(str);
