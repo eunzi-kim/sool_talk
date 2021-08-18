@@ -36,6 +36,7 @@
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
+  background-color: #fff;
 }
 
 .icon_heart {
@@ -126,5 +127,56 @@ button:hover {
 }
 
 .up-image {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.up-image button {
+  background-color: #7EC1FF;
+  padding: 0.3rem 2rem;
+}
+
+.modal-img-no {
+  display: none;
+}
+
+.modal-img-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-img {
+  background-color: #c4deee;
+  height: 53%;
+  width: 57%;
+}
+
+.modal-title h2 {
+  margin: 0;
+}
+
+.p-imgs {
+  overflow-y: auto;
+  height: 75%;
+}
+
+.image_pp {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0.7rem 1rem;
+}
+
+.image_pp:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }

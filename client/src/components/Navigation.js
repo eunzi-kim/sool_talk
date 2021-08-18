@@ -41,7 +41,7 @@ function Navigation() {
             </div>
             <div className="setting category">
               <NavLink to="/setting" activeClassName="selected">
-                <button className="category-btn">환경설정</button>
+                <button className="category-btn">개발자</button>
               </NavLink>
             </div>
           </div>

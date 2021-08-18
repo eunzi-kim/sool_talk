@@ -5,11 +5,10 @@ import "./css/Mypage.css";
 
 function MypageUpdate() {
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  console.log(userInfo)
 
   var imgProfile =
-    "https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F990FCD335A1D68190E36F5";
-  
+  "https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F990FCD335A1D68190E36F5";
+
   if (userInfo.profileImg) {
     imgProfile = userInfo.profileImg
   }
@@ -19,49 +18,50 @@ function MypageUpdate() {
     gender = "남"
   }
 
-  const fetchUserUpdate = async ( userInfo ) => {
-    let config = {
-      headers:{
-        "content-type": "multipart/form-data"
-      }
-    }
+  const fetchUserUpdate = async ( data ) => {
     const url = "http://localhost:8080/user/userupdate"
-    const data = userInfo
 
-    await axios.post(url, data, config)
+    await axios.post(url, data)
     .then(res => {
-      console.log("성공")
-      alert("회원정보 수정 성공")
-      // window.location.replace("/mypage");
+      console.log(res.data)
+      // 로컬스토리지 변경
+      const data = {
+        id: res.data.id,
+        nickname: res.data.nickname,
+        email: res.data.email,
+        address: res.data.address,
+        sex: res.data.sex,
+        age: res.data.age,
+        likes: res.data.likes,
+        profileImg: res.data.profileImg,
+      };
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      window.location.replace("/mypage");
     })
     .catch(err => {
-      console.log("실패")
+      console.log(err)
     })
   }
 
   const [user, setUser] = useState({
     address: userInfo.address,
     age: userInfo.age,
-    imageUrl: userInfo.imgProfile
+    profileImg: userInfo.profileImg
   });
 
   const onMpUpdateEnd = () => {
     if (user.age < 19 || user.age > 87) {
       alert("죄송합니다. 불가능한 나이입니다.")
     } else {
-      const formData = new FormData()
-      formData.append("imageUrl", user.imageUrl)
-      formData.append("address", user.address)
-      formData.append("age", user.age)
-      formData.append("id", userInfo.id)
-      formData.append("nickname", userInfo.nickname)
-      formData.append("email", userInfo.email)
-
-      // for (let value of formData.values()) {
-      //   console.log(value);
-      // }
-      // console.log(formData)
-      fetchUserUpdate(formData)
+      const data = {
+        profileImg: user.profileImg,
+        address: user.address,
+        age: user.age,
+        id: userInfo.id,
+        nickname: userInfo.nickname,
+        email: userInfo.email
+      }
+      fetchUserUpdate(data)
     }
   }
 
@@ -73,12 +73,15 @@ function MypageUpdate() {
   const modalOpen = () => {
     if (document.querySelector(".modal-addr-no")) {
       document.querySelector(".modal-addr-no").className = "modal"
-    } 
+    }
   }
 
   const modalClose = () => {
     if (document.querySelector(".modal")) {
       document.querySelector(".modal").className = "modal-addr-no"
+    } 
+    if (document.querySelector(".modal-img-bg")) {
+      document.querySelector(".modal-img-bg").className = "modal-img-no"
     } 
   }
 
@@ -101,29 +104,27 @@ function MypageUpdate() {
       modalClose()
   }
 
-  // 이미지
-  const [imgBase64, setImgBase64] = useState(imgProfile); // 파일 base64
-  const [imgFile, setImgFile] = useState(null);	//파일	
-  
-  const handleChangeFile = (event) => {
-    let reader = new FileReader();
-
-    reader.onloadend = () => {
-      // 2. 읽기가 완료되면 아래코드가 실행됩니다.
-      const base64 = reader.result;
-      if (base64) {
-        setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
-      }
-    }
-    if (event.target.files[0]) {
-      reader.readAsDataURL(event.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
-      setImgFile(event.target.files[0]); // 파일 상태 업데이트
-    }
-    user.imageUrl = event.target.files[0]
-  }
-
   const onMpUpdateCancle = () => {
     window.location.replace("/mypage");
+  }
+
+  // 이미지 변경 모달
+  const imgModal = () => {
+    if (document.querySelector(".modal-img-no")) {
+      document.querySelector(".modal-img-no").className = "modal-img-bg"
+    } 
+  }
+
+  // 이미지
+  var img_n = []
+  for (let i=0; i<13; i++) {
+    img_n.push(`/img/profile/${i}.png`)
+  }
+
+  const onSelectImg = (e) => {
+    document.querySelector(".image_p").src = e.target.src
+    user.profileImg = e.target.src
+    modalClose()    
   }
 
   return (
@@ -146,14 +147,9 @@ function MypageUpdate() {
           </div>
         </div>
         <div className="user_mid-up">
-          <img src={imgBase64} alt="{유저네임}" className="image_p" />
+          <img src={imgProfile} alt="{유저네임}" className="image_p" />
           <div className="up-image">
-            <input 
-              type="file"
-              name="imgFile" 
-              id="imgFile"
-              onChange={handleChangeFile}
-            />
+            <button onClick={imgModal}>이미지 선택</button>
           </div>
         </div>
         <div className="my-up-bottom">
@@ -190,6 +186,23 @@ function MypageUpdate() {
             onChange={changeAge}
           /> 
           <h3>세</h3>
+        </div>
+      </div>
+      <div className="modal-img-no">
+        <div className="modal-img">
+          <div className="modal-close">
+            <button onClick={modalClose}>
+              <h3>❌</h3>
+            </button>
+          </div>
+          <div className="modal-title">
+            <h2>이미지 변경</h2>
+          </div>
+          <div className="p-imgs">
+            {img_n.map((n) => (
+              <img src={n} className="image_pp" onClick={onSelectImg} />
+            ))}
+          </div>          
         </div>
       </div>
     </div>
