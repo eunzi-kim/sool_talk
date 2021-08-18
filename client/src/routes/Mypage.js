@@ -7,7 +7,7 @@ function Mypage() {
 
   var imgProfile =
     "https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F990FCD335A1D68190E36F5";
-  const iconHeart = "/img/icon_heart.png";
+  // const iconHeart = "/img/icon_heart.png";
 
   if (userInfo.profileImg) {
     imgProfile = userInfo.profileImg

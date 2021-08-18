@@ -13,7 +13,9 @@
 .mp-nickname {
   display: flex;
   align-items: flex-end;
-  margin-top: 2rem;
+  justify-content: center;
+  margin: 2rem;
+  width: 50%;
 }
 
 .mp-nickname h1, 
@@ -59,7 +61,6 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  width: 60%;
 }
 
 .mp-tt{
@@ -120,8 +121,14 @@ button:hover {
   width: 100%;
 }
 
+.user_mid {
+  margin: 0rem 1.5rem 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
 .user_mid-up {
-  margin: 1.5rem 0 1rem 1.5rem;
+  margin: 0rem 1.5rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -156,7 +163,8 @@ button:hover {
 .modal-img {
   background-color: #c4deee;
   height: 53%;
-  width: 57%;
+  width: 60%;
+  padding-left: 2rem;
 }
 
 .modal-title h2 {

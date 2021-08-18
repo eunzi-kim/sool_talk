@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin: 1rem; */
+  margin-top: 1rem;
 }
 
 .sf-btn {
@@ -59,7 +59,8 @@
   cursor: pointer;
 }
 
-.not-friend {
+.not-friend,
+.not-friend-v {
   display: none;
 }
 
