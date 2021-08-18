@@ -17,5 +17,5 @@ public class ResUserInfo {
     private int age;
     private int likes;
     private String token;
-    private String profileImg;
+    private byte[] profileImg;
 }
