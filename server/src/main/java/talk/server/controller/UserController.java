@@ -106,6 +106,7 @@ public class UserController {
         resUserInfo.setNickname(userOptional.get().getNickname());
         resUserInfo.setEmail(userOptional.get().getEmail());
 //        resUserInfo.setProfileImg(userOptional.get().getProfileImg().getBytes());
+        //Json으로 byte로 보내서 저장시킨다. 그때 쓰는것이 getBytes()
         resUserInfo.setProfileImg(userOptional.get().getProfileImg());
         resUserInfo.setAddress(userOptional.get().getAddress());
         resUserInfo.setSex(userOptional.get().getSex());
