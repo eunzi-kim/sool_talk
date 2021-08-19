@@ -135,10 +135,6 @@ function Login({ history }) {
     }
   });
 
-  const imgKakao = "/img/logo_kakao.svg";
-  const imgInsta = "/img/logo_instagram.svg";
-  const imgGoogle = "/img/logo_google.png";
-
   return (
     <div className="login">
       <div className="login-id-alert">
@@ -182,9 +178,6 @@ function Login({ history }) {
         </div>
         <div className="login-bottom">
           <div className="social">
-            <img src={imgKakao} className="logo-img" alt="Kakao" />
-            <img src={imgInsta} className="logo-img" alt="Instagram" />
-            <img src={imgGoogle} className="logo-img" alt="Google" />
           </div>
           <div className="signup-link">
             <Link to="/signup">
