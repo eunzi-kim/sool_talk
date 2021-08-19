@@ -38,7 +38,7 @@ function Articles() {
   useEffect(() => {
     const getArticles = async () => {
       const response = await axios.get(
-        "http://localhost/stalk/board/boardlist"
+        "http://i5c106.p.ssafy.io/stalk/board/boardlist"
       );
       setArticles(articles.concat(response.data));
     };
