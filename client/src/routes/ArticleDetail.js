@@ -43,6 +43,16 @@ function ArticleDetail(props) {
     document.querySelector(".article-ud").className = "article-ud-no";
   }
 
+  const fetchDeleteArticle = async (no) => {
+    const url = `http://i5c106.p.ssafy.io:8081/stalk/board/boarddelete?board_no=${no}`;
+    await axios.get(url);
+  };
+
+  const onDeleteArticle = (no) => {
+    fetchDeleteArticle(no);
+    window.location.replace("/articles");
+  };
+
   return (
     <div className="create-box">
       {console.log(board)}
@@ -76,7 +86,12 @@ function ArticleDetail(props) {
             </Link>
           </div>
           <div className="option-bottom article-ud">
-            <button className="back-button">삭제</button>
+            <button
+              className="back-button"
+              onClick={() => onDeleteArticle(board.BOARD_NO)}
+            >
+              삭제
+            </button>
           </div>
           <div className="option-bottom">
             <Link to="/articles" style={{ color: "black" }}>
