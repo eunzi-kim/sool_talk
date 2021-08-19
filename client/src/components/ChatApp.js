@@ -12,7 +12,7 @@ import { addMessage } from "../modules/chatting";
 let sockJS = new SockJS("http://i5c106.p.ssafy.io/stalk/webSocket");
 let stompClient = Stomp.over(sockJS);
 stompClient.debug = (str) => {
-  // console.log(str);
+  console.log(str)
 };
 
 // const ChatAppProps = {
@@ -39,11 +39,15 @@ function ChatApp({ match }) {
     console.log(match);
     // jwt token은 임시로 발급받은거 직접 넣어줌
     let headers = {
-      Authorization: `Bearer ${myToken}`,
+      // Authorization: `Bearer ${myToken}`,
+      Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmcmVzaCIsImlhdCI6MTYyOTM3MjA1NSwiZXhwIjoxNjI5MzczODU1LCJpZCI6Im9wZWVyYXRzIn0.eCEZCR-8MdINTvcNnRHpKh648Isb0JVRIv4Asm_nfQY'
     };
 
     // 2. 채팅방 구독하기 (채팅방 입장)
     stompClient.connect(headers, () => {
+
+      console.log('test');
+
       stompClient.subscribe(`/topic/${roomId}`, (data) => {
         const revMsg = JSON.parse(data.body);
         console.log(revMsg);
