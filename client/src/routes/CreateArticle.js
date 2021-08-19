@@ -58,7 +58,15 @@ function CreateArticle() {
     const YMD = month + "/" + day + "/" + year + " " + hour + ":" + minutes + ":" + seconds
     board.BOARD_YMD = YMD
 
-    fetchCreateArticle(board)
+    if (board.BOARD_TYPE === "") {
+      alert("게시물 카테고리를 선택해주세요.")
+    }
+    else if (board.BOARD_TITLE === "" || board.BOARD_CONTENT === "") {
+      alert("제목과 내용을 직성해주세요.")
+    }
+    else {
+      fetchCreateArticle(board)
+    }
   }
 
   const onCancelArticle = () => {
