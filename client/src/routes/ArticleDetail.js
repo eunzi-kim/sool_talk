@@ -3,39 +3,49 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/ArticleDetail.css";
 
-function ArticleDetail({ location }) {
+function ArticleDetail(props) {
+  const { location } = props;
   const { state } = location;
   console.log(state);
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(props.match.params["id"]);
 
   const [board, setBoard] = useState({
+    BOARD_NO: 0,
     BOARD_TYPE: "",
     BOARD_TITLE: "",
     BOARD_CONTENT: "",
     BOARD_CNT: 0,
     BOARD_USER: userInfo.nickname,
-    BOARD_YMD: ""
+    BOARD_YMD: "",
   });
 
   useEffect(() => {
-    setBoard({
-      ...board,
-      BOARD_NO: state["board_NO"],
-      BOARD_TYPE: state["board_TYPE"],
-      BOARD_TITLE: state["board_TITLE"],
-      BOARD_CONTENT: state["board_CONTENT"],
-      BOARD_CNT: state["board_CNT"],
-      BOARD_USER: state["board_USER"],
-      BOARD_YMD: state["board_YMD"],
-    });
+    const getArticle = async () => {
+      const response = await axios.get(
+        `http://i5c106.p.ssafy.io:8081/stalk/board/boarddetail?board_no=${props.match.params["id"]}`
+      );
+      setBoard({
+        ...board,
+        BOARD_NO: response.data["board_NO"],
+        BOARD_TYPE: response.data["board_TYPE"],
+        BOARD_TITLE: response.data["board_TITLE"],
+        BOARD_CONTENT: response.data["board_CONTENT"],
+        BOARD_CNT: response.data["board_CNT"],
+        BOARD_USER: response.data["board_USER"],
+        BOARD_YMD: response.data["board_YMD"],
+      });
+    };
+    getArticle();
   }, []);
 
   if (userInfo.nickname !== board.BOARD_USER) {
-    document.querySelector(".article-ud").className = "article-ud-no"
+    document.querySelector(".article-ud").className = "article-ud-no";
   }
 
   return (
     <div className="create-box">
+      {console.log(board)}
       <div className="type-box">
         <input className="type" value={board.BOARD_TYPE} />
       </div>
@@ -68,12 +78,10 @@ function ArticleDetail({ location }) {
           <div className="option-bottom article-ud">
             <button className="back-button">삭제</button>
           </div>
-          <div className="option-bottom">            
+          <div className="option-bottom">
             <Link to="/articles" style={{ color: "black" }}>
-              <button className="back-button">
-                목록
-              </button>
-            </Link>            
+              <button className="back-button">목록</button>
+            </Link>
           </div>
         </div>
       </div>
