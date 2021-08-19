@@ -31,10 +31,13 @@ function Login({ history }) {
   // 유저가 입력한 아이디와 비밀번호를 서버로 보내주고 그 결과값을 받는 함수 (33번째 줄 참고)
   const signIn = async ({ username, password }) => {
     // username(아이디)과 password를 서버로 넘긴다.
-    const { data } = await axios.post("http://i5c106.p.ssafy.io/stalk/user/signin/", {
-      id: username,
-      password: password,
-    });
+    const { data } = await axios.post(
+      "http://i5c106.p.ssafy.io/stalk/user/signin/",
+      {
+        id: username,
+        password: password,
+      }
+    );
     // console.log(data);
     // 받아오는 (return) 데이터에는 success(로그인 성공 여부)와 token 값이 들어있음. (32번째 줄로..)
     return data;
@@ -125,7 +128,7 @@ function Login({ history }) {
             "login-alert-view alert";
         }
       }
-    }, 2000);    
+    }, 2000);
   };
 
   document.addEventListener("keyup", (e) => {

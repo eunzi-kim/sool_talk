@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import CreateArticle from "./routes/CreateArticle";
 import MyArticles from "./routes/MyArticles";
 import ArticleDetail from "./routes/ArticleDetail";
+import ArticleUpdate from "./routes/ArticleUpdate";
 
 function App() {
   console.log(useSelector((state) => state));
@@ -33,10 +34,8 @@ function App() {
           path="/articles/create-article"
           component={CreateArticle}
         />
-        <PrivateRoute
-          path="/articles/article-detail"
-          component={ArticleDetail}
-        />
+        <PrivateRoute exact path="/articles/:id" component={ArticleDetail} />
+        <PrivateRoute path="/articles/:id/update" component={ArticleUpdate} />
         <PrivateRoute path="/my-article" component={MyArticles} />
         <PrivateRoute path="/chat" component={Chat} />
         <PrivateRoute path="/search-friends" component={SearchFriends} />

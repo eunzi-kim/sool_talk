@@ -10,7 +10,10 @@
   align-items: center;
 }
 
-.type,
+.type-1,
+.type-2,
+.type-3,
+.type-4,
 .type-chk {
   margin-right: 1.3rem;
   font-family: Roboto;
@@ -18,15 +21,22 @@
   font-weight: normal;
   color: white;
   font-size: 20px;
-  background-color: rgb(255, 163, 163);
   border-radius: 12px;
   height: 2.3rem;
   width: 10%;
   text-align: center;
   border-style: none;
+  background-color: rgb(255, 163, 163);
 }
 
-.type:hover {
+.type-1,
+.type-2,
+.type-3,
+.type-4 {
+  background-color: rgb(255, 163, 163);
+}
+
+.type-1:hover {
   cursor: pointer;
   background-color: tomato;
   font-weight: bold;
