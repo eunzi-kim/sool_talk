@@ -28,8 +28,9 @@ function CreateArticle() {
 
   // 타입 선택
   const onTypeClick = (e) => {
+    console.log(e)
     if (document.querySelector(".type-chk")) {
-      document.querySelector(".type-chk").className = "type"
+      document.querySelector(".type-chk").className = "type-1"
     }
     e.target.className="type-chk"
     board.BOARD_TYPE = e.target.value
@@ -67,10 +68,10 @@ function CreateArticle() {
   return (
     <div className="create-box">
       <div className="type-box">
-        <input type="button" className="type" value="자유" onClick={onTypeClick}/>
-        <input type="button" className="type" value="건의" onClick={onTypeClick}/>
-        <input type="button" className="type" value="불만" onClick={onTypeClick}/>
-        <input type="button" className="type" value="신고" onClick={onTypeClick}/>
+        <input type="button" className="type-1" value="자유" onClick={onTypeClick}/>
+        <input type="button" className="type-1" value="건의" onClick={onTypeClick}/>
+        <input type="button" className="type-1" value="불만" onClick={onTypeClick}/>
+        <input type="button" className="type-1" value="신고" onClick={onTypeClick}/>
       </div>
       <div className="input-box">
         <div className="article-input-box">

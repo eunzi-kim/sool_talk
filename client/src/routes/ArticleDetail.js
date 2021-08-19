@@ -24,6 +24,7 @@ function ArticleDetail() {
       .then((res) => {
         setBoard({
           ...board,
+          BOARD_NO: res.data["board_NO"],
           BOARD_TYPE: res.data["board_TYPE"],
           BOARD_TITLE: res.data["board_TITLE"],
           BOARD_CONTENT: res.data["board_CONTENT"],
@@ -40,12 +41,17 @@ function ArticleDetail() {
   useState(() => {
     fetchGetArticle();
   }, []);
-  console.log(board);
+  // console.log(board);
+
+  const onArticleUpdate = () => {
+    window.location.replace('/articles/article-update');
+    // window.location.replace(`/articles/article-update/${}`);
+  }
 
   return (
     <div className="create-box">
       <div className="type-box">
-        <input className="type" value="신고" />
+        <input className="type" value={board.BOARD_TYPE} />
       </div>
       <div className="input-box">
         <div className="article-input-box">
@@ -62,6 +68,16 @@ function ArticleDetail() {
           </div>
           <div className="option-bottom">
             <div className="option-button">조회 {board.BOARD_CNT}회</div>
+          </div>
+          <div className="option-bottom">
+            <button className="back-button" onClick={onArticleUpdate}> 
+                수정
+            </button>
+          </div>
+          <div className="option-bottom">
+            <button className="back-button" onClick={onArticleUpdate}> 
+                삭제
+            </button>
           </div>
           <div className="option-bottom">
             <button className="back-button">
