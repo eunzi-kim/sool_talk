@@ -2,19 +2,20 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./css/CreateArticle.css";
 
-function ArticleUpdate({ history }) {
+function ArticleUpdate({ location }) {
+  const { state } = location;
+
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   const [board, setBoard] = useState({
     board_type: "",
     board_title: "",
     board_content: "",
-    board_no: 0
+    board_no: 0,
   });
 
   const fetchGetArticle = async () => {
-    const url =
-      "http://i5c106.p.ssafy.io:8081/stalk/board/boarddetail?board_no=9";
+    const url = `http://i5c106.p.ssafy.io:8081/stalk/board/boarddetail?board_no=${state.BOARD_NO}`;
 
     await axios
       .get(url)
@@ -36,75 +37,93 @@ function ArticleUpdate({ history }) {
     fetchGetArticle();
   }, []);
 
-  const fetchUpdateArticle = async ( data ) => {
-    const url = "http://i5c106.p.ssafy.io/stalk/board/boardupdate"
-    
-    await axios.post(url, data)
-    .then(res => {
-      window.location.replace("/articles/article-detail");
-    })
-    .catch(err => {
-      alert("게시글 작성에 실패하셨습니다.")
-    })
-  }
+  const fetchUpdateArticle = async (data) => {
+    const url = "http://i5c106.p.ssafy.io/stalk/board/boardupdate";
+
+    await axios
+      .post(url, data)
+      .then((res) => {
+        window.location.replace("/articles/article-detail");
+      })
+      .catch((err) => {
+        alert("게시글 작성에 실패하셨습니다.");
+      });
+  };
 
   // 타입 선택
   const onTypeClick = (e) => {
     if (document.querySelector(".type-chk")) {
-      document.querySelector(".type-chk").className = "type-1"
+      document.querySelector(".type-chk").className = "type-1";
     }
-    e.target.className="type-chk"
-    board.board_type = e.target.value
-  }
+    e.target.className = "type-chk";
+    board.board_type = e.target.value;
+  };
 
   if (board["board_type"] === "자유") {
     if (document.querySelector(".type-1")) {
-      document.querySelector(".type-1").className = "type-chk"
+      document.querySelector(".type-1").className = "type-chk";
     }
-  }
-  else if (board["board_type"] === "건의") {
+  } else if (board["board_type"] === "건의") {
     if (document.querySelector(".type-2")) {
-      document.querySelector(".type-2").className = "type-chk"
+      document.querySelector(".type-2").className = "type-chk";
     }
-  }
-  else if (board["board_type"] === "불만") {
+  } else if (board["board_type"] === "불만") {
     if (document.querySelector(".type-3")) {
-      document.querySelector(".type-3").clasName = "type-chk"
+      document.querySelector(".type-3").clasName = "type-chk";
     }
-  }
-  else if (board["board_type"] === "신고") {
+  } else if (board["board_type"] === "신고") {
     if (document.querySelector(".type-4")) {
-      document.querySelector(".type-4").className = "type-chk"
-    } 
+      document.querySelector(".type-4").className = "type-chk";
+    }
   }
 
   // 게시글 제목
   const onChangeTitle = (e) => {
-    board.board_title = e.target.value
-  }
+    board.board_title = e.target.value;
+  };
 
   // 게시글 내용
   const onChangeContent = (e) => {
-    board.board_content = e.target.value
-  }
+    board.board_content = e.target.value;
+  };
 
   // 게시글 수정
   const onUpdateArticle = () => {
-    console.log(board)
-    fetchUpdateArticle(board)
-  }
+    console.log(board);
+    fetchUpdateArticle(board);
+  };
 
   const onCancelArticle = () => {
-    history.push("/articles/article-detail");
-  }
+    window.location.replace(`/articles/article-detail/1`);
+  };
 
   return (
     <div className="create-box">
       <div className="type-box">
-        <input type="button" className="type-1" value="자유" onClick={onTypeClick}/>
-        <input type="button" className="type-2" value="건의" onClick={onTypeClick}/>
-        <input type="button" className="type-3" value="불만" onClick={onTypeClick}/>
-        <input type="button" className="type-4" value="신고" onClick={onTypeClick}/>
+        <input
+          type="button"
+          className="type-1"
+          value="자유"
+          onClick={onTypeClick}
+        />
+        <input
+          type="button"
+          className="type-2"
+          value="건의"
+          onClick={onTypeClick}
+        />
+        <input
+          type="button"
+          className="type-3"
+          value="불만"
+          onClick={onTypeClick}
+        />
+        <input
+          type="button"
+          className="type-4"
+          value="신고"
+          onClick={onTypeClick}
+        />
       </div>
       <div className="input-box">
         <div className="article-input-box">
@@ -113,8 +132,7 @@ function ArticleUpdate({ history }) {
             placeholder="제목을 입력하세요..."
             defaultValue={board["board_title"]}
             onChange={onChangeTitle}
-          >
-          </input>
+          ></input>
           <textarea
             className="article-content-box"
             placeholder="내용을 입력하세요..."
@@ -128,8 +146,12 @@ function ArticleUpdate({ history }) {
             [메모장] 이 곳에 적는 글은 남들이 볼 수도 저장되지도 않습니다.
           </textarea>
           <div className="option-bottom">
-            <button className="cancel-button" onClick={onCancelArticle}>취소</button>
-            <button className="ok-button" onClick={onUpdateArticle}>수정</button>
+            <button className="cancel-button" onClick={onCancelArticle}>
+              취소
+            </button>
+            <button className="ok-button" onClick={onUpdateArticle}>
+              수정
+            </button>
           </div>
         </div>
       </div>

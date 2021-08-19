@@ -8,27 +8,21 @@ import { Link } from "react-router-dom";
 
 function Article({ article }) {
   return (
-    <>
+    <Link
+      to={{
+        pathname: `/articles/${article["board_NO"]}`,
+        state: article,
+      }}
+    >
       <div className="title-box">{article["board_TITLE"]}</div>
       <div className="content-box">
         <div className="title-content">{article["board_CONTENT"]}</div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-end",
-            marginRight: "0.5rem",
-            padding: "1rem",
-          }}
-        >
-          조회수: {article["board_CNT"]}
-        </div>
       </div>
       <div className="footer-box">
         <div style={{ padding: "0.5rem 1rem " }}>{article["board_USER"]}</div>
         <div style={{ padding: "0.5rem 1rem" }}>{article["board_YMD"]}</div>
       </div>
-    </>
+    </Link>
   );
 }
 
