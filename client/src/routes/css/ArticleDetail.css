@@ -135,3 +135,16 @@
   font-size: 25px;
   height: 3rem;
 }
+
+
+.article-ud-no {
+  display: none;
+}
+
+.option-bottom a {
+  width: 100%;
+}
+
+a {
+  color: inherit;
+}

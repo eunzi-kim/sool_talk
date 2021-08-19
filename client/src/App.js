@@ -36,7 +36,7 @@ function App() {
         />
         <PrivateRoute exact path="/articles/:id" component={ArticleDetail} />
         <PrivateRoute path="/articles/:id/update" component={ArticleUpdate} />
-        <PrivateRoute path="/my-article" component={MyArticles} />
+        <PrivateRoute path="/articles/my-article" component={MyArticles} />
         <PrivateRoute path="/chat" component={Chat} />
         <PrivateRoute path="/search-friends" component={SearchFriends} />
         <PrivateRoute path="/setting" component={Setting} />

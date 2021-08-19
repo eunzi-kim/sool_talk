@@ -5,6 +5,7 @@ import "../slick.css";
 import "../slick-theme.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 function Article({ article }) {
   return (
@@ -20,7 +21,7 @@ function Article({ article }) {
       </div>
       <div className="footer-box">
         <div style={{ padding: "0.5rem 1rem " }}>{article["board_USER"]}</div>
-        <div style={{ padding: "0.5rem 1rem" }}>{article["board_YMD"]}</div>
+        <div style={{ padding: "0.5rem 1rem" }}>{moment(article["board_YMD"]).format("YYYY/MM/DD hh:mm")}</div>
       </div>
     </Link>
   );
@@ -64,7 +65,7 @@ function Articles() {
             fontWeight: "normal",
           }}
         >
-          <Link to="/my-article" className="my-button">
+          <Link to="/articles/my-article" className="my-button">
             내가 작성한 글 보러 가기
           </Link>
         </div>

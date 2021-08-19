@@ -14,7 +14,7 @@ function ArticleDetail({ location }) {
     BOARD_CONTENT: "",
     BOARD_CNT: 0,
     BOARD_USER: userInfo.nickname,
-    BOARD_YMD: "",
+    BOARD_YMD: ""
   });
 
   useEffect(() => {
@@ -30,7 +30,9 @@ function ArticleDetail({ location }) {
     });
   }, []);
 
-  console.log(board["BOARD_NO"]);
+  if (userInfo.nickname !== board.BOARD_USER) {
+    document.querySelector(".article-ud").className = "article-ud-no"
+  }
 
   return (
     <div className="create-box">
@@ -53,7 +55,7 @@ function ArticleDetail({ location }) {
           <div className="option-bottom">
             <div className="option-button">조회 {board.BOARD_CNT}회</div>
           </div>
-          <div className="option-bottom">
+          <div className="option-bottom article-ud">
             <Link
               to={{
                 pathname: `/articles/${board.BOARD_NO}/update`,
@@ -63,15 +65,15 @@ function ArticleDetail({ location }) {
               <button className="back-button">수정</button>
             </Link>
           </div>
-          <div className="option-bottom">
+          <div className="option-bottom article-ud">
             <button className="back-button">삭제</button>
           </div>
-          <div className="option-bottom">
-            <button className="back-button">
-              <Link to="/articles" style={{ color: "black" }}>
+          <div className="option-bottom">            
+            <Link to="/articles" style={{ color: "black" }}>
+              <button className="back-button">
                 목록
-              </Link>
-            </button>
+              </button>
+            </Link>            
           </div>
         </div>
       </div>
