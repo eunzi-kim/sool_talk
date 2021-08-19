@@ -4,6 +4,7 @@ import "./css/CreateArticle.css";
 
 function ArticleUpdate({ location }) {
   const { state } = location;
+  console.log(state);
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
@@ -15,7 +16,7 @@ function ArticleUpdate({ location }) {
   });
 
   const fetchGetArticle = async () => {
-    const url = `http://i5c106.p.ssafy.io:8081/stalk/board/boarddetail?board_no=${state.BOARD_NO}`;
+    const url = `http://i5c106.p.ssafy.io:8081/stalk/board/boarddetail?board_no=${state["BOARD_NO"]}`;
 
     await axios
       .get(url)
@@ -43,7 +44,7 @@ function ArticleUpdate({ location }) {
     await axios
       .post(url, data)
       .then((res) => {
-        window.location.replace("/articles/article-detail");
+        window.location.replace(`/articles/${data.board_no}`);
       })
       .catch((err) => {
         alert("게시글 작성에 실패하셨습니다.");
