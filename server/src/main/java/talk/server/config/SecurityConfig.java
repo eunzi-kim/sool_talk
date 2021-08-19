@@ -50,7 +50,7 @@ public class  SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .cors().disable()
                 .csrf().disable()
-                .authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll().antMatchers("/user/**", "/board/**", "/webSocket/**","/**").permitAll()
+                .authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll().antMatchers("/user/**", "/board/**", "/webSocket/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint())

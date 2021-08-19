@@ -17,7 +17,7 @@ function ArticleDetail() {
 
   const fetchGetArticle = async () => {
     const url =
-      "https://i5c106.p.ssafy.io:8081/stalk/board/boarddetail?board_no=9";
+      "http://localhost/stalk/board/boarddetail?board_no=9";
 
     await axios
       .get(url)
