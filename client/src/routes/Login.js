@@ -31,7 +31,7 @@ function Login({ history }) {
   // 유저가 입력한 아이디와 비밀번호를 서버로 보내주고 그 결과값을 받는 함수 (33번째 줄 참고)
   const signIn = async ({ username, password }) => {
     // username(아이디)과 password를 서버로 넘긴다.
-    const { data } = await axios.post("http://i5c106.p.ssafy.io:8081/stalk/user/signin/", {
+    const { data } = await axios.post("http://i5c106.p.ssafy.io/stalk/user/signin/", {
       id: username,
       password: password,
     });
