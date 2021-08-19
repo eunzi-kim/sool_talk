@@ -3,15 +3,16 @@
 }
 
 .article-body {
-  margin: 7rem 2.5rem 0 2.5rem;
+  margin: 7rem 5rem 0 5rem;
   height: 44.5vh;
   overflow-y: auto;
   display: flex;
+  justify-content: space-between;
 }
 
 .article-box {
   height: 60%;
-  margin: 0 2.5rem;
+  margin-right: 5rem;
   border-radius: 8px;
 }
 
