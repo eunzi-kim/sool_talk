@@ -15,7 +15,7 @@ function CreateArticle() {
   });
 
   const fetchCreateArticle = async ( data ) => {
-    const url = "http://i5c106.p.ssafy.io/stalk/board/boardcreate"
+    const url = "https://i5c106.p.ssafy.io/stalk/board/boardcreate"
     
     await axios.post(url, data)
     .then(res => {
