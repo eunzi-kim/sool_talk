@@ -117,7 +117,7 @@ function MypageUpdate() {
 
   // 이미지
   var img_n = []
-  for (let i=0; i<13; i++) {
+  for (let i=0; i<14; i++) {
     img_n.push(`/img/profile/${i}.png`)
   }
 
