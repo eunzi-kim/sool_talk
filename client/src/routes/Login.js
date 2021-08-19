@@ -35,7 +35,7 @@ function Login({ history }) {
       id: username,
       password: password,
     });
-    // console.log(data);
+    console.log(data);
     // 받아오는 (return) 데이터에는 success(로그인 성공 여부)와 token 값이 들어있음. (32번째 줄로..)
     return data;
   };
@@ -74,6 +74,7 @@ function Login({ history }) {
       sex,
       token,
     } = userInfo;
+    // console.log(result)
     setTimeout(() => {
       // 없는 아이디
       if (result === "noid") {
