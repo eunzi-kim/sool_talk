@@ -14,7 +14,7 @@ function ArticleUpdate({ history }) {
 
   const fetchGetArticle = async () => {
     const url =
-      "http://i5c106.p.ssafy.io:8081/stalk/board/boarddetail?board_no=9";
+      "https://i5c106.p.ssafy.io:8081/stalk/board/boarddetail?board_no=9";
 
     await axios
       .get(url)
@@ -37,7 +37,7 @@ function ArticleUpdate({ history }) {
   }, []);
 
   const fetchUpdateArticle = async ( data ) => {
-    const url = "http://i5c106.p.ssafy.io/stalk/board/boardupdate"
+    const url = "https://i5c106.p.ssafy.io/stalk/board/boardupdate"
     
     await axios.post(url, data)
     .then(res => {
