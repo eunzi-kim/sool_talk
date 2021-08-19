@@ -25,7 +25,7 @@ function Article({ article }) {
         </div>
       </div>
       <div className="footer-box">
-        <div style={{ padding: "0.5rem 1rem" }}>{article["board_USER"]}</div>
+        <div style={{ padding: "0.5rem 1rem " }}>{article["board_USER"]}</div>
         <div style={{ padding: "0.5rem 1rem" }}>{article["board_YMD"]}</div>
       </div>
     </>
@@ -33,15 +33,6 @@ function Article({ article }) {
 }
 
 function Articles() {
-  // Carousel 세팅
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-  };
-
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -84,7 +75,7 @@ function Articles() {
           </Link>
         </div>
       </div>
-      <div>
+      <div className="article-body">
         {articles.map((article) => (
           <div className="article-box" key={article["board_NO"]}>
             <Article article={article} />
