@@ -60,6 +60,10 @@ function Login({ history }) {
 
   // 유저가 (아이디와 비밀번호를 입력하고) 로그인 버튼을 눌렀을 때, 아래 함수 실행!
   const submitLogin = async ({ username, password }) => {
+    if (document.querySelector(".loading-no")) {
+      document.querySelector(".loading-no").className = "loading"
+    }
+
     const userInfo = await signIn({
       username,
       password,
@@ -77,7 +81,7 @@ function Login({ history }) {
       sex,
       token,
     } = userInfo;
-    // console.log(result)
+
     setTimeout(() => {
       // 없는 아이디
       if (result === "noid") {
@@ -129,7 +133,11 @@ function Login({ history }) {
             "login-alert-view alert";
         }
       }
-    }, 2000);
+
+      if (document.querySelector(".loading")) {
+        document.querySelector(".loading").className = "loading-no"
+      }
+    }, 3000);
   };
 
   document.addEventListener("keyup", (e) => {
@@ -137,6 +145,8 @@ function Login({ history }) {
       submitLogin(user);
     }
   });
+
+  const loading = "/img/loading.gif"
 
   return (
     <div className="login">
@@ -187,6 +197,9 @@ function Login({ history }) {
             </Link>
           </div>
         </div>
+      </div>
+      <div className="loading-no">
+        <img src={loading} />
       </div>
     </div>
   );
