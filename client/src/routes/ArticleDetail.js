@@ -73,9 +73,9 @@ function ArticleDetail(props) {
           <div className="option-bottom">
             <div className="option-button">날짜 {moment(board.BOARD_YMD).format("YYYY/MM/DD hh:mm")}</div>
           </div>
-          <div className="option-bottom">
+          {/* <div className="option-bottom">
             <div className="option-button">조회 {board.BOARD_CNT}회</div>
-          </div>
+          </div> */}
           <div className="option-bottom article-ud">
             <Link
               to={{
@@ -96,7 +96,7 @@ function ArticleDetail(props) {
           </div>
           <div className="option-bottom">
             <Link to="/articles" style={{ color: "black" }}>
-              <button className="back-button">목록</button>
+              <button className="back-button list-btn">목록</button>
             </Link>
           </div>
         </div>

@@ -47,19 +47,30 @@ function Articles() {
       document.querySelector(".type-chk").className = "type-1";
     }
     e.target.className = "type-chk";
-    var a = []
-    for (let i=0; i<all_articles.length; i++) {
-      if (all_articles[i]["board_TYPE"] === e.target.value) {
-        a.push(all_articles[i])
+    if (e.target.value === "전체") {
+      setArticles(articles => all_articles)
+    } else {
+      var a = []
+      for (let i=0; i<all_articles.length; i++) {
+        if (all_articles[i]["board_TYPE"] === e.target.value) {
+          a.push(all_articles[i])
+        }
       }
+      setArticles(articles => a)
     }
-    setArticles(articles => a)
+
   };
 
   return (
     <div className="all-article-box">
       <div className="upper-box">
         <div className="type-box">
+        <input
+            type="button"
+            className="type-chk"
+            value="전체"
+            onClick={onTypeClick}       
+          />
           <input
             type="button"
             className="type-1"
