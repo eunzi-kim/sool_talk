@@ -29,6 +29,7 @@ function Article({ article }) {
 
 function Articles() {
   const [articles, setArticles] = useState([]);
+  const [all_articles, setAllArticles] = useState([]);
 
   useEffect(() => {
     const getArticles = async () => {
@@ -36,39 +37,54 @@ function Articles() {
         "http://i5c106.p.ssafy.io/stalk/board/boardlist"
       );
       setArticles(articles.concat(response.data));
+      setAllArticles(all_articles.concat(response.data));
     };
     getArticles();
   }, []);
 
+  const onTypeClick = (e) => {
+    if (document.querySelector(".type-chk")) {
+      document.querySelector(".type-chk").className = "type-1";
+    }
+    e.target.className = "type-chk";
+    var a = []
+    for (let i=0; i<all_articles.length; i++) {
+      if (all_articles[i]["board_TYPE"] === e.target.value) {
+        a.push(all_articles[i])
+      }
+    }
+    setArticles(articles => a)
+  };
+
   return (
     <div className="all-article-box">
       <div className="upper-box">
-        <div className="order-list">
-          <div className="order">최신순</div>
-          <div className="order">조회순</div>
-          <div className="order">댓글부자순</div>
-          <div className="order">오래된순</div>
-        </div>
-        <div
-          style={{
-            backgroundColor: "#FFA3A3",
-            borderRadius: "12px",
-            height: "2rem",
-            fontSize: "1.2rem",
-            textAlign: "center",
-            paddingTop: "4px",
-            width: "62%",
-            marginLeft: "2.2rem",
-            color: "#FFFFFF",
-            fontFamily: "Roboto",
-            fontStyle: "normal",
-            fontWeight: "normal",
-          }}
-        >
-          <Link to="/articles/my-article" className="my-button">
-            내가 작성한 글 보러 가기
-          </Link>
-        </div>
+        <div className="type-box">
+          <input
+            type="button"
+            className="type-1"
+            value="자유"
+            onClick={onTypeClick}       
+          />
+          <input
+            type="button"
+            className="type-2"
+            value="건의"     
+            onClick={onTypeClick}    
+          />
+          <input
+            type="button"
+            className="type-3"
+            value="불만"
+            onClick={onTypeClick}          
+          />
+          <input
+            type="button"
+            className="type-4"
+            value="신고"
+            onClick={onTypeClick}          
+          />
+        </div>        
       </div>
       <div className="article-body">
         {articles.map((article) => (

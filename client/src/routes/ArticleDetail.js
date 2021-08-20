@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./css/ArticleDetail.css";
+import moment from "moment";
 
 function ArticleDetail(props) {
   const { location } = props;
@@ -70,7 +71,7 @@ function ArticleDetail(props) {
             <div className="option-button">작성 {board.BOARD_USER}</div>
           </div>
           <div className="option-bottom">
-            <div className="option-button">날짜 {board.BOARD_YMD}</div>
+            <div className="option-button">날짜 {moment(board.BOARD_YMD).format("YYYY/MM/DD hh:mm")}</div>
           </div>
           <div className="option-bottom">
             <div className="option-button">조회 {board.BOARD_CNT}회</div>
