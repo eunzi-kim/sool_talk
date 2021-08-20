@@ -3,8 +3,8 @@
 }
 
 .article-body {
-  margin: 7rem 5rem 0 5rem;
-  height: 44.5vh;
+  margin: 4.5rem 5rem 0 5rem;
+  height: 47.5vh;
   overflow-y: auto;
   display: flex;
   justify-content: space-between;
@@ -12,13 +12,13 @@
 
 .article-box {
   height: 60%;
-  margin-right: 10rem;
+  margin-right: 2.5rem;
   border-radius: 8px;
 }
 
 .title-box {
   font-size: 1.2rem;
-  width: 170%;
+  width: 20rem;
   height: 2rem;
   padding: 0.1rem;
   margin: 0.5rem;
@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 170%;
+  width: 20rem;
   /* height: 13rem; */
   /* 개별 카드 높이 */
   height: 95%;
@@ -53,7 +53,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 170%;
+  width: 20rem;
   padding: 0.1rem;
   margin: 0.5rem;
 
@@ -65,6 +65,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  margin-left: 2.5rem;
   width: 50%;
   padding-left: 3.3rem;
   z-index: 10000000;
@@ -119,4 +120,11 @@
 .article-body::-webkit-scrollbar-thumb {
   background-color: #ffe4e1;
   border-radius: 6px;
+}
+
+.type-1:hover,
+.type-2:hover,
+.type-3:hover,
+.type-4:hover {
+  cursor: pointer;
 }
