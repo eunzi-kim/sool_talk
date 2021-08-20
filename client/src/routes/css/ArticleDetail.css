@@ -122,6 +122,10 @@
   height: 3rem;
 }
 
+.list-btn {
+  background-color: khaki;
+}
+
 .ok-button {
   padding-top: 0.4rem;
   background: #cfe8ff;

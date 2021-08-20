@@ -95,7 +95,7 @@ function ArticleUpdate({ location }) {
   };
 
   const onCancelArticle = () => {
-    window.location.replace(`/articles/article-detail/1`);
+    window.location.replace(`/articles/${board["board_no"]}`);
   };
 
   return (
